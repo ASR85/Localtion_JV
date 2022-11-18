@@ -8,5 +8,7 @@ namespace Localtion_JV.classes
 {
     internal class Administrator
     {
+
+        string name;
     }
 }
