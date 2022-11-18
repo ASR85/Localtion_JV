@@ -10,6 +10,8 @@ namespace Localtion_JV.classes
     {
         private string username;
         private string password;
+        private string FirstName;
+        private string LastName;
 
         public User()
         {
