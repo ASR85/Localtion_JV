@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    internal class Administrator
+    internal class Administrator : User
     {
 
        
