@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Localtion_JV.classes;
 
-namespace Localtion_JV
+namespace Localtion_JV.pages.customer
 {
     /// <summary>
-    /// Interaction logic for Accueil.xaml
+    /// Interaction logic for Profile.xaml
     /// </summary>
-    public partial class Accueil : Page
+    public partial class Profile : Page
     {
-        public Accueil()
+        public Profile()
         {
             InitializeComponent();
-            List<Booking> movies = Booking.GetBookingByPlayer();
-            string titles = "";
-            foreach (Booking m in movies)
-            {
-                titles += m.BookingDate + " , ";
-
-            }
-            lb.Content = titles;
         }
     }
 }

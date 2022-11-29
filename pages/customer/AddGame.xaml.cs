@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,26 +13,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Localtion_JV.classes;
 
-namespace Localtion_JV
+namespace Localtion_JV.pages.customer
 {
     /// <summary>
-    /// Interaction logic for Accueil.xaml
+    /// Interaction logic for AddGame.xaml
     /// </summary>
-    public partial class Accueil : Page
+    public partial class AddGame : Page
     {
-        public Accueil()
+        public AddGame()
         {
             InitializeComponent();
-            List<Booking> movies = Booking.GetBookingByPlayer();
-            string titles = "";
-            foreach (Booking m in movies)
-            {
-                titles += m.BookingDate + " , ";
+        }
 
-            }
-            lb.Content = titles;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Videogame m = new Videogame();
+            m.Name = tb_name.Text;
+            m.CreditCost = int.Parse(tb_credits.Text);
+            m.Console = tb_console.Text;
+            m.Insert();
         }
     }
 }

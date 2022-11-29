@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Localtion_JV.classes;
+using Localtion_JV.DAO;
+using Localtion_JV.pages.admin;
+using Localtion_JV.pages.customer;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +32,17 @@ namespace Localtion_JV
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            switch (ConnexionChoice.Text)
+            {
+                case "Membre":
+                    NavigationService.Navigate(new AccueilCustomer());
+                    break;
+               
 
+                case "Responsable":
+                    NavigationService.Navigate(new AccueilAdmin());
+                    break;
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,9 +34,17 @@ namespace Localtion_JV
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
-             nomTextBox.Text = "";
-             telTextBox.Text = "";
-             mdpTextBox.Password = "";
+             tb_username.Text = "";
+             tb_tel.Text = "";
+             tb_mdp.Text = "";
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            User u = new User();
+            u.Username = tb_username.Text;
+            u.Password = tb_mdp.Text;
+            u.Insert();
         }
     }
 }

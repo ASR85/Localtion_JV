@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.pages.customer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace Localtion_JV
         }
         private void BtnDetails(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Details();
+            Main.Content = new ListGames();
         }
     }
 }

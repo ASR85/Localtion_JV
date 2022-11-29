@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Localtion_JV.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Localtion_JV.classes
 {
@@ -34,9 +36,20 @@ namespace Localtion_JV.classes
             return copy;
         }
 
-        public void SelectBooking()
+        public void SelectBooking()  
         {
+        }
 
+        public static List<Videogame> GetVideogames()
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.GetVideogames();
+        }
+
+        public bool Insert()
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.Insert(this);
         }
     }
 }

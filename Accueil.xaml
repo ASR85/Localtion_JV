@@ -3,14 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Localtion_JV"
+      xmlns:local="clr-namespace:Localtion_JV" 
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Accueil">
+      Title="Accueil" Background="White">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="11,66,0,0" TextWrapping="Wrap" Text="Bienvenue à vous dans ce site de location de jeux vidéo" VerticalAlignment="Top" FontSize="36" Width="526"/>
-        <Image Source="/accueil.png" HorizontalAlignment="Left" Height="135" Margin="576,46,0,0" VerticalAlignment="Top" Width="172"/>
+        <TextBlock HorizontalAlignment="Left" Margin="59,66,0,0" TextWrapping="Wrap" Text="Bienvenue dans ce site de location de jeux vidéo" VerticalAlignment="Top" FontSize="36" Width="526"/>
+        <Image Source="/accueil.png" HorizontalAlignment="Left" Height="135" Margin="537,46,0,0" VerticalAlignment="Top" Width="172"/>
+        <Label x:Name="lb" Content="Label" HorizontalAlignment="Left" Margin="103,304,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,6 @@ namespace Localtion_JV.classes
     {
         private string username;
         private string password;
-        private string FirstName;
-        private string LastName;
 
         public User()
         {
@@ -30,6 +29,12 @@ namespace Localtion_JV.classes
         public void Login()
         {
 
+        }
+
+        public bool Insert()
+        {
+            UserDAO db = new UserDAO();
+            return db.Insert(this);
         }
     }
 }

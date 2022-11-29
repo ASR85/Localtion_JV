@@ -1,37 +1,36 @@
 ﻿using Localtion_JV.classes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Localtion_JV.DAO
 {
-    internal class UserDAO : DAO<User>
+    internal class UserDAO 
     {
-        public override bool Create(User obj)
-        {
-            throw new NotImplementedException();
-        }
+        private string connectionString;
 
-        public override bool Delete(User obj)
+        public UserDAO()
         {
-            throw new NotImplementedException();
-        }
+            connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
+        }      
 
-        public override List<User> DisplayAll()
+        public bool Insert(User u)
         {
-            throw new NotImplementedException();
-        }
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.User(Username,Password) VALUES('{u.Username}', '{u.Password}')", connection);
 
-        public override User Find(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Update(User obj)
-        {
-            throw new NotImplementedException();
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();                
+                success = res > 0;
+            }
+            return success;
         }
     }
 }

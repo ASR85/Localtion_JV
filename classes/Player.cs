@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    internal class Player
+    internal class Player : User
     {
         private int credit;
         private string pseudo;
@@ -39,6 +40,12 @@ namespace Localtion_JV.classes
         public void AddBirthdayBonus()
         {
 
+        }
+
+        public bool Insert()
+        {
+            PlayerDAO db = new PlayerDAO();
+            return db.Insert(this);
         }
 
     }
