@@ -25,7 +25,7 @@ namespace Localtion_JV.DAO
             List<Videogame> movies = new List<Videogame>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame", connection);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE CreditCost > 0", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -61,7 +61,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {vg.CreditCost} WHERE Id = vg.ID", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {vg.CreditCost} WHERE Id = @id", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

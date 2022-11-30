@@ -51,5 +51,10 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
+        public bool Update()
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.Update(this);
+        }
     }
 }

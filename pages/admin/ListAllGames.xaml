@@ -1,0 +1,29 @@
+﻿<Page x:Class="Localtion_JV.pages.admin.ListAllGames"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Localtion_JV.pages.admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ListAllGames" Background="White">
+
+    <Grid>
+        <DataGrid x:Name="dg" Margin="50,68,205,43" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom du jeu" Width="150"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="150" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding CreditCost}" Header="Crédits requis" Width="150"/>
+                <DataGridTemplateColumn Header="Reservation">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="button" Content="Reservation"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Liste des jeux :" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontSize="24"/>
+
+    </Grid>
+</Page>

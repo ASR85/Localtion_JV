@@ -35,12 +35,15 @@ namespace Localtion_JV
             switch (ConnexionChoice.Text)
             {
                 case "Membre":
-                    NavigationService.Navigate(new AccueilCustomer());
+                    WindowClient windowClient = new WindowClient();
+                    windowClient.Show();
+                     
                     break;
                
 
                 case "Responsable":
-                    NavigationService.Navigate(new AccueilAdmin());
+                    WindowAdmin windowAdmin = new WindowAdmin();
+                    windowAdmin.Show();
                     break;
             }
         }

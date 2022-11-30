@@ -17,20 +17,15 @@ using System.Windows.Shapes;
 namespace Localtion_JV.pages.admin
 {
     /// <summary>
-    /// Interaction logic for EditGame.xaml
+    /// Interaction logic for ListAllGames.xaml
     /// </summary>
-    public partial class EditGame : Page
+    public partial class ListAllGames : Page
     {
-        public EditGame()
+        public ListAllGames()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Videogame m = new Videogame();
-            m.CreditCost = int.Parse(tb_credit.Text);
-            m.Update();
+            List<Videogame> movies = Videogame.GetVideogames();
+            dg.ItemsSource = movies;
         }
     }
 }

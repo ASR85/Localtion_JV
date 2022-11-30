@@ -1,5 +1,4 @@
-﻿using Localtion_JV.classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Localtion_JV.pages.admin
+namespace Localtion_JV.pages.customer
 {
     /// <summary>
-    /// Interaction logic for EditGame.xaml
+    /// Interaction logic for Reservation.xaml
     /// </summary>
-    public partial class EditGame : Page
+    public partial class Reservation : Page
     {
-        public EditGame()
+        public Reservation()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Videogame m = new Videogame();
-            m.CreditCost = int.Parse(tb_credit.Text);
-            m.Update();
         }
     }
 }
