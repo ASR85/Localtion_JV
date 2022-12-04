@@ -24,6 +24,12 @@ namespace Localtion_JV.pages.admin
         public EditGame()
         {
             InitializeComponent();
+            List<Videogame> movies = Videogame.GetAllVideogames();
+            foreach (Videogame m in movies)
+            {
+                cb_name.Content = m.Name + " " + m.CreditCost + " " + m.Console;
+
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using Localtion_JV.classes;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -40,13 +41,31 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(Credit,Pseudo,RegistrationDate,DateOfBirth) VALUES({pl.Credit}, '{pl.Pseudo}' , '{pl.RegistrationDate}', '{pl.DateOfBirth}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(Pseudo,Password,Credit,RegistrationDate,DateOfBirth) VALUES('{pl.Pseudo}', '{pl.Password}' ,{pl.Credit} , '{pl.RegistrationDate}', '{pl.DateOfBirth}')", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
             }
             return success;
+        }
+
+        public int GetPlayerCredit()
+        {
+            int x = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE Id=1", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        x = reader.GetInt32("Credit");
+                    }
+                }
+            }
+            return x;
         }
     }
 }

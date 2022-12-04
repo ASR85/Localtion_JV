@@ -24,7 +24,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.User(Username,Password) VALUES('{u.Username}', '{u.Password}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Users(username,password) VALUES('{u.Username}', '{u.Password}')", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();                

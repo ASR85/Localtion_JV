@@ -48,6 +48,12 @@ namespace Localtion_JV.classes
             return db.Insert(this);
         }
 
+        public static int GetPlayerCredit()
+        {
+            PlayerDAO db = new PlayerDAO();
+            return db.GetPlayerCredit();
+        }
+
     }
 
 }

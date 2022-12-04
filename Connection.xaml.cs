@@ -46,6 +46,11 @@ namespace Localtion_JV
                     windowAdmin.Show();
                     break;
             }
+            MainWindow main = Application.Current.MainWindow as MainWindow;
+            if (main != null)
+            {
+                main.Close();
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

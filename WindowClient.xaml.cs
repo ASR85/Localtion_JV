@@ -45,5 +45,20 @@ namespace Localtion_JV
         {
             Main.Content = new AddGame();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Etes vous sur de vouloir vous déconnectez", "Avertissement", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    this.Close();                  
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+        }
     }
 }

@@ -30,7 +30,6 @@ namespace Localtion_JV.pages.customer
         {
             Videogame m = new Videogame();
             m.Name = tb_name.Text;
-            m.CreditCost = int.Parse(tb_credits.Text);
             m.Console = tb_console.Text;
             m.Insert();
         }

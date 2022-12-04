@@ -1,6 +1,7 @@
 ﻿using Localtion_JV.classes;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,28 @@ namespace Localtion_JV.DAO
         public override bool Update(Loan obj)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Loan> GetLoansByPlayer()
+        {
+            List<Loan> loans = new List<Loan>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Loan WHERE IdLender =1 ", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Loan loan = new Loan();
+                        loan.StartDate = reader.GetDateTime("StartDate");
+                        loan.EndDate = reader.GetDateTime("EndDate");
+                        loan.Ongoing = reader.GetBoolean("Ongoing");
+                        loans.Add(loan);
+                    }
+                }
+            }
+            return loans;
         }
 
         public bool Insert(Loan l)

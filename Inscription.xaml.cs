@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,16 +36,20 @@ namespace Localtion_JV
         {
 
              tb_username.Text = "";
-             tb_tel.Text = "";
-             tb_mdp.Text = "";
+             tb_mdp.Text = "";           
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            User u = new User();
-            u.Username = tb_username.Text;
+            Player u = new Player();
+            u.Pseudo = tb_username.Text;
             u.Password = tb_mdp.Text;
+            u.Credit = 10;
+            u.RegistrationDate = DateTime.Now;
+            u.DateOfBirth = calendar_dob.DisplayDate;
             u.Insert();
+            MessageBox.Show($"Bienvenue sur notre site {tb_username.Text}", "Félicitation");
         }
     }
 }

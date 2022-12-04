@@ -24,7 +24,7 @@ namespace Localtion_JV.pages.admin
         public ListAllGames()
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetVideogames();
+            List<Videogame> movies = Videogame.GetAllVideogames();
             dg.ItemsSource = movies;
         }
     }

@@ -44,5 +44,10 @@ namespace Localtion_JV.classes
             LoanDAO db = new LoanDAO();
             return db.Insert(this);
         }
+        public static List<Loan> GetLoansByPlayer()
+        {
+            LoanDAO db = new LoanDAO();
+            return db.GetLoansByPlayer();
+        }
     }
 }

@@ -12,6 +12,6 @@
         <Button Content="Ajouter un jeu" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click_1"/>
         <Button Content="Editer un jeu" HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click_2"/>
         <Button Content="Supprimer un jeu" HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click_3"/>
-
+        <Button Content="Deconnexion" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Height="34" Width="85" Click="Button_Click_4"/>
     </Grid>
 </Window>

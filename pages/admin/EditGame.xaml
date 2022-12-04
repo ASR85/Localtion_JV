@@ -11,7 +11,9 @@
     <Grid>
         <Label Content="Editer un jeu" Margin="38,66,143,305" FontSize="36" Foreground="#FF000DFF"/>
         <Label Content="Jeu à éditer :" HorizontalAlignment="Left" Margin="32,169,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF0027F3"/>
-        <ComboBox HorizontalAlignment="Left" Margin="228,169,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="228,169,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem x:Name="cb_name"/>
+        </ComboBox>
         <Label Content="Nombre de crédits :" HorizontalAlignment="Left" Margin="32,218,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF0027F3"/>
         <TextBox x:Name="tb_credit" FontSize="16" HorizontalAlignment="Left" Margin="228,225,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Button Content="Confirmer" HorizontalAlignment="Left" Margin="38,316,0,0" VerticalAlignment="Top" FontSize="16" Foreground="White" Background="#FF3C0BD7" Width="111" Height="32" Click="Button_Click"/>

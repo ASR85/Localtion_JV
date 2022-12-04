@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Localtion_JV"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="Gray">
+        Title="MainWindow" Height="450" Width="800" Background="DarkBlue">
     <Grid>
-        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top">
-            <Button Content="Accueil" MinWidth="100" Margin="4" Click="BtnAccueil"/>
-            <Button Content="Inscription" MinWidth="100" Margin="4" Click="BtnInscription"/>
-            <Button Content="Informations" MinWidth="100" Margin="4" Click="BtnDetails"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Height="35" VerticalAlignment="Top">
+            <Button Content="Accueil" MinWidth="100" Margin="4" Click="BtnAccueil" Background="White" Foreground="Blue"/>
+            <Button Content="Inscription" MinWidth="100" Margin="4" Click="BtnInscription" Background="White" Foreground="Blue"/>
+            <Button Content="Connection" MinWidth="100" Margin="4" Click="BtnConnection" Background="White" Foreground="Blue"/>
+            <Button Content="Informations" MinWidth="100" Margin="4" Click="BtnDetails" Background="White" Foreground="Blue"/>
         </StackPanel>
         <Frame x:Name="Main" Margin="0,35,0,0"/>
     </Grid>

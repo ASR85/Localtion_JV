@@ -12,5 +12,6 @@
         <Button Content="Liste des jeux" HorizontalAlignment="Left" Margin="120,10,0,0" VerticalAlignment="Top" Height="34" Width="85" Click="Button_Click_1"/>
         <Button Content="Reservation" HorizontalAlignment="Left" Margin="220,10,0,0" VerticalAlignment="Top" Height="34" Width="85" Click="Button_Click_2"/>
         <Button Content="Location" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" Height="34" Width="85" Click="Button_Click_3"/>
+        <Button Content="Deconnexion" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Height="34" Width="85" Click="Button_Click_4"/>
     </Grid>
 </Window>

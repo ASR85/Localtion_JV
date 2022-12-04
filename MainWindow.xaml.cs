@@ -36,6 +36,10 @@ namespace Localtion_JV
         {
             Main.Content = new Inscription();
         }
+        private void BtnConnection(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Connection();
+        }
         private void BtnDetails(object sender, RoutedEventArgs e)
         {
             Main.Content = new Details();
