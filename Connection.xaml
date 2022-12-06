@@ -14,7 +14,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="98,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold"><Run Text="Mot de passe"/><Run Language="de-de" Text=" "/><Run Text=":"/></TextBlock>
         <TextBox HorizontalAlignment="Left" Margin="280,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="nomTextBox"/>
         <PasswordBox HorizontalAlignment="Left" Margin="280,166,0,0" VerticalAlignment="Top" Width="120" x:Name="mdpTextBox"/>
-        <Button Content="Connexion" HorizontalAlignment="Left" Margin="108,281,0,0" VerticalAlignment="Top" Height="27" Width="78" Click="Button_Click"/>
+        <Button IsCancel="True" Content="Connexion" HorizontalAlignment="Left" Margin="108,281,0,0" VerticalAlignment="Top" Height="27" Width="78" Click="Button_Click"/>
         <Button Content="Nettoyer" HorizontalAlignment="Left" Margin="289,281,0,0" VerticalAlignment="Top" Height="27" Width="78" Click="Button_Click_1"/>
         <ComboBox Name="ConnexionChoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Margin="289,238,0,0" Height="26" FontSize="12" RenderTransformOrigin="0.5,0.5">
             <ComboBoxItem IsSelected="True">Membre</ComboBoxItem>
