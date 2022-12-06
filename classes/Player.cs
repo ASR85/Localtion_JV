@@ -53,6 +53,12 @@ namespace Localtion_JV.classes
             PlayerDAO db = new PlayerDAO();
             return db.GetPlayerCredit();
         }
+        
+        public static Player GetPlayer(string username, string password)
+        {
+            PlayerDAO db = new PlayerDAO();
+            return db.GetPlayerLogin(username,password);
+        }
 
     }
 

@@ -32,18 +32,36 @@ namespace Localtion_JV
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            String login = nomTextBox.Text;
+            String password = mdpTextBox.Text;
             switch (ConnexionChoice.Text)
             {
                 case "Membre":
-                    WindowClient windowClient = new WindowClient();
-                    windowClient.Show();
+                    Player player = Player.GetPlayer(login, password);
+                    if (player == null)
+                    {
+                        MessageBox.Show("Erreur identifiants incorrectes");
+                    }
+                    else
+                    {
+                        WindowClient windowClient = new WindowClient();
+                        windowClient.Show();
+                    }
                      
                     break;
                
 
                 case "Responsable":
-                    WindowAdmin windowAdmin = new WindowAdmin();
-                    windowAdmin.Show();
+                    Administrator administrator = Administrator.GetAdministrator(login, password);
+                    if (administrator == null)
+                    {
+                        MessageBox.Show("Erreur identifiants incorrectes");
+                    }
+                    else
+                    {
+                        WindowAdmin windowAdmin = new WindowAdmin();
+                        windowAdmin.Show();
+                    }
                     break;
             }
             var main = Window.GetWindow(this);
@@ -53,7 +71,7 @@ namespace Localtion_JV
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             nomTextBox.Text = "";
-            mdpTextBox.Password = "";
+            mdpTextBox.Text = "";
         }
     }
 }

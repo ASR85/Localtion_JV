@@ -67,5 +67,27 @@ namespace Localtion_JV.DAO
             }
             return x;
         }
+
+        public Player GetPlayerLogin(string login, string password)
+        {
+            Player player = new Player();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand( $"SELECT * FROM dbo.Player WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        player.Pseudo = reader.GetString("Pseudo");
+                        player.Password = reader.GetString("Password");
+                        player.Credit = reader.GetInt32("Credit");
+                        player.RegistrationDate = reader.GetDateTime("RegistrationDate");
+                        player.DateOfBirth = reader.GetDateTime("DateOfBirth");
+                    }
+                }
+            }
+            return player;
+        }
     }
 }
