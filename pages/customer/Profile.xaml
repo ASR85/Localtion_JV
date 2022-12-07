@@ -12,18 +12,18 @@
         <Label Content="Profile : " HorizontalAlignment="Left" Margin="66,67,0,0" VerticalAlignment="Top" FontSize="36"/>
         <Label Content="Nombre de crédits restants :" HorizontalAlignment="Left" Margin="25,150,0,0" VerticalAlignment="Top"/>
         <Label Content="Jeux en cours de location :" HorizontalAlignment="Left" Margin="25,181,0,0" VerticalAlignment="Top"/>
-        <DataGrid Height="200" Margin="25,225,385,25" x:Name="dg1">
+        <DataGrid AutoGenerateColumns="False" Height="200" Margin="25,225,385,25" x:Name="dg1">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom"  Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="60"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartPoint}" Header="Date de début" Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndPoint}" Header="Date de retour" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Height="200" Margin="437,225,10,25" x:Name="dg2">
+        <DataGrid AutoGenerateColumns="False" Height="200" Margin="437,225,10,25" x:Name="dg2">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="80"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding BookingDate}" Header="Date reservation" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

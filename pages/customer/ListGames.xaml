@@ -9,12 +9,12 @@
       Title="ListGames" Background="White">
 
     <Grid>
-        <DataGrid x:Name="dg" Margin="50,68,205,43" Background="White">
+        <DataGrid  AutoGenerateColumns="False" x:Name="dg" Margin="50,68,47,43" Background="White">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom du jeu" Width="150"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="150" />
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding CreditCost}" Header="Crédits requis" Width="150"/>
-                <DataGridTemplateColumn Header="Reservation">
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom du jeu" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding CreditCost}" Header="Crédits requis" Width="*"/>
+                <DataGridTemplateColumn Header="Reservation" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="button" Content="Reservation"/>

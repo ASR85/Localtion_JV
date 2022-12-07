@@ -28,10 +28,18 @@ namespace Localtion_JV.pages.customer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Videogame m = new Videogame();
-            m.Name = tb_name.Text;
-            m.Console = tb_console.Text;
-            m.Insert();
+            if (tb_name.Text != "" && consoleChoice.Text != "")
+            {
+                Videogame m = new Videogame();
+                m.Name = tb_name.Text;
+                m.Console = consoleChoice.Text;
+                m.Insert();
+                MessageBox.Show("le jeu a bien été ajouté", "Confirmation");
+            }
+            else
+            {
+                MessageBox.Show("informations manquantes","Attention");
+            }
         }
     }
 }
