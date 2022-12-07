@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    internal class User
+    public class User
     {
         private string username;
         private string password;

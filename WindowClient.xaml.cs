@@ -1,4 +1,5 @@
-﻿using Localtion_JV.pages.customer;
+﻿using Localtion_JV.classes;
+using Localtion_JV.pages.customer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,14 @@ namespace Localtion_JV
     /// </summary>
     public partial class WindowClient : Window
     {
-        public WindowClient()
+        Player p;
+        public WindowClient(Player player)
         {
+            p = player;
             InitializeComponent();
-            Main.Content = new AccueilCustomer();
+            Main.Content = new AccueilCustomer(p);
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

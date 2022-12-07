@@ -1,4 +1,5 @@
-﻿using Localtion_JV.pages.admin;
+﻿using Localtion_JV.classes;
+using Localtion_JV.pages.admin;
 using Localtion_JV.pages.customer;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Localtion_JV
             InitializeComponent();
             Main.Content = new AccueilAdmin();
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

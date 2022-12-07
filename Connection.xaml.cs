@@ -44,7 +44,7 @@ namespace Localtion_JV
                     }
                     else
                     {
-                        WindowClient windowClient = new WindowClient();
+                        WindowClient windowClient = new WindowClient(player);
                         windowClient.Show();
                     }
                      

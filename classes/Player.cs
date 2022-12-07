@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    internal class Player : User
+    public class Player : User
     {
         private int credit;
         private string pseudo;

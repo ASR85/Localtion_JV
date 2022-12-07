@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace Localtion_JV.pages.customer
     /// </summary>
     public partial class AccueilCustomer : Page
     {
-        public AccueilCustomer()
+        Player p;
+        public AccueilCustomer(Player player)
         {
             InitializeComponent();
+
+            p = player;
+
+            label_accueil.Content = "Bienvenue " + player.Pseudo;
         }
     }
 }
