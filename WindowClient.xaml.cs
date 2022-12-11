@@ -32,22 +32,22 @@ namespace Localtion_JV
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Profile();
+            Main.Content = new Profile(p);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ListGames();
+            Main.Content = new ListGames(p);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Reservation();
+            Main.Content = new Reservation(p);
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AddGame();
+            Main.Content = new AddGame(p);
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)

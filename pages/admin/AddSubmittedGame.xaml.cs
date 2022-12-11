@@ -27,7 +27,7 @@ namespace Localtion_JV.pages.admin
             List<Videogame> movies = Videogame.GetSubmittedGames();
             foreach (Videogame m in movies)
             {
-                cb_name.Content = m.Name;
+                cb_name.Items.Add(m.Name);
 
             }
         }

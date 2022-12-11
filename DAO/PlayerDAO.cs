@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,30 +12,6 @@ namespace Localtion_JV.DAO
 {
     internal class PlayerDAO : DAO<Player>
     {
-        public override bool Create(Player obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Delete(Player obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Player> DisplayAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Player Find(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Update(Player obj)
-        {
-            throw new NotImplementedException();
-        }
 
         public bool Insert(Player pl)
         {
@@ -68,9 +45,22 @@ namespace Localtion_JV.DAO
             return x;
         }
 
+        public bool AddBirthdayBonus(Player p) {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Player SET Credit = {p.Credit +10} WHERE id=@id')", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
+        }
+
         public Player GetPlayerLogin(string login, string password)
         {
-            Player player = new Player();
+            Player player = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand( $"SELECT * FROM dbo.Player WHERE Pseudo = '{login}' and Password = '{password}'", connection);
@@ -79,15 +69,42 @@ namespace Localtion_JV.DAO
                 {
                     while (reader.Read())
                     {
-                        player.Pseudo = reader.GetString("Pseudo");
-                        player.Password = reader.GetString("Password");
-                        player.Credit = reader.GetInt32("Credit");
-                        player.RegistrationDate = reader.GetDateTime("RegistrationDate");
-                        player.DateOfBirth = reader.GetDateTime("DateOfBirth");
+                        player = new Player(
+                        login,
+                        password,
+                        reader.GetInt32("credit"),
+                        reader.GetDateTime("registrationDate"),
+                        reader.GetDateTime("dateOfBirth")
+                        );
                     }
                 }
             }
             return player;
+        }
+
+        public bool LoanAllowed()
+        {
+            int credit = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Player WHERE Id =@id", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                       credit = reader.GetInt32("Credit");
+                    }
+                }
+            }
+            if (credit > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

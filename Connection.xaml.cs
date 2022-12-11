@@ -40,12 +40,14 @@ namespace Localtion_JV
                     Player player = Player.GetPlayer(login, password);
                     if (player == null)
                     {
-                        MessageBox.Show("Erreur identifiants incorrectes");
+                        MessageBox.Show("Erreur identifiants manquants ou incorrectes");
                     }
                     else
                     {
                         WindowClient windowClient = new WindowClient(player);
                         windowClient.Show();
+                        var main = Window.GetWindow(this);
+                        main.Close();
                     }
                      
                     break;
@@ -55,17 +57,17 @@ namespace Localtion_JV
                     Administrator administrator = Administrator.GetAdministrator(login, password);
                     if (administrator == null)
                     {
-                        MessageBox.Show("Erreur identifiants incorrectes");
+                        MessageBox.Show("Erreur identifiants manquants ou incorrectes");
                     }
                     else
                     {
                         WindowAdmin windowAdmin = new WindowAdmin();
                         windowAdmin.Show();
+                        var main = Window.GetWindow(this);
+                        main.Close();
                     }
                     break;
-            }
-            var main = Window.GetWindow(this);
-            main.Close();
+            }           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

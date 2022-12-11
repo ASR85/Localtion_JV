@@ -31,12 +31,14 @@ namespace Localtion_JV.classes
 
         public void CalculateBalance()
         {
-
+            LoanDAO db = new LoanDAO();
+            db.CalculateBalance(this);
         }
 
         public void EndLoan()
         {
-
+            LoanDAO db = new LoanDAO();
+             db.EndLoan(this);
         }
 
         public bool Insert()

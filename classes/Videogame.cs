@@ -32,12 +32,14 @@ namespace Localtion_JV.classes
 
         public Copy CopyAvailable()
         {
-            Copy copy = new Copy();
-            return copy;
+            VideogameDAO db = new VideogameDAO();
+            return db.CopyAvailable();
         }
 
         public void SelectBooking()  
         {
+            VideogameDAO db = new VideogameDAO();
+            db.SelectBooking();
         }
 
         public static List<Videogame> GetVideogames()
@@ -62,10 +64,10 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
-        public bool Update()
+        public bool Update(int credits)
         {
             VideogameDAO db = new VideogameDAO();
-            return db.Update(this);
+            return db.UpdateCredits(this, credits);
         }
     }
 }

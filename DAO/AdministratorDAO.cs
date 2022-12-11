@@ -10,35 +10,10 @@ using System.Threading.Tasks;
 namespace Localtion_JV.DAO
 {
     internal class AdministratorDAO : DAO<Administrator>
-    {
-        public override bool Create(Administrator obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Delete(Administrator obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Administrator> DisplayAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Administrator Find(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Update(Administrator obj)
-        {
-            throw new NotImplementedException();
-        }
-
+    {      
         public Administrator GetAdmin(string pseudo, string password)
         {
-            Administrator admin = new Administrator();
+            Administrator admin = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Administrator WHERE Pseudo = '{pseudo}' and Password = '{password}'", connection);
@@ -47,8 +22,10 @@ namespace Localtion_JV.DAO
                 {
                     while (reader.Read())
                     {
-                        admin.Username = reader.GetString("Pseudo");
-                        admin.Password = reader.GetString("Password");
+                        admin = new Administrator(
+                        reader.GetString("Pseudo"), 
+                        reader.GetString("Password")
+                        );
 
                     }
                 }

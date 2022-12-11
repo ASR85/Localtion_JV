@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Localtion_JV.pages.admin
         public DeleteGame()
         {
             InitializeComponent();
+            List<Videogame> movies = Videogame.GetAllVideogames();
+            foreach (Videogame m in movies)
+            {
+                cb_name.Items.Add(m.Name);
+
+            }
         }
     }
 }

@@ -24,7 +24,8 @@ namespace Localtion_JV.classes
 
         public void Delete()
         {
-
+            BookingDAO db = new BookingDAO();
+            db.Delete(this);
         }
 
         public bool Insert()

@@ -23,15 +23,7 @@ namespace Localtion_JV
     {
         public Accueil()
         {
-            InitializeComponent();
-            List<Booking> movies = Booking.GetBookingByPlayer();
-            string titles = "";
-            foreach (Booking m in movies)
-            {
-                titles += m.BookingDate + " , ";
-
-            }
-            lb.Content = titles;
+            InitializeComponent();         
         }
     }
 }

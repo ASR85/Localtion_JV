@@ -11,17 +11,20 @@ namespace Localtion_JV.classes
     {
         public void ReleaseCopy()
         {
-
+            CopyDAO db = new CopyDAO();
+            db.ReleaseCopy(this);
         }
 
         public void Borrow()
         {
-
+            CopyDAO db = new CopyDAO();
+            db.Borrow(this);
         }
 
         public bool IsAvailable()
         {
-            return true;
+            CopyDAO db = new CopyDAO();
+            return db.IsAvailable(this);
         }
 
         public bool Insert()

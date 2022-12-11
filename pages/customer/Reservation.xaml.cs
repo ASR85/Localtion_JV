@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Localtion_JV.classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,24 @@ namespace Localtion_JV.pages.customer
     /// </summary>
     public partial class Reservation : Page
     {
-        public Reservation()
+        Player p;
+        public Reservation(Player player)
         {
             InitializeComponent();
+            p=player;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Etes vous sur de vouoir reerver", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    MessageBox.Show("Reservation effectuée");
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
         }
     }
 }

@@ -11,7 +11,7 @@
     <Grid>
         <Label Content="Retirer un jeu de la liste" Margin="38,66,143,305" FontSize="36" Foreground="#FF000DFF"/>
         <Label Content="Jeu à retirer : " HorizontalAlignment="Left" Margin="38,192,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF000DFF" Width="125"/>
-        <ComboBox HorizontalAlignment="Left" Margin="224,192,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cb_name" HorizontalAlignment="Left" Margin="224,192,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="Confirmer" HorizontalAlignment="Left" Margin="38,291,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16" Width="94" Background="#FF000CED"/>
     </Grid>
 </Page>

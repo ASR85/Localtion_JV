@@ -15,10 +15,10 @@ namespace Localtion_JV.DAO
         {
             this.connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
         }
-        public abstract bool Create(T obj);
-        public abstract bool Delete(T obj);
-        public abstract bool Update(T obj);
-        public abstract T Find(int id);
-        public abstract List<T> DisplayAll();
+        //public abstract bool Create(T obj);
+        //public abstract bool Delete(T obj);
+        //public abstract bool Update(T obj);
+        //public abstract T Find(int id);
+        //public abstract List<T> DisplayAll();
     }
 }

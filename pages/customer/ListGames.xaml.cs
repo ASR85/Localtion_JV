@@ -21,11 +21,18 @@ namespace Localtion_JV.pages.customer
     /// </summary>
     public partial class ListGames : Page
     {
-        public ListGames()
+        Player p;
+        public ListGames(Player p)
         {
             InitializeComponent();
             List<Videogame> movies = Videogame.GetVideogames();
             dg.ItemsSource = movies;
+            this.p = p;
+        }
+
+        private void GoToReservation(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Reservation(p));
         }
     }
 }

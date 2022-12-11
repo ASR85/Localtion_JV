@@ -21,9 +21,11 @@ namespace Localtion_JV.pages.customer
     /// </summary>
     public partial class AddGame : Page
     {
-        public AddGame()
+        Player p;
+        public AddGame(Player p)
         {
             InitializeComponent();
+            this.p = p;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

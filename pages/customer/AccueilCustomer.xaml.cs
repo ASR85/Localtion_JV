@@ -28,7 +28,7 @@ namespace Localtion_JV.pages.customer
 
             p = player;
 
-            label_accueil.Content = "Bienvenue " + player.Pseudo;
+            label_accueil.Content = "Bienvenue " + player.ToString();
         }
     }
 }

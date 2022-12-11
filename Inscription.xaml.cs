@@ -42,14 +42,21 @@ namespace Localtion_JV
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Player u = new Player();
-            u.Pseudo = tb_username.Text;
-            u.Password = tb_mdp.Text;
-            u.Credit = 10;
-            u.RegistrationDate = DateTime.Now;
-            u.DateOfBirth = calendar_dob.DisplayDate;
-            u.Insert();
-            MessageBox.Show($"Bienvenue sur notre site {tb_username.Text}", "Félicitation");
+            if (tb_username.Text != "" && tb_mdp.Text != "")
+            {
+                Player u = new Player();
+                u.Pseudo = tb_username.Text;
+                u.Password = tb_mdp.Text;
+                u.Credit = 10;
+                u.RegistrationDate = DateTime.Now;
+                u.DateOfBirth = calendar_dob.DisplayDate;
+                u.Insert();
+                MessageBox.Show($"Bienvenue sur notre site {tb_username.Text}", "Félicitation");
+            }
+            else
+            {
+                MessageBox.Show("informations manquantes", "Attention");
+            }
         }
     }
 }

@@ -13,13 +13,6 @@ namespace Localtion_JV.DAO
 {
     internal class VideogameDAO : DAO<Videogame>
     {
-        private string connectionString;
-
-        public VideogameDAO()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
-        }
-
         public List<Videogame> GetVideogames()
         {
             List<Videogame> movies = new List<Videogame>();
@@ -40,6 +33,34 @@ namespace Localtion_JV.DAO
                 }
             }
             return movies;
+        }
+
+        public Copy CopyAvailable()
+        {
+            Copy copy = new Copy();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copy WHERE idGame = @id", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                }
+            }
+            return copy;
+        }
+
+        public void SelectBooking()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                }
+            }
         }
 
         public List<Videogame> GetAllVideogames()
@@ -100,12 +121,12 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public override bool Update(Videogame vg)
+        public bool UpdateCredits(Videogame vg, int credits)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {vg.CreditCost} WHERE Id = @id", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {credits} WHERE Id = @id", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -114,7 +135,7 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public override bool Delete(Videogame vg)
+        public bool Delete(Videogame vg)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -128,21 +149,5 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public override bool Create(Videogame obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        
-
-        public override Videogame Find(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Videogame> DisplayAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

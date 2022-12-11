@@ -1,16 +1,18 @@
 ﻿using Localtion_JV.DAO;
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    public class Player : User
+    public class Player
     {
         private int credit;
         private string pseudo;
+        private string password;
         private DateTime registrationDate;
         private DateTime dateOfBirth;
 
@@ -19,10 +21,11 @@ namespace Localtion_JV.classes
 
         }
 
-        public Player(int credit, string pseudo, DateTime registrationDate, DateTime dateOfBirth)
+        public Player(string pseudo,string password, int credit,  DateTime registrationDate, DateTime dateOfBirth)
         {
-            this.credit = credit;
             this.pseudo = pseudo;
+            this.password = password;
+            this.credit = credit;           
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
         }
@@ -32,14 +35,17 @@ namespace Localtion_JV.classes
         public DateTime RegistrationDate { get; set; }
         public DateTime DateOfBirth { get; set; }
 
+        public string Password { get; set; }
+
         public bool LoanAllowed()
         {
             return true;
         }
 
-        public void AddBirthdayBonus()
+        public bool AddBirthdayBonus(Player p)
         {
-
+            PlayerDAO db = new PlayerDAO();
+            return db.AddBirthdayBonus(this);
         }
 
         public bool Insert()
@@ -58,6 +64,11 @@ namespace Localtion_JV.classes
         {
             PlayerDAO db = new PlayerDAO();
             return db.GetPlayerLogin(username,password);
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Pseudo} , {this.Password} , {this.Credit} , {this.RegistrationDate} , {this.DateOfBirth} , ";
         }
 
     }

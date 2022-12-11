@@ -17,7 +17,7 @@
                 <DataGridTemplateColumn Header="Reservation" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="button" Content="Reservation"/>
+                            <Button x:Name="button" Content="Reservation" Click="GoToReservation"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -24,19 +24,20 @@ namespace Localtion_JV.pages.admin
         public EditGame()
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetAllVideogames();
+            List<Videogame> movies = Videogame.GetVideogames();
             foreach (Videogame m in movies)
             {
-                cb_name.Content = m.Name + " " + m.CreditCost + " " + m.Console;
+                cb_name.Items.Add(m.Name + " " + m.CreditCost + " " + m.Console);
 
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            int credits;
             Videogame m = new Videogame();
-            m.CreditCost = int.Parse(tb_credit.Text);
-            m.Update();
+            credits = int.Parse(tb_credit.Text);
+            m.Update(credits);
         }
     }
 }

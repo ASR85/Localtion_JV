@@ -11,30 +11,6 @@ namespace Localtion_JV.DAO
 {
     internal class BookingDAO : DAO<Booking>
     {
-        public override bool Create(Booking obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Delete(Booking obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Booking> DisplayAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Booking Find(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Update(Booking obj)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Booking> GetBookingByPlayer()
         {
@@ -68,6 +44,16 @@ namespace Localtion_JV.DAO
                 success = res > 0;
             }
             return success;
+        }
+
+        public void Delete(Booking b)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Booking WHERE id=@id", connection);
+
+                connection.Open();
+            }
         }
 
     }

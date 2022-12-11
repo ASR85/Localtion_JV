@@ -10,6 +10,8 @@
 
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Concernant notre site : " VerticalAlignment="Top" FontSize="24"/>
+        <Label Content="Notre site à pour objectif de proposer un espace de partage entre tous les joueurs du monde entier." HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="Cela vous permet d'échanger vos jeux vidéos avec d'autres joueurs pour avoir un vaste accès à des centaines voir des milliers de jeuxx vidéö." VerticalAlignment="Top" Height="113" Width="715" FontSize="16"/>
 
     </Grid>
 </Page>

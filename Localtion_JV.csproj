@@ -8,11 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="accueil.png" />
+    <Compile Remove="factory\**" />
+    <EmbeddedResource Remove="factory\**" />
+    <None Remove="factory\**" />
+    <Page Remove="factory\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="factory\" />
+    <None Remove="accueil.png" />
   </ItemGroup>
 
   <ItemGroup>

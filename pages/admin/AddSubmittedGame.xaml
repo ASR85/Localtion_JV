@@ -11,9 +11,7 @@
     <Grid>
         <Label Content="Ajouter un jeu proposé par un client" HorizontalAlignment="Left" Margin="47,46,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FF0027F3"/>
         <Label Content="Jeu proposé :" HorizontalAlignment="Left" Margin="47,134,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF0027F3"/>
-        <ComboBox HorizontalAlignment="Left" Margin="243,134,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem x:Name="cb_name"/>
-        </ComboBox>
+        <ComboBox x:Name="cb_name" HorizontalAlignment="Left" Margin="243,134,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Nombre de crédits :" HorizontalAlignment="Left" Margin="47,183,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF0027F3"/>
         <TextBox FontSize="16" x:Name="tb_credits" HorizontalAlignment="Left" Margin="243,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="102,306,0,0" VerticalAlignment="Top" Height="28" Width="69" Foreground="White" BorderBrush="#FF0029FB" Background="#FF000DFF" Click="Button_Click"/>

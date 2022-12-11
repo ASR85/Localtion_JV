@@ -11,31 +11,6 @@ namespace Localtion_JV.DAO
 {
     internal class LoanDAO : DAO<Loan>
     {
-        public override bool Create(Loan obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Delete(Loan obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override List<Loan> DisplayAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Loan Find(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Update(Loan obj)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Loan> GetLoansByPlayer()
         {
             List<Loan> loans = new List<Loan>();
@@ -70,6 +45,16 @@ namespace Localtion_JV.DAO
                 success = res > 0;
             }
             return success;
+        }
+
+        public void CalculateBalance(Loan l)
+        {
+
+        }
+
+        public void EndLoan(Loan l)
+        {
+
         }
     }
 }
