@@ -20,7 +20,12 @@ namespace Localtion_JV.classes
             this.bookingDate = bookingDate;
         }
 
-        public DateTime BookingDate { get; set; }
+        public DateTime BookingDate
+        {
+            get { return bookingDate; }
+            set { bookingDate = value; }
+        }
+
 
         public void Delete()
         {

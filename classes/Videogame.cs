@@ -77,6 +77,11 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
+        public bool Delete(string name)
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.Delete(name);
+        }
         public bool Update(string name, int credits)
         {
             VideogameDAO db = new VideogameDAO();

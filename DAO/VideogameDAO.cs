@@ -135,12 +135,12 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public bool Delete(Videogame vg)
+        public bool Delete(string name)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGame WHERE Id = vg.ID", connection);
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGame WHERE Name = '{name}'", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

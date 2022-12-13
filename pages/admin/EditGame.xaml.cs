@@ -34,13 +34,16 @@ namespace Localtion_JV.pages.admin
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string name = (string)cb_name.SelectedItem;
             int credits;           
             credits = int.Parse(tb_credit.Text);
             //Videogame m = new Videogame();
             //m.Update(credits);
             if (credits > 0 && credits <= 5)
             {
-                MessageBox.Show("Le jeu a été ajouté");
+                Videogame videogame = new Videogame();
+                videogame.Update(name, credits);
+                MessageBox.Show("Le jeu a été mis à jour");
             }
             else if (credits > 5 || credits < 0)
             {
