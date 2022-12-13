@@ -26,9 +26,22 @@ namespace Localtion_JV.classes
             this.console = console;
         }
 
-        public string Name { get; set; }
-        public int CreditCost { get; set; }
-        public string Console { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int CreditCost
+        {
+            get { return creditCost; }
+            set { creditCost = value; }
+        }
+
+        public string Console
+        {
+            get { return console; }
+            set { console = value; }
+        }
 
         public Copy CopyAvailable()
         {
@@ -64,10 +77,10 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
-        public bool Update(int credits)
+        public bool Update(string name, int credits)
         {
             VideogameDAO db = new VideogameDAO();
-            return db.UpdateCredits(this, credits);
+            return db.UpdateCredits(name, credits);
         }
     }
 }

@@ -24,10 +24,22 @@ namespace Localtion_JV.classes
             this.endDate = endDate; 
             this.ongoing = ongoing;
         }
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set { startDate = value; }
+        }
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set { endDate = value; }
+        }
 
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public bool Ongoing { get; set; }
+        public bool Ongoing
+        {
+            get { return ongoing; }
+            set { ongoing = value; }
+        }
 
         public void CalculateBalance()
         {

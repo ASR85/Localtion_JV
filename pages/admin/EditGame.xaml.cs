@@ -27,17 +27,26 @@ namespace Localtion_JV.pages.admin
             List<Videogame> movies = Videogame.GetVideogames();
             foreach (Videogame m in movies)
             {
-                cb_name.Items.Add(m.Name + " " + m.CreditCost + " " + m.Console);
+                cb_name.Items.Add(m.Name + " sur " + m.Console + " : " + m.CreditCost);
 
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int credits;
-            Videogame m = new Videogame();
+            int credits;           
             credits = int.Parse(tb_credit.Text);
-            m.Update(credits);
+            //Videogame m = new Videogame();
+            //m.Update(credits);
+            if (credits > 0 && credits <= 5)
+            {
+                MessageBox.Show("Le jeu a été ajouté");
+            }
+            else if (credits > 5 || credits < 0)
+            {
+                MessageBox.Show("Le jeu ne peut valoir qu'entre 1 et 5 crédits");
+            }
+
         }
     }
 }

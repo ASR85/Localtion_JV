@@ -31,5 +31,18 @@ namespace Localtion_JV.pages.admin
 
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Etes vous sur de vouoir le supprimer", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    MessageBox.Show("Suppression effectuée");
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+        }
     }
 }

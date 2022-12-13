@@ -28,11 +28,26 @@ namespace Localtion_JV.pages.admin
             foreach (Videogame m in movies)
             {
                 cb_name.Items.Add(m.Name);
-
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string name = (string)cb_name.SelectedItem;
+            int c = int.Parse(tb_credits.Text);
+            if (c >0 && c <= 5)
+            {
+                Videogame videogame = new Videogame();
+                videogame.Update(name, c);
+                MessageBox.Show("Le jeu a été ajouté");
+            }
+            else if (c > 5 || c < 0)
+            {
+                MessageBox.Show("Le jeu ne peut valoir qu'entre 1 et 5 crédits");
+            }
+        }
+
+        private void cb_name_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

@@ -121,12 +121,12 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public bool UpdateCredits(Videogame vg, int credits)
+        public bool UpdateCredits(string name, int credits)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {credits} WHERE Id = @id", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {credits} WHERE Name = '{name}'", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
