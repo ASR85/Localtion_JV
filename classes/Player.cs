@@ -11,6 +11,7 @@ namespace Localtion_JV.classes
 {
     public class Player
     {
+        private int id;
         private int credit;
         private string pseudo;
         private string password;
@@ -30,6 +31,13 @@ namespace Localtion_JV.classes
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
         }
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
 
         public DateTime RegistrationDate
         {

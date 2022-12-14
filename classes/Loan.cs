@@ -9,6 +9,7 @@ namespace Localtion_JV.classes
 {
     internal class Loan
     {
+        private int id;
         private DateTime startDate;
         private DateTime endDate;
         private bool ongoing;
@@ -23,6 +24,11 @@ namespace Localtion_JV.classes
             this.startDate = startDate;
             this.endDate = endDate; 
             this.ongoing = ongoing;
+        }
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
         }
         public DateTime StartDate
         {

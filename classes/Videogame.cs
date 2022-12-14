@@ -10,6 +10,7 @@ namespace Localtion_JV.classes
 {
     internal class Videogame
     {
+        private int id;
         private string name;
         private int creditCost;
         private string console;
@@ -25,7 +26,18 @@ namespace Localtion_JV.classes
             this.creditCost = creditCost;   
             this.console = console;
         }
-
+        public Videogame(int id, string name, int creditCost, string console)
+        {
+            this.id = id;
+            this.name = name;
+            this.creditCost = creditCost;
+            this.console = console;
+        }
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
         public string Name
         {
             get { return name; }
@@ -77,10 +89,10 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
-        public bool Delete(string name)
+        public bool Delete()
         {
             VideogameDAO db = new VideogameDAO();
-            return db.Delete(name);
+            return db.Delete(this);
         }
         public bool Update(string name, int credits)
         {

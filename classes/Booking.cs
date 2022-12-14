@@ -9,6 +9,7 @@ namespace Localtion_JV.classes
 {
     internal class Booking
     {
+        int id;
         private DateTime bookingDate;
 
         public Booking()
@@ -19,6 +20,13 @@ namespace Localtion_JV.classes
         {
             this.bookingDate = bookingDate;
         }
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
 
         public DateTime BookingDate
         {

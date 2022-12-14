@@ -9,6 +9,7 @@ namespace Localtion_JV.classes
 {
     public class User
     {
+        private int id;
         private string username;
         private string password;
 
@@ -23,6 +24,11 @@ namespace Localtion_JV.classes
             this.password = password;   
         }
 
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         public string Username
         {

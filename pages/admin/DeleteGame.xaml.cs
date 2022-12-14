@@ -40,7 +40,7 @@ namespace Localtion_JV.pages.admin
             {
                 case MessageBoxResult.Yes:
                     Videogame videogame = new Videogame();
-                    videogame.Delete(name);
+                    videogame.Delete();
                     MessageBox.Show("Suppression effectuée");
                     break;
                 case MessageBoxResult.No:
