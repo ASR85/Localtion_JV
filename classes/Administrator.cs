@@ -14,7 +14,7 @@ namespace Localtion_JV.classes
         }
 
 
-        public Administrator(string username, string password) : base(id,username, password)
+        public Administrator(string username, string password) : base(id, username, password)
         {
             base.Id = Id;
             base.Username = username;
