@@ -11,13 +11,11 @@ namespace Localtion_JV.classes
     {
         private int id;
 
-	public int Id
-	{
-		get { return id;}
-		set { id = value;}
-	}
-
-
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         public void ReleaseCopy()
         {

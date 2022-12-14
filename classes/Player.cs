@@ -32,11 +32,12 @@ namespace Localtion_JV.classes
             this.dateOfBirth = dateOfBirth;
         }
 
-         public int Id
+        public int Id
         {
             get { return id; }
             set { id = value; }
         }
+
 
         public DateTime RegistrationDate
         {

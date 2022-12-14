@@ -9,16 +9,7 @@ namespace Localtion_JV.classes
 {
     internal class Booking
     {
-
-        private int id;
-
-	public int Id
-	{
-		get { return id;}
-		set { id = value;}
-	}
-
-
+        int id;
         private DateTime bookingDate;
 
         public Booking()
@@ -30,7 +21,19 @@ namespace Localtion_JV.classes
             this.bookingDate = bookingDate;
         }
 
-        public DateTime BookingDate { get; set; }
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+
+        public DateTime BookingDate
+        {
+            get { return bookingDate; }
+            set { bookingDate = value; }
+        }
+
 
         public void Delete()
         {

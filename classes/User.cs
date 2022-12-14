@@ -18,23 +18,17 @@ namespace Localtion_JV.classes
 
         }
 
-        public User(int id, String username, string password)
+        public User(string username, string password)
         {
-            this.id = id;
             this.username = username;
-            this.password = password;  
-            
+            this.password = password;   
         }
 
-        
-
-	    public int Id
-	{
-		get { return id;}
-		set { id = value;}
-	}
-
-
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         public string Username
         {

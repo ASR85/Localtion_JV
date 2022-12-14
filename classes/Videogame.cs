@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -21,14 +20,19 @@ namespace Localtion_JV.classes
 
         }
 
-        public Videogame(int id, string name, int creditCost, string console)
+        public Videogame(string name, int creditCost, string console)
         {
-            this.id = id;
             this.name = name;
             this.creditCost = creditCost;   
             this.console = console;
         }
-
+        public Videogame(int id, string name, int creditCost, string console)
+        {
+            this.id = id;
+            this.name = name;
+            this.creditCost = creditCost;
+            this.console = console;
+        }
         public int Id
         {
             get { return id; }
@@ -85,10 +89,10 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
-        public bool Delete(string name)
+        public bool Delete()
         {
             VideogameDAO db = new VideogameDAO();
-            return db.Delete(name);
+            return db.Delete(this);
         }
         public bool Update(string name, int credits)
         {

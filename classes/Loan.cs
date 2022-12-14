@@ -19,22 +19,17 @@ namespace Localtion_JV.classes
 
         }
 
-        public Loan(int id, DateTime startDate, DateTime endDate, bool ongoing)
+        public Loan(DateTime startDate, DateTime endDate, bool ongoing)
         {
-            this.id = id;
             this.startDate = startDate;
             this.endDate = endDate; 
             this.ongoing = ongoing;
         }
-
-
         public int Id
         {
             get { return id; }
             set { id = value; }
         }
-
-
         public DateTime StartDate
         {
             get { return startDate; }
