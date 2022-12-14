@@ -22,16 +22,17 @@ namespace Localtion_JV.pages.customer
     public partial class Profile : Page
     {
         Player p;
-        public Profile(Player p)
+        public Profile(Player player)
         {
             InitializeComponent();
+            tb_credits.Text = $"{player.Credit}";
             List<Loan> loans = Loan.GetLoansByPlayer();
             dg1.ItemsSource = loans;
             List<Booking> bookings = Booking.GetBookingByPlayer();
             dg2.ItemsSource = bookings;
             int credit = Player.GetPlayerCredit();
-            tb_credits.Text = credit.ToString();
-            this.p = p;
+
+            this.p = player;
         }
     }
 }
