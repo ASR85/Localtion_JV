@@ -9,6 +9,16 @@ namespace Localtion_JV.classes
 {
     internal class Booking
     {
+
+        private int id;
+
+	public int Id
+	{
+		get { return id;}
+		set { id = value;}
+	}
+
+
         private DateTime bookingDate;
 
         public Booking()

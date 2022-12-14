@@ -9,6 +9,7 @@ namespace Localtion_JV.classes
 {
     public class User
     {
+        private int id;
         private string username;
         private string password;
 
@@ -17,14 +18,35 @@ namespace Localtion_JV.classes
 
         }
 
-        public User(string username, string password)
+        public User(int id, String username, string password)
         {
+            this.id = id;
             this.username = username;
-            this.password = password;   
+            this.password = password;  
+            
         }
 
-        public string Username { get; set; }
-        public string Password { get; set; }
+        
+
+	    public int Id
+	{
+		get { return id;}
+		set { id = value;}
+	}
+
+
+
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
 
         public void Login()
         {

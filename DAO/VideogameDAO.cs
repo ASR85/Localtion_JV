@@ -75,6 +75,7 @@ namespace Localtion_JV.DAO
                     while (reader.Read())
                     {
                         Videogame videogame = new  Videogame();
+                        
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
                         videogame.Console = reader.GetString("Console");
@@ -121,12 +122,12 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public bool UpdateCredits(Videogame vg, int credits)
+        public bool UpdateCredits(string name, int credits)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {credits} WHERE Id = @id", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {credits} WHERE Name = '{name}'", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -135,12 +136,12 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public bool Delete(Videogame vg)
+        public bool Delete(string name)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGame WHERE Id = vg.ID", connection);
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGame WHERE Name = '{name}'", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -148,6 +149,23 @@ namespace Localtion_JV.DAO
             }
             return success;
         }
+
+        public bool DeleteById(int id){
+
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString)){
+
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGame WHERE id = {id}", connection);
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+        }
+            return success;
+    }
+
+
+    
+
 
     }
 }

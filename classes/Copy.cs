@@ -9,6 +9,16 @@ namespace Localtion_JV.classes
 {
     internal class Copy
     {
+        private int id;
+
+	public int Id
+	{
+		get { return id;}
+		set { id = value;}
+	}
+
+
+
         public void ReleaseCopy()
         {
             CopyDAO db = new CopyDAO();

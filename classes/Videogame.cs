@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ namespace Localtion_JV.classes
 {
     internal class Videogame
     {
+        private int id;
         private string name;
         private int creditCost;
         private string console;
@@ -19,16 +21,35 @@ namespace Localtion_JV.classes
 
         }
 
-        public Videogame(string name, int creditCost, string console)
+        public Videogame(int id, string name, int creditCost, string console)
         {
+            this.id = id;
             this.name = name;
             this.creditCost = creditCost;   
             this.console = console;
         }
 
-        public string Name { get; set; }
-        public int CreditCost { get; set; }
-        public string Console { get; set; }
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int CreditCost
+        {
+            get { return creditCost; }
+            set { creditCost = value; }
+        }
+
+        public string Console
+        {
+            get { return console; }
+            set { console = value; }
+        }
 
         public Copy CopyAvailable()
         {
@@ -64,10 +85,15 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
-        public bool Update(int credits)
+        public bool Delete(string name)
         {
             VideogameDAO db = new VideogameDAO();
-            return db.UpdateCredits(this, credits);
+            return db.Delete(name);
+        }
+        public bool Update(string name, int credits)
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.UpdateCredits(name, credits);
         }
     }
 }

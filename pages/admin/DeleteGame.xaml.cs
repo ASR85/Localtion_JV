@@ -31,5 +31,21 @@ namespace Localtion_JV.pages.admin
 
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string name = (string)cb_name.SelectedItem;
+            MessageBoxResult result = MessageBox.Show("Etes vous sur de vouoir le supprimer", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    Videogame videogame = new Videogame();
+                    videogame.Delete(name);
+                    MessageBox.Show("Suppression effectuée");
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+        }
     }
 }
