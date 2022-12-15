@@ -18,7 +18,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(Pseudo,Password,Credit,RegistrationDate,DateOfBirth) VALUES('{pl.Pseudo}', '{pl.Password}' ,{pl.Credit} , '{pl.RegistrationDate}', '{pl.DateOfBirth}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(pseudo,credit,registrationDate,dateOfBirth) VALUES('{pl.Pseudo}' ,{pl.Credit} , '{pl.RegistrationDate}', '{pl.DateOfBirth}'  )", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
