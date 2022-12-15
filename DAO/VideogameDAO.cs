@@ -75,6 +75,7 @@ namespace Localtion_JV.DAO
                     while (reader.Read())
                     {
                         Videogame videogame = new  Videogame();
+                        videogame.Id = reader.GetInt32("Id");
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
                         videogame.Console = reader.GetString("Console");
@@ -136,12 +137,12 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public bool Delete(Videogame vg)
+        public bool Delete(int id)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGame WHERE Name = '{vg.Id}'", connection);
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGame WHERE Id = {id}", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

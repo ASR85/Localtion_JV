@@ -27,20 +27,22 @@ namespace Localtion_JV.pages.admin
             List<Videogame> movies = Videogame.GetAllVideogames();
             foreach (Videogame m in movies)
             {
-                cb_name.Items.Add(m.Name);
+                cb_name.DataContext = m;
+                cb_name.DisplayMemberPath = "Name";
 
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string name = (string)cb_name.SelectedItem;
+            var vg = (Videogame)cb_name.SelectedValue;
+
             MessageBoxResult result = MessageBox.Show("Etes vous sur de vouoir le supprimer", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    Videogame videogame = new Videogame();
-                    videogame.Delete();
+                    Videogame videogame = vg;
+                    videogame.Delete(vg.Id);
                     MessageBox.Show("Suppression effectuée");
                     break;
                 case MessageBoxResult.No:

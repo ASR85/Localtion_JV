@@ -44,12 +44,7 @@ namespace Localtion_JV
         {
             if (tb_username.Text != "" && tb_mdp.Text != "")
             {
-                Player u = new Player();
-                u.Pseudo = tb_username.Text;
-                u.Password = tb_mdp.Text;
-                u.Credit = 10;
-                u.RegistrationDate = DateTime.Now;
-                u.DateOfBirth = calendar_dob.DisplayDate;
+                Player u = new Player(tb_username.Text, tb_mdp.Text, 10,DateTime.Now, calendar_dob.DisplayDate);               
                 u.Insert();
                 MessageBox.Show($"Bienvenue sur notre site {tb_username.Text}", "Félicitation");
             }

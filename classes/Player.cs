@@ -17,6 +17,7 @@ namespace Localtion_JV.classes
         private string password;
         private DateTime registrationDate;
         private DateTime dateOfBirth;
+        private DateTime lastAddedBonusDate;
 
         public Player()
         {
@@ -50,6 +51,12 @@ namespace Localtion_JV.classes
             get { return dateOfBirth; }
             set { dateOfBirth = value; }
         }
+        public DateTime LastAddedBonusDate
+        {
+            get { return lastAddedBonusDate; }
+            set { lastAddedBonusDate = value; }
+        }
+        
 
         public int Credit
         {

@@ -27,8 +27,12 @@ namespace Localtion_JV.pages.customer
             InitializeComponent();
 
             p = player;
+            if (DateTime.Now.ToString("mm/dd/yyyy") == p.DateOfBirth.ToString("mm/dd/yyyy"))
+            {
+                label_accueil.Content = "Bon retour parmis nous " + player.Pseudo;
 
-            label_accueil.Content = "Bon retour parmis nous " + player.Pseudo;
+            }
+            
         }
     }
 }
