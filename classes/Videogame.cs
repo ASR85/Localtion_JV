@@ -101,10 +101,10 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.Delete(id);
         }
-        public bool Update(string name, int credits)
+        public bool Update(int id, int credits)
         {
             VideogameDAO db = new VideogameDAO();
-            return db.UpdateCredits(name, credits);
+            return db.UpdateCredits(id, credits);
         }
 
         public override string ToString()

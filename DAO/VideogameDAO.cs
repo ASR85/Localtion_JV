@@ -25,6 +25,7 @@ namespace Localtion_JV.DAO
                     while (reader.Read())
                     {
                         Videogame videogame = new  Videogame();
+                        videogame.Id = reader.GetInt32("Id");
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
                         videogame.Console = reader.GetString("Console");
@@ -123,12 +124,12 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public bool UpdateCredits(string name, int credits)
+        public bool UpdateCredits(int id, int credits)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET CreditCost = {credits} WHERE Name = '{name}'", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.VideoGame SET creditCost = {credits} WHERE id = {id}", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

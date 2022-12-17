@@ -9,18 +9,30 @@
       Title="AddSubmittedGame" Background="White">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="283*"/>
-            <ColumnDefinition Width="117*"/>
-        </Grid.ColumnDefinitions>
-        <Label Content="Ajouter un jeu proposé par un client" HorizontalAlignment="Left" Margin="47,46,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FF0027F3"/>
-        <Label Content="Jeu proposé :" HorizontalAlignment="Left" Margin="47,134,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF0027F3"/>
-        <ComboBox x:Name="cb_name" Margin="243,134,203,0" VerticalAlignment="Top" SelectionChanged="cb_name_SelectionChanged"/>
-        <Label Content="Nombre de crédits :" HorizontalAlignment="Left" Margin="47,183,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF0027F3"/>
-        <TextBox FontSize="16" x:Name="tb_credits" HorizontalAlignment="Left" Margin="243,190,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="102,306,0,0" VerticalAlignment="Top" Height="28" Width="69" Foreground="White" BorderBrush="#FF0029FB" Background="#FF000DFF" Click="Button_Click"/>
-        <ComboBox x:Name="cbx" HorizontalAlignment="Left" Margin="490,129,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="542,199,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <DataGrid AutoGenerateColumns="False" x:Name="dg" Margin="50,68,51,44" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom du jeu" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="*" />
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding CreditCost}" Header="Crédits requis" Width="*"/>
+                <DataGridTemplateColumn Header="Soumettre" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="button" Content="Soumettre" Click="button_Click1"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Suppression" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="button" Content="Suppression" Click="button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Liste des jeux soumis par les clients :" HorizontalAlignment="Left" Margin="50,15,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <TextBox x:Name="tb_c" HorizontalAlignment="Left" Margin="634,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="477,33,0,0" TextWrapping="Wrap" Text="Nombre de credits :" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

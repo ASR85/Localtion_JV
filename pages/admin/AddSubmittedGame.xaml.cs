@@ -25,31 +25,44 @@ namespace Localtion_JV.pages.admin
         {
             InitializeComponent();
             List<Videogame> movies = Videogame.GetSubmittedGames();
-            foreach (Videogame m in movies)
-            {
-                cb_name.Items.Add(m.Name);
-            }
+            dg.ItemsSource = movies;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e)
         {
-            string name = (string)cb_name.SelectedItem;
-            int c = int.Parse(tb_credits.Text);
-            if (c >0 && c <= 5)
+            Videogame videogame = dg.SelectedItem as Videogame;
+            MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir supprimer {videogame.Name}", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            switch (result)
             {
-                Videogame videogame = new Videogame();
-                videogame.Update(name, c);
-                MessageBox.Show("Le jeu a été ajouté");
+                case MessageBoxResult.Yes:
+                    videogame.Delete(videogame.Id);
+                    MessageBox.Show("Suppression effectuée");
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
-            else if (c > 5 || c < 0)
-            {
-                MessageBox.Show("Le jeu ne peut valoir qu'entre 1 et 5 crédits");
-            }
+            //NavigationService.Navigate(new DeleteGame(videogame));
         }
-
-        private void cb_name_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void button_Click1(object sender, RoutedEventArgs e)
         {
-
+            Videogame videogame = dg.SelectedItem as Videogame;
+            if (tb_c.Text != "")
+            {
+                int c = int.Parse(tb_c.Text);
+                if (c > 0 && c <= 5)
+                {
+                    videogame.Update(videogame.Id, c);
+                    NavigationService.Navigate(new ListAllGames());
+                }
+                else
+                {
+                    MessageBox.Show("erreur");
+                }
+            }
+            else
+            {
+                MessageBox.Show("erreur");
+            }
         }
     }
 }
