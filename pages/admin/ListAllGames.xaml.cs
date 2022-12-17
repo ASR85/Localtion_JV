@@ -27,5 +27,11 @@ namespace Localtion_JV.pages.admin
             List<Videogame> movies = Videogame.GetAllVideogames();
             dg.ItemsSource = movies;
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Videogame videogame = dg.SelectedItem as Videogame;
+            NavigationService.Navigate(new DeleteGame(videogame));
+        }
     }
 }

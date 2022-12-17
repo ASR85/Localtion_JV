@@ -11,6 +11,8 @@ namespace Localtion_JV.classes
     {
         int id;
         private DateTime bookingDate;
+        private Videogame videogame;
+        private Player player;
 
         public Booking()
         {
@@ -32,6 +34,17 @@ namespace Localtion_JV.classes
         {
             get { return bookingDate; }
             set { bookingDate = value; }
+        }
+
+        public Videogame Videogame
+        {
+            get { return videogame; }
+            set { videogame = value; }
+        }
+        public Player Player
+        {
+            get { return player; }
+            set { player = value; }
         }
 
 

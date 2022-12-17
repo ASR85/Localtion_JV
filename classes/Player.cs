@@ -18,6 +18,7 @@ namespace Localtion_JV.classes
         private DateTime registrationDate;
         private DateTime dateOfBirth;
         private DateTime lastAddedBonusDate;
+        private List<Booking> bookings;
 
         public Player()
         {
@@ -73,7 +74,6 @@ namespace Localtion_JV.classes
             get { return password; }
             set { password = value; }
         }
-
 
         public bool LoanAllowed()
         {

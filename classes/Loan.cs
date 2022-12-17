@@ -13,6 +13,9 @@ namespace Localtion_JV.classes
         private DateTime startDate;
         private DateTime endDate;
         private bool ongoing;
+        private Player borrower;
+        private Player lender;
+        private Copy copy;
 
         public Loan()
         {
@@ -45,6 +48,24 @@ namespace Localtion_JV.classes
         {
             get { return ongoing; }
             set { ongoing = value; }
+        }
+
+        public Player Borrower
+        {
+            get { return borrower; }
+            set { borrower = value; }
+        }
+
+        public Player Lender
+        {
+            get { return lender; }
+            set { lender = value; }
+        }
+
+        public Copy Copy
+        {
+            get { return copy; }
+            set { copy = value; }
         }
 
         public void CalculateBalance()

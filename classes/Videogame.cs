@@ -8,12 +8,13 @@ using System.Windows.Input;
 
 namespace Localtion_JV.classes
 {
-    internal class Videogame
+    public class Videogame
     {
         private int id;
         private string name;
         private int creditCost;
         private string console;
+        private List<Copy> copies;
 
         public Videogame()
         {
@@ -53,6 +54,12 @@ namespace Localtion_JV.classes
         {
             get { return console; }
             set { console = value; }
+        }
+
+        public List<Copy> Copies
+        {
+            get { return copies; }
+            set { copies = value; }
         }
 
         public Copy CopyAvailable()
