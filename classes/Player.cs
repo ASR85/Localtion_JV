@@ -33,6 +33,15 @@ namespace Localtion_JV.classes
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
         }
+        public Player(int id,  string pseudo, string password, int credit, DateTime registrationDate, DateTime dateOfBirth)
+        {
+            this.id = id;
+            this.pseudo = pseudo;
+            this.password = password;
+            this.credit = credit;
+            this.registrationDate = registrationDate;
+            this.dateOfBirth = dateOfBirth;
+        }
 
         public int Id
         {

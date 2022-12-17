@@ -54,10 +54,10 @@ namespace Localtion_JV.classes
             db.Delete(this);
         }
 
-        public bool Insert()
+        public bool Insert(DateTime dateTime, Player player, Videogame videogame)
         {
             BookingDAO db = new BookingDAO();
-            return db.Insert(this);
+            return db.Insert(dateTime,player, videogame);
         }
 
         public static List<Booking> GetBookingByPlayer()

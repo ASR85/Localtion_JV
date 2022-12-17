@@ -22,18 +22,26 @@ namespace Localtion_JV.pages.customer
     public partial class Reservation : Page
     {
         Player p;
-        public Reservation(Player player)
+        Videogame v;
+        public Reservation(Player player, Videogame videogame)
         {
             InitializeComponent();
             p=player;
+            v=videogame;
+            label1.Content = v.Name;
+            label2.Content = v.Console;
+            label3.Content = v.CreditCost;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Etes vous sur de vouoir reerver", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            DateTime dt = calendar_date.DisplayDate;
             switch (result)
             {
                 case MessageBoxResult.Yes:
+                    Booking booking = new Booking();
+                    booking.Insert(dt, p, v);
                     MessageBox.Show("Reservation effectuée");
                     break;
                 case MessageBoxResult.No:

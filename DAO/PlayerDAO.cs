@@ -70,6 +70,7 @@ namespace Localtion_JV.DAO
                     while (reader.Read())
                     {
                         player = new Player(
+                        reader.GetInt32("id"),
                         login,
                         password,
                         reader.GetInt32("credit"),

@@ -10,8 +10,15 @@
 
     <Grid>
         <Label Content="Reservation de jeu" HorizontalAlignment="Left" Margin="55,34,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <Calendar HorizontalAlignment="Left" Margin="503,0,0,0" VerticalAlignment="Center"/>
-        <Button Content="Valider" HorizontalAlignment="Left" Margin="162,343,0,0" VerticalAlignment="Top" Height="25" Width="69" Click="Button_Click"/>
+        <Calendar x:Name="calendar_date" HorizontalAlignment="Left" Margin="503,0,0,0" VerticalAlignment="Center"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="108,267,0,0" VerticalAlignment="Top" Height="25" Width="69" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="108,140,0,0" TextWrapping="Wrap" Text="Jeu désiré :" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="108,180,0,0" TextWrapping="Wrap" Text="Console :" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="108,220,0,0" TextWrapping="Wrap" Text="Cout en crédits :" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Label" HorizontalAlignment="Left" Margin="231,135,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Label" HorizontalAlignment="Left" Margin="231,175,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Label" HorizontalAlignment="Left" Margin="231,215,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.155,0.384"/>
+        <Label Content="Date de début désirée :" HorizontalAlignment="Left" Margin="503,74,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>

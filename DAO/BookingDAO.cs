@@ -32,13 +32,12 @@ namespace Localtion_JV.DAO
             return bookings;
         }
 
-        public bool Insert(Booking b)
+        public bool Insert(DateTime dateTime, Player player, Videogame videogame)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Booking(BookingDate) VALUES('{b.BookingDate}')", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Booking(bookingDate,idPlayer,idGame) VALUES('2022-12-12',{player.Id}, {videogame.Id} )", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;

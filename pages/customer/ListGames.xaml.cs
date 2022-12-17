@@ -32,7 +32,8 @@ namespace Localtion_JV.pages.customer
 
         private void GoToReservation(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Reservation(p));
+            Videogame videogame = dg.SelectedItem as Videogame;
+            NavigationService.Navigate(new Reservation(p,videogame));
         }
     }
 }
