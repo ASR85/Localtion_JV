@@ -11,6 +11,7 @@ namespace Localtion_JV.classes
     {
         int id;
         private DateTime bookingDate;
+        private DateTime loanDate;
         private Videogame videogame;
         private Player player;
 
@@ -21,6 +22,15 @@ namespace Localtion_JV.classes
         public Booking(DateTime bookingDate)
         {
             this.bookingDate = bookingDate;
+        }
+
+        public Booking(int id, DateTime bookingDate, DateTime loanDate, Videogame videogame, Player player)
+        {
+            Id = id;
+            BookingDate = bookingDate;
+            LoanDate = loanDate;
+            Videogame = videogame;
+            Player = player;
         }
 
         public int Id
@@ -34,6 +44,12 @@ namespace Localtion_JV.classes
         {
             get { return bookingDate; }
             set { bookingDate = value; }
+        }
+
+        public DateTime LoanDate
+        {
+            get { return loanDate; }
+            set { loanDate = value; }
         }
 
         public Videogame Videogame
@@ -54,10 +70,10 @@ namespace Localtion_JV.classes
             db.Delete(this);
         }
 
-        public bool Insert(DateTime dateTime, Player player, Videogame videogame)
+        public bool Insert(string bd, string ld, Player player, Videogame videogame)
         {
             BookingDAO db = new BookingDAO();
-            return db.Insert(dateTime,player, videogame);
+            return db.Insert(bd,ld,player, videogame);
         }
 
         public static List<Booking> GetBookingByPlayer()

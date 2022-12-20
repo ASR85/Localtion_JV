@@ -29,5 +29,6 @@
         </DataGrid>
         <Label Content="Jeux en cours de reservation :" HorizontalAlignment="Left" Margin="437,181,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="tb_credits" HorizontalAlignment="Left" Margin="220,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label x:Name="lb_rd" Content="Label" HorizontalAlignment="Left" Margin="278,93,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

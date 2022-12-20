@@ -27,4 +27,8 @@
     <Resource Include="accueil.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="sql\" />
+  </ItemGroup>
+
 </Project>

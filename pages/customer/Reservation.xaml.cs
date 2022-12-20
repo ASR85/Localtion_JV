@@ -35,13 +35,17 @@ namespace Localtion_JV.pages.customer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Etes vous sur de vouoir reerver", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
-            DateTime dt = calendar_date.DisplayDate;
+            //string ld = calendar_dob.DisplayDate.ToString("yyyy-MM-dd");
+            string rd = DateTime.Now.ToString("yyyy-MM-dd");
+            DateTime? dob = calendar_ld.SelectedDate;
+            DateTime loanDate = (DateTime)dob;
+            string ld = loanDate.ToString("yyyy-MM-dd");
+            MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir reserver pour le {ld}", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
             switch (result)
             {
                 case MessageBoxResult.Yes:
                     Booking booking = new Booking();
-                    booking.Insert(dt, p, v);
+                    booking.Insert(rd,ld, p, v);
                     MessageBox.Show("Reservation effectuée");
                     break;
                 case MessageBoxResult.No:

@@ -95,10 +95,10 @@ namespace Localtion_JV.classes
             return db.AddBirthdayBonus(this);
         }
 
-        public bool Insert()
+        public bool Insert(string rd, string dob)
         {
             PlayerDAO db = new PlayerDAO();
-            return db.Insert(this);
+            return db.Insert(this, rd, dob);
         }
 
         public static int GetPlayerCredit()

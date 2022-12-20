@@ -21,7 +21,6 @@ namespace Localtion_JV.pages.customer
     /// </summary>
     public partial class Profile : Page
     {
-        Player p;
         public Profile(Player player)
         {
             InitializeComponent();
@@ -31,8 +30,7 @@ namespace Localtion_JV.pages.customer
             List<Booking> bookings = Booking.GetBookingByPlayer();
             dg2.ItemsSource = bookings;
             int credit = Player.GetPlayerCredit();
-
-            this.p = player;
+            lb_rd.Content = $"Vous êtes inscrit depuis le {player.RegistrationDate}";
         }
     }
 }

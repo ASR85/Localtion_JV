@@ -13,13 +13,12 @@ namespace Localtion_JV.DAO
     internal class PlayerDAO : DAO<Player>
     {
 
-        public bool Insert(Player pl)
+        public bool Insert(Player pl, string rd,string dob)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(pseudo,password,credit,registrationDate,dateOfBirth) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{pl.RegistrationDate}','{pl.DateOfBirth}')", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(pseudo,password,credit,registrationDate,dateOfBirth) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}')", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
