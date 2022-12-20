@@ -33,7 +33,7 @@ namespace Localtion_JV.classes
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
         }
-        public Player(int id,  string pseudo, string password, int credit, DateTime registrationDate, DateTime dateOfBirth)
+        public Player(int id,  string pseudo, string password, int credit, DateTime registrationDate, DateTime dateOfBirth, DateTime lastAddedBonusDate)
         {
             this.id = id;
             this.pseudo = pseudo;
@@ -41,6 +41,7 @@ namespace Localtion_JV.classes
             this.credit = credit;
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
+            this.lastAddedBonusDate = lastAddedBonusDate;
         }
 
         public int Id
@@ -89,7 +90,7 @@ namespace Localtion_JV.classes
             return true;
         }
 
-        public bool AddBirthdayBonus(Player p)
+        public bool AddBirthdayBonus()
         {
             PlayerDAO db = new PlayerDAO();
             return db.AddBirthdayBonus(this);

@@ -42,7 +42,7 @@ namespace Localtion_JV
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (tb_username.Text != "" && tb_mdp.Text != "")
+            if (tb_username.Text != "" && tb_mdp.Text != "" && calendar_dob.Text !="")
             {
                 string rd = DateTime.Now.ToString("yyyy-MM-dd");
                 DateTime? dob = calendar_dob.SelectedDate;

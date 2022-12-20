@@ -46,9 +46,10 @@ namespace Localtion_JV.DAO
 
         public bool AddBirthdayBonus(Player p) {
             bool success = false;
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Player SET Credit = {p.Credit +10} WHERE id=@id')", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Player SET Credit = {p.Credit}, LastAddedBonusDate = '{date}' WHERE id={p.Id}", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -74,7 +75,8 @@ namespace Localtion_JV.DAO
                         password,
                         reader.GetInt32("credit"),
                         reader.GetDateTime("registrationDate"),
-                        reader.GetDateTime("dateOfBirth")
+                        reader.GetDateTime("dateOfBirth"),
+                        reader.GetDateTime("lastAddedBonusDate")
                         );
                     }
                 }
