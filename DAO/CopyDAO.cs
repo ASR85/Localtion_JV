@@ -10,12 +10,12 @@ namespace Localtion_JV.DAO
 {
     internal class CopyDAO : DAO<Copy>
     {
-        public bool Insert(Copy c)
+        public bool Insert(Player p, Videogame vg)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copy(IdPlayer,IdGame) VALUES(IdPlayer, IdGame)", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copy(idPlayer,idGame) VALUES({p.Id}, {vg.Id})", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

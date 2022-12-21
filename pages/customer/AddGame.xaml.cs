@@ -34,9 +34,16 @@ namespace Localtion_JV.pages.customer
             {
                 Videogame m = new Videogame();
                 m.Name = tb_name.Text;
-                m.Console = consoleChoice.Text;
-                m.Insert();
+                m.Console = consoleChoice.Text;                
+                bool info = m.GameExisted();
+                if(info is false)
+                {
+                    m.Insert();
+                }
                 MessageBox.Show("le jeu a bien été ajouté", "Confirmation");
+                m.GetIdVideogames();
+                Copy c = new Copy();
+                c.Insert(p, m);
             }
             else
             {

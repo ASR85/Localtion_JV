@@ -110,6 +110,41 @@ namespace Localtion_JV.DAO
             return movies;
         }
 
+        public Videogame GetIdVideogames(Videogame vg)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT id FROM dbo.VideoGame WHERE name = '{vg.Name}' and console = '{vg.Console}'", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        vg.Id = reader.GetInt32("Id");
+                    }
+                }
+            }
+            return vg;
+        }
+
+        public bool GameExisted(Videogame vg)
+        {
+            bool exist = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT id FROM dbo.VideoGame WHERE name = '{vg.Name}' and console = '{vg.Console}'", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        exist = true;
+                    }
+                }
+            }
+            return exist;
+        }
+
         public bool Insert(Videogame vg)
         {
             bool success = false;

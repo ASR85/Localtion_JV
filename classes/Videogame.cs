@@ -91,6 +91,12 @@ namespace Localtion_JV.classes
             return db.GetSubmittedVideogames();
         }
 
+        public Videogame GetIdVideogames()
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.GetIdVideogames(this);
+        }
+
         public bool Insert()
         {
             VideogameDAO db = new VideogameDAO();
@@ -110,6 +116,12 @@ namespace Localtion_JV.classes
         public override string ToString()
         {
             return $"{name} sur {console} : {creditCost}";
+        }
+
+        public bool GameExisted()
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.GameExisted(this);
         }
     }
 }

@@ -50,10 +50,10 @@ namespace Localtion_JV.classes
             return db.IsAvailable(this);
         }
 
-        public bool Insert()
+        public bool Insert(Player p, Videogame vg)
         {
             CopyDAO db = new CopyDAO();
-            return db.Insert(this);
+            return db.Insert(p, vg);
         }
     }
 }
