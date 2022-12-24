@@ -36,12 +36,12 @@ namespace Localtion_JV.DAO
             return movies;
         }
 
-        public Copy CopyAvailable()
+        public Copy CopyAvailable(Videogame videogame)
         {
             Copy copy = new Copy();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copy WHERE idGame = @id", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Copy WHERE idGame = {videogame.Id} ", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -51,11 +51,11 @@ namespace Localtion_JV.DAO
             return copy;
         }
 
-        public void SelectBooking()
+        public void SelectBooking(Videogame videogame)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Booking WHERE idGame = {videogame.Id}", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

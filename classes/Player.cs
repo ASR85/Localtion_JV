@@ -102,11 +102,6 @@ namespace Localtion_JV.classes
             return db.Insert(this, rd, dob);
         }
 
-        public static int GetPlayerCredit()
-        {
-            PlayerDAO db = new PlayerDAO();
-            return db.GetPlayerCredit();
-        }
         
         public static Player GetPlayer(string username, string password)
         {

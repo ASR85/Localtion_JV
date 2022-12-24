@@ -65,13 +65,13 @@ namespace Localtion_JV.classes
         public Copy CopyAvailable()
         {
             VideogameDAO db = new VideogameDAO();
-            return db.CopyAvailable();
+            return db.CopyAvailable(this);
         }
 
         public void SelectBooking()  
         {
             VideogameDAO db = new VideogameDAO();
-            db.SelectBooking();
+            db.SelectBooking(this);
         }
 
         public static List<Videogame> GetVideogames()

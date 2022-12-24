@@ -76,10 +76,10 @@ namespace Localtion_JV.classes
             return db.Insert(bd,ld,player, videogame);
         }
 
-        public static List<Booking> GetBookingByPlayer()
+        public static List<Booking> GetBookingByPlayer(Player player)
         {
             BookingDAO db = new BookingDAO();
-            return db.GetBookingByPlayer();
+            return db.GetBookingByPlayer(player);
         }
     }
 }

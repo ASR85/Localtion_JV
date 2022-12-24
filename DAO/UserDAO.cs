@@ -32,5 +32,25 @@ namespace Localtion_JV.DAO
             }
             return success;
         }
+        public User Login(string login, string password)
+        {
+            User user = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.User WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        user = new User(
+                        login,
+                        password                      
+                        );
+                    }
+                }
+            }
+            return user;
+        }
     }
 }

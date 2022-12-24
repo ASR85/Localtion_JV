@@ -10,25 +10,12 @@
 
     <Grid>
         <Label Content="Profile : " HorizontalAlignment="Left" Margin="66,67,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <Label Content="Nombre de crédits restants :" HorizontalAlignment="Left" Margin="25,150,0,0" VerticalAlignment="Top"/>
-        <Label Content="Jeux en cours de location :" HorizontalAlignment="Left" Margin="25,181,0,0" VerticalAlignment="Top"/>
-        <DataGrid AutoGenerateColumns="False" Height="200" Margin="25,225,385,25" x:Name="dg1">
-            <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom"  Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="60"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartPoint}" Header="Date de début" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndPoint}" Header="Date de retour" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <DataGrid AutoGenerateColumns="False" Height="200" Margin="437,225,10,25" x:Name="dg2">
-            <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="80"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding BookingDate}" Header="Date reservation" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Label Content="Jeux en cours de reservation :" HorizontalAlignment="Left" Margin="437,181,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="tb_credits" HorizontalAlignment="Left" Margin="220,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-        <Label x:Name="lb_rd" Content="Label" HorizontalAlignment="Left" Margin="278,93,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nombre de crédits restants :" HorizontalAlignment="Left" Margin="66,125,0,0" VerticalAlignment="Top"/>
+        <Label Content="Jeux en cours de location :" HorizontalAlignment="Left" Margin="66,184,0,0" VerticalAlignment="Top"/>
+        <Label Content="Jeux en cours de reservation :" HorizontalAlignment="Left" Margin="66,242,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tb_credits" HorizontalAlignment="Left" Margin="231,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Label x:Name="lb_rd" Content="Label" HorizontalAlignment="Left" Margin="66,303,0,0" VerticalAlignment="Top"/>
+        <Button Content="LOCATIONS" HorizontalAlignment="Left" Margin="276,187,0,0" VerticalAlignment="Top" Click="Button_Click" Foreground="White" Background="#FF0715E5" Width="97"/>
+        <Button Content="RESERVATIONS" HorizontalAlignment="Left" Margin="278,245,0,0" VerticalAlignment="Top" Click="Button_Click_1" Width="95" Foreground="White" Background="#FF0715E5"/>
     </Grid>
 </Page>

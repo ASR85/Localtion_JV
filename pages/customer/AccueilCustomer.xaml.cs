@@ -33,6 +33,17 @@ namespace Localtion_JV.pages.customer
                 p.Credit += 2;
                 p.AddBirthdayBonus();
             }
+            List<Booking> bookings = Booking.GetBookingByPlayer(p);
+            foreach(Booking booking in bookings)
+            {
+                if (booking.LoanDate  >= DateTime.Now)
+                {
+                    Loan loan= new Loan();
+                    //loan.Insert();
+                    booking.Delete();
+                }
+            }
+
             
         }
     }

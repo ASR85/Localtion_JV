@@ -26,23 +26,6 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public int GetPlayerCredit()
-        {
-            int x = 0;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE Id=1", connection);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        x = reader.GetInt32("Credit");
-                    }
-                }
-            }
-            return x;
-        }
 
         public bool AddBirthdayBonus(Player p) {
             bool success = false;
@@ -84,12 +67,12 @@ namespace Localtion_JV.DAO
             return player;
         }
 
-        public bool LoanAllowed()
+        public bool LoanAllowed(Player player)
         {
             int credit = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Player WHERE Id =@id", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Player WHERE Id ={player.Id}", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

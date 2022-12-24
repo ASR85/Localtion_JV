@@ -11,12 +11,12 @@ namespace Localtion_JV.DAO
 {
     internal class LoanDAO : DAO<Loan>
     {
-        public List<Loan> GetLoansByPlayer()
+        public List<Loan> GetLoansByPlayer(Player player)
         {
             List<Loan> loans = new List<Loan>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Loan WHERE IdLender =1 ", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loan WHERE IdLender ={player.Id} ", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -33,12 +33,12 @@ namespace Localtion_JV.DAO
             return loans;
         }
 
-        public bool Insert(Loan l)
+        public bool Insert(Copy copy, Player player, Booking booking)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loan(StartDate,EndDate,Ongoing) VALUES('{l.StartDate}', '{l.EndDate}' , '{l.Ongoing}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loan(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('{booking.BookingDate}', '{booking.BookingDate}' , true, {player.Id}, {copy.Player.Id}, {copy.Videogame.Id})", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -54,7 +54,12 @@ namespace Localtion_JV.DAO
 
         public void EndLoan(Loan l)
         {
-
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Loan WHERE id= {l.Id}", connection);
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+            }
         }
     }
 }

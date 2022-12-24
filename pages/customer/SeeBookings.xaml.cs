@@ -17,28 +17,20 @@ using System.Windows.Shapes;
 namespace Localtion_JV.pages.customer
 {
     /// <summary>
-    /// Interaction logic for Profile.xaml
+    /// Interaction logic for SeeBookings.xaml
     /// </summary>
-    public partial class Profile : Page
+    public partial class SeeBookings : Page
     {
-        Player p;
-        public Profile(Player player)
+        public SeeBookings(Player player)
         {
-            p = player;
             InitializeComponent();
-            tb_credits.Text = $"{player.Credit}";
-            
-            lb_rd.Content = $"Vous êtes inscrit depuis le {player.RegistrationDate.ToString("dd-MM-yyyy")}";
+            List<Booking> bookings = Booking.GetBookingByPlayer(player);
+            dg.ItemsSource = bookings;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new SeeLoans(p));
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new SeeBookings(p));
+            NavigationService.GoBack();
         }
     }
 }

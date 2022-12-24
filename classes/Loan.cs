@@ -80,15 +80,15 @@ namespace Localtion_JV.classes
              db.EndLoan(this);
         }
 
-        public bool Insert()
+        public bool Insert(Copy copy, Player player, Booking booking)
         {
             LoanDAO db = new LoanDAO();
-            return db.Insert(this);
+            return db.Insert(copy,player,booking);
         }
-        public static List<Loan> GetLoansByPlayer()
+        public static List<Loan> GetLoansByPlayer(Player player)
         {
             LoanDAO db = new LoanDAO();
-            return db.GetLoansByPlayer();
+            return db.GetLoansByPlayer(player);
         }
     }
 }
