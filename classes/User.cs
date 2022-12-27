@@ -10,7 +10,7 @@ namespace Localtion_JV.classes
     public class User
     {
         private int id;
-        private string username;
+        private string pseudo;
         private string password;
 
         public User()
@@ -18,9 +18,9 @@ namespace Localtion_JV.classes
 
         }
 
-        public User(string username, string password)
+        public User(string pseudo, string password)
         {
-            this.username = username;
+            this.pseudo = pseudo;
             this.password = password;   
         }
 
@@ -30,10 +30,10 @@ namespace Localtion_JV.classes
             set { id = value; }
         }
 
-        public string Username
+        public string Pseudo
         {
-            get { return username; }
-            set { username = value; }
+            get { return pseudo; }
+            set { pseudo = value; }
         }
 
         public string Password

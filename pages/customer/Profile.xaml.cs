@@ -27,6 +27,7 @@ namespace Localtion_JV.pages.customer
             p = player;
             InitializeComponent();
             tb_credits.Text = $"{player.Credit}";
+            lb_profile.Content = $"Profil de {player.Pseudo}";
             
             lb_rd.Content = $"Vous êtes inscrit depuis le {player.RegistrationDate.ToString("dd-MM-yyyy")}";
         }

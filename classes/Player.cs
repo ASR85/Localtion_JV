@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    public class Player
+    public class Player : User
     {
         private int id;
         private int credit;
-        private string pseudo;
-        private string password;
+        //private string pseudo;
+        //private string password;
         private DateTime registrationDate;
         private DateTime dateOfBirth;
         private DateTime lastAddedBonusDate;
@@ -25,19 +25,17 @@ namespace Localtion_JV.classes
 
         }
 
-        public Player(string pseudo,string password, int credit,  DateTime registrationDate, DateTime dateOfBirth)
+        public Player(string pseudo,string password, int credit,  DateTime registrationDate, DateTime dateOfBirth) : base(pseudo,password)
         {
-            this.pseudo = pseudo;
-            this.password = password;
             this.credit = credit;           
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
         }
-        public Player(int id,  string pseudo, string password, int credit, DateTime registrationDate, DateTime dateOfBirth, DateTime lastAddedBonusDate)
+        public Player(int id,  string pseudo, string password, int credit, DateTime registrationDate, DateTime dateOfBirth, DateTime lastAddedBonusDate) : base(pseudo, password)
         {
+            base.Pseudo = pseudo;
+            base.Password = password;
             this.id = id;
-            this.pseudo = pseudo;
-            this.password = password;
             this.credit = credit;
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
@@ -74,16 +72,7 @@ namespace Localtion_JV.classes
             get { return credit; }
             set { credit = value; }
         }
-        public string Pseudo
-        {
-            get { return pseudo; }
-            set { pseudo = value; }
-        }
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
+        
 
         public bool LoanAllowed()
         {
@@ -108,6 +97,9 @@ namespace Localtion_JV.classes
             PlayerDAO db = new PlayerDAO();
             return db.GetPlayerLogin(username,password);
         }
+
+
+
 
         public override string ToString()
         {

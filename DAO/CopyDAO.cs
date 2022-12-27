@@ -15,7 +15,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copy(idPlayer,idGame) VALUES({p.Id}, {vg.Id})", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame) VALUES({p.Id}, {vg.Id})", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -29,7 +29,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copy(IdPlayer,IdGame) VALUES(IdPlayer, IdGame)", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(IdPlayer,IdGame) VALUES(IdPlayer, IdGame)", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

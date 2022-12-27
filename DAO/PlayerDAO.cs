@@ -18,7 +18,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(pseudo,password,credit,registrationDate,dateOfBirth) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}')", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -32,7 +32,7 @@ namespace Localtion_JV.DAO
             string date = DateTime.Now.ToString("yyyy-MM-dd");
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Player SET Credit = {p.Credit}, LastAddedBonusDate = '{date}' WHERE id={p.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {p.Credit}, LastAddedBonusDate = '{date}' WHERE id={p.Id}", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -46,7 +46,7 @@ namespace Localtion_JV.DAO
             Player player = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand( $"SELECT * FROM dbo.Player WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                SqlCommand cmd = new SqlCommand( $"SELECT * FROM dbo.Players WHERE Pseudo = '{login}' and Password = '{password}'", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -72,7 +72,7 @@ namespace Localtion_JV.DAO
             int credit = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Player WHERE Id ={player.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id ={player.Id}", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

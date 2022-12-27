@@ -9,7 +9,7 @@
       Title="Profile" Background="White">
 
     <Grid>
-        <Label Content="Profile : " HorizontalAlignment="Left" Margin="66,67,0,0" VerticalAlignment="Top" FontSize="36"/>
+        <Label x:Name="lb_profile" Content="Profile : " HorizontalAlignment="Left" Margin="66,67,0,0" VerticalAlignment="Top" FontSize="36"/>
         <Label Content="Nombre de crédits restants :" HorizontalAlignment="Left" Margin="66,125,0,0" VerticalAlignment="Top"/>
         <Label Content="Jeux en cours de location :" HorizontalAlignment="Left" Margin="66,184,0,0" VerticalAlignment="Top"/>
         <Label Content="Jeux en cours de reservation :" HorizontalAlignment="Left" Margin="66,242,0,0" VerticalAlignment="Top"/>

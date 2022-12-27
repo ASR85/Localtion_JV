@@ -16,7 +16,7 @@ namespace Localtion_JV.DAO
             Administrator admin = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Administrator WHERE Pseudo = '{pseudo}' and Password = '{password}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Administrators WHERE Pseudo = '{pseudo}' and Password = '{password}'", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

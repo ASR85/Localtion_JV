@@ -52,7 +52,7 @@ namespace Localtion_JV.pages.admin
                 if (c > 0 && c <= 5)
                 {
                     videogame.Update(videogame.Id, c);
-                    NavigationService.Navigate(new ListAllGames());
+                    NavigationService.Navigate(new AddSubmittedGame());
                 }
                 else
                 {
