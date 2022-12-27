@@ -17,23 +17,26 @@ using System.Windows.Shapes;
 namespace Localtion_JV.pages.customer
 {
     /// <summary>
-    /// Interaction logic for ListGames.xaml
+    /// Interaction logic for SeeLoans.xaml
     /// </summary>
-    public partial class ListGames : Page
+    public partial class SeeLoans : Page
     {
-        Player p;
-        public ListGames(Player p)
+        public SeeLoans(Player player)
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetVideogames();
-            dg.ItemsSource = movies;
-            this.p = p;
+            List<Loan> loans = Loan.GetLoansByPlayer(player);
+            dg.ItemsSource = loans;
         }
 
-        private void GoToReservation(object sender, RoutedEventArgs e)
+        private void EndLoan(object sender, RoutedEventArgs e)
         {
-            Videogame videogame = dg.SelectedItem as Videogame;
-            NavigationService.Navigate(new Reservation(p,videogame));
+            Loan loan = dg.SelectedItem as Loan;
+            //loan.EndLoan();
+
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

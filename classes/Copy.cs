@@ -7,15 +7,30 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    internal class Copy
+    public class Copy
     {
         private int id;
+        private Videogame videogame;
+        private Player player; 
 
         public int Id
         {
             get { return id; }
             set { id = value; }
         }
+
+        public Videogame Videogame
+        {
+            get { return videogame; }
+            set { videogame = value; }
+        }
+
+        public Player Player
+        {
+            get { return player; }
+            set { player = value; }
+        }
+
 
         public void ReleaseCopy()
         {
@@ -35,10 +50,10 @@ namespace Localtion_JV.classes
             return db.IsAvailable(this);
         }
 
-        public bool Insert()
+        public bool Insert(Player p, Videogame vg)
         {
             CopyDAO db = new CopyDAO();
-            return db.Insert(this);
+            return db.Insert(p, vg);
         }
     }
 }

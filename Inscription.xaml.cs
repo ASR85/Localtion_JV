@@ -42,16 +42,15 @@ namespace Localtion_JV
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (tb_username.Text != "" && tb_mdp.Text != "")
+            if (tb_username.Text != "" && tb_mdp.Text != "" && calendar_dob.Text !="")
             {
-                Player u = new Player();
-                u.Pseudo = tb_username.Text;
-                u.Password = tb_mdp.Text;
-                u.Credit = 10;
-                u.RegistrationDate = DateTime.Now;
-                u.DateOfBirth = calendar_dob.DisplayDate;
-                u.Insert();
-                MessageBox.Show($"Bienvenue sur notre site {tb_username.Text}", "Félicitation");
+                string rd = DateTime.Now.ToString("yyyy-MM-dd");
+                DateTime? dob = calendar_dob.SelectedDate;
+                DateTime DofB = (DateTime)dob;
+                string dob2 = DofB.ToString("yyyy-MM-dd"); 
+                Player u = new Player(tb_username.Text, tb_mdp.Text, 10,DateTime.Now, calendar_dob.DisplayDate);               
+                u.Insert(rd,dob2);
+                MessageBox.Show($"Bienvenue sur notre site {dob}", "Félicitation");
             }
             else
             {

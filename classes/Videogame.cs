@@ -8,12 +8,13 @@ using System.Windows.Input;
 
 namespace Localtion_JV.classes
 {
-    internal class Videogame
+    public class Videogame
     {
         private int id;
         private string name;
         private int creditCost;
         private string console;
+        private List<Copy> copies;
 
         public Videogame()
         {
@@ -55,16 +56,22 @@ namespace Localtion_JV.classes
             set { console = value; }
         }
 
+        public List<Copy> Copies
+        {
+            get { return copies; }
+            set { copies = value; }
+        }
+
         public Copy CopyAvailable()
         {
             VideogameDAO db = new VideogameDAO();
-            return db.CopyAvailable();
+            return db.CopyAvailable(this);
         }
 
         public void SelectBooking()  
         {
             VideogameDAO db = new VideogameDAO();
-            db.SelectBooking();
+            db.SelectBooking(this);
         }
 
         public static List<Videogame> GetVideogames()
@@ -84,20 +91,37 @@ namespace Localtion_JV.classes
             return db.GetSubmittedVideogames();
         }
 
+        public Videogame GetIdVideogames()
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.GetIdVideogames(this);
+        }
+
         public bool Insert()
         {
             VideogameDAO db = new VideogameDAO();
             return db.Insert(this);
         }
-        public bool Delete()
+        public bool Delete(int id)
         {
             VideogameDAO db = new VideogameDAO();
-            return db.Delete(this);
+            return db.Delete(id);
         }
-        public bool Update(string name, int credits)
+        public bool Update(int id, int credits)
         {
             VideogameDAO db = new VideogameDAO();
-            return db.UpdateCredits(name, credits);
+            return db.UpdateCredits(id, credits);
+        }
+
+        public override string ToString()
+        {
+            return $"{name} sur {console} : {creditCost}";
+        }
+
+        public bool GameExisted()
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.GameExisted(this);
         }
     }
 }

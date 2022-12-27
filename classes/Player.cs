@@ -9,27 +9,37 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    public class Player
+    public class Player : User
     {
         private int id;
         private int credit;
-        private string pseudo;
-        private string password;
+        //private string pseudo;
+        //private string password;
         private DateTime registrationDate;
         private DateTime dateOfBirth;
+        private DateTime lastAddedBonusDate;
+        private List<Booking> bookings;
 
         public Player()
         {
 
         }
 
-        public Player(string pseudo,string password, int credit,  DateTime registrationDate, DateTime dateOfBirth)
+        public Player(string pseudo,string password, int credit,  DateTime registrationDate, DateTime dateOfBirth) : base(pseudo,password)
         {
-            this.pseudo = pseudo;
-            this.password = password;
             this.credit = credit;           
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
+        }
+        public Player(int id,  string pseudo, string password, int credit, DateTime registrationDate, DateTime dateOfBirth, DateTime lastAddedBonusDate) : base(pseudo, password)
+        {
+            base.Pseudo = pseudo;
+            base.Password = password;
+            this.id = id;
+            this.credit = credit;
+            this.registrationDate = registrationDate;
+            this.dateOfBirth = dateOfBirth;
+            this.lastAddedBonusDate = lastAddedBonusDate;
         }
 
         public int Id
@@ -50,52 +60,46 @@ namespace Localtion_JV.classes
             get { return dateOfBirth; }
             set { dateOfBirth = value; }
         }
+        public DateTime LastAddedBonusDate
+        {
+            get { return lastAddedBonusDate; }
+            set { lastAddedBonusDate = value; }
+        }
+        
 
         public int Credit
         {
             get { return credit; }
             set { credit = value; }
         }
-        public string Pseudo
-        {
-            get { return pseudo; }
-            set { pseudo = value; }
-        }
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
-
+        
 
         public bool LoanAllowed()
         {
             return true;
         }
 
-        public bool AddBirthdayBonus(Player p)
+        public bool AddBirthdayBonus()
         {
             PlayerDAO db = new PlayerDAO();
             return db.AddBirthdayBonus(this);
         }
 
-        public bool Insert()
+        public bool Insert(string rd, string dob)
         {
             PlayerDAO db = new PlayerDAO();
-            return db.Insert(this);
+            return db.Insert(this, rd, dob);
         }
 
-        public static int GetPlayerCredit()
-        {
-            PlayerDAO db = new PlayerDAO();
-            return db.GetPlayerCredit();
-        }
         
         public static Player GetPlayer(string username, string password)
         {
             PlayerDAO db = new PlayerDAO();
             return db.GetPlayerLogin(username,password);
         }
+
+
+
 
         public override string ToString()
         {

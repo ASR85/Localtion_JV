@@ -13,13 +13,12 @@ namespace Localtion_JV.DAO
     internal class PlayerDAO : DAO<Player>
     {
 
-        public bool Insert(Player pl)
+        public bool Insert(Player pl, string rd,string dob)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Player(pseudo,credit,registrationDate,dateOfBirth) VALUES('{pl.Pseudo}' ,{pl.Credit} , '{pl.RegistrationDate}', '{pl.DateOfBirth}'  )", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}')", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -27,29 +26,13 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public int GetPlayerCredit()
-        {
-            int x = 0;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE Id=1", connection);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        x = reader.GetInt32("Credit");
-                    }
-                }
-            }
-            return x;
-        }
 
         public bool AddBirthdayBonus(Player p) {
             bool success = false;
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Player SET Credit = {p.Credit +10} WHERE id=@id')", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {p.Credit}, LastAddedBonusDate = '{date}' WHERE id={p.Id}", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -63,18 +46,20 @@ namespace Localtion_JV.DAO
             Player player = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand( $"SELECT * FROM dbo.Player WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                SqlCommand cmd = new SqlCommand( $"SELECT * FROM dbo.Players WHERE Pseudo = '{login}' and Password = '{password}'", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         player = new Player(
+                        reader.GetInt32("id"),
                         login,
                         password,
                         reader.GetInt32("credit"),
                         reader.GetDateTime("registrationDate"),
-                        reader.GetDateTime("dateOfBirth")
+                        reader.GetDateTime("dateOfBirth"),
+                        reader.GetDateTime("lastAddedBonusDate")
                         );
                     }
                 }
@@ -82,12 +67,12 @@ namespace Localtion_JV.DAO
             return player;
         }
 
-        public bool LoanAllowed()
+        public bool LoanAllowed(Player player)
         {
             int credit = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Player WHERE Id =@id", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id ={player.Id}", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

@@ -21,26 +21,29 @@ namespace Localtion_JV.pages.admin
     /// </summary>
     public partial class DeleteGame : Page
     {
-        public DeleteGame()
+        Videogame v;
+        public DeleteGame(Videogame videogame)
         {
+            v = videogame;
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetAllVideogames();
-            foreach (Videogame m in movies)
+            label.Content = videogame.Name;
+            List<Videogame> videogames = Videogame.GetAllVideogames();
+            foreach (Videogame v in videogames)
             {
-                cb_name.Items.Add(m.Name);
-
+                cb_name.Items.Add(new { Text = v.Name, Value = v.Id });
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string name = (string)cb_name.SelectedItem;
+            var vg = (int)cb_name.SelectedValue;
+
             MessageBoxResult result = MessageBox.Show("Etes vous sur de vouoir le supprimer", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
             switch (result)
             {
                 case MessageBoxResult.Yes:
                     Videogame videogame = new Videogame();
-                    videogame.Delete();
+                    videogame.Delete(vg);
                     MessageBox.Show("Suppression effectuée");
                     break;
                 case MessageBoxResult.No:

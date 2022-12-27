@@ -13,6 +13,9 @@ namespace Localtion_JV.classes
         private DateTime startDate;
         private DateTime endDate;
         private bool ongoing;
+        private Player borrower;
+        private Player lender;
+        private Copy copy;
 
         public Loan()
         {
@@ -47,6 +50,24 @@ namespace Localtion_JV.classes
             set { ongoing = value; }
         }
 
+        public Player Borrower
+        {
+            get { return borrower; }
+            set { borrower = value; }
+        }
+
+        public Player Lender
+        {
+            get { return lender; }
+            set { lender = value; }
+        }
+
+        public Copy Copy
+        {
+            get { return copy; }
+            set { copy = value; }
+        }
+
         public void CalculateBalance()
         {
             LoanDAO db = new LoanDAO();
@@ -59,15 +80,15 @@ namespace Localtion_JV.classes
              db.EndLoan(this);
         }
 
-        public bool Insert()
+        public bool Insert(Copy copy, Player player, Booking booking)
         {
             LoanDAO db = new LoanDAO();
-            return db.Insert(this);
+            return db.Insert(copy,player,booking);
         }
-        public static List<Loan> GetLoansByPlayer()
+        public static List<Loan> GetLoansByPlayer(Player player)
         {
             LoanDAO db = new LoanDAO();
-            return db.GetLoansByPlayer();
+            return db.GetLoansByPlayer(player);
         }
     }
 }

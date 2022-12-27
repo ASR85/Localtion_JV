@@ -27,5 +27,42 @@ namespace Localtion_JV.pages.admin
             List<Videogame> movies = Videogame.GetAllVideogames();
             dg.ItemsSource = movies;
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Videogame videogame = dg.SelectedItem as Videogame;
+            MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir supprimer {videogame.Name}", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    videogame.Delete(videogame.Id);
+                    MessageBox.Show("Suppression effectuée");
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+            //NavigationService.Navigate(new DeleteGame(videogame));
+        }
+        private void button_Click1(object sender, RoutedEventArgs e)
+        {
+            Videogame videogame = dg.SelectedItem as Videogame;
+            if (tb_c.Text != "")
+            {
+                int c = int.Parse(tb_c.Text);
+                if (c > 0 && c <= 5)
+                {
+                    videogame.Update(videogame.Id, c);
+                    NavigationService.Navigate(new ListAllGames());
+                }
+                else
+                {
+                    MessageBox.Show("erreur");
+                }
+            }
+            else
+            {
+                MessageBox.Show("erreur");
+            }
+        }
     }
 }

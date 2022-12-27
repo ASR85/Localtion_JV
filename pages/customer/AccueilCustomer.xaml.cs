@@ -27,8 +27,24 @@ namespace Localtion_JV.pages.customer
             InitializeComponent();
 
             p = player;
+            if (DateTime.Now.ToString("yyyy-MM-dd") == p.DateOfBirth.ToString("yyyy-MM-dd") && DateTime.Now.ToString("yyyy-MM-dd") != p.LastAddedBonusDate.ToString("yyyy-MM-dd"))
+            {
+                label_accueil.Content = "Bon anniversaire " + player.Pseudo.ToUpper() +", pour cet evenement, on vous offre 2 crédits";
+                p.Credit += 2;
+                p.AddBirthdayBonus();
+            }
+            List<Booking> bookings = Booking.GetBookingByPlayer(p);
+            foreach(Booking booking in bookings)
+            {
+                if (booking.LoanDate  >= DateTime.Now)
+                {
+                    Loan loan= new Loan();
+                    //loan.Insert();
+                    booking.Delete();
+                }
+            }
 
-            label_accueil.Content = "Bon retour parmis nous " + player.Pseudo;
+            
         }
     }
 }

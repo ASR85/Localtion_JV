@@ -7,11 +7,10 @@
         mc:Ignorable="d"
         Title="WindowAdmin" Height="450" Width="800" Background="DarkBlue">
     <Grid>
-        <Frame x:Name="Main" Margin="0,49,0,0"/>
-        <Button Content="Liste des jeux" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click"/>
-        <Button Content="Ajouter un jeu" HorizontalAlignment="Left" Margin="150,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click_1"/>
-        <Button Content="Editer un jeu" HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click_2"/>
-        <Button Content="Supprimer un jeu" HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click_3"/>
+        <Frame x:Name="Main" Margin="0,49,0,0" NavigationUIVisibility="Hidden"/>
+        <Button Content="Liste de tous les jeux" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" Height="34" Width="140" Click="Button_Click"/>
+        <Button Content="Ajouter un jeu" HorizontalAlignment="Left" Margin="181,10,0,0" VerticalAlignment="Top" Height="34" Width="120" Click="Button_Click_1"/>
+        <Button Content="Liste des jeux autorisés" HorizontalAlignment="Left" Margin="324,10,0,0" VerticalAlignment="Top" Height="34" Width="142" Click="Button_Click_2"/>
         <Button Content="Deconnexion" HorizontalAlignment="Left" Margin="680,10,0,0" VerticalAlignment="Top" Height="34" Width="85" Click="Button_Click_4"/>
     </Grid>
 </Window>

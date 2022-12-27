@@ -24,15 +24,22 @@ namespace Localtion_JV.pages.customer
         Player p;
         public Profile(Player player)
         {
+            p = player;
             InitializeComponent();
             tb_credits.Text = $"{player.Credit}";
-            List<Loan> loans = Loan.GetLoansByPlayer();
-            dg1.ItemsSource = loans;
-            List<Booking> bookings = Booking.GetBookingByPlayer();
-            dg2.ItemsSource = bookings;
-            int credit = Player.GetPlayerCredit();
+            lb_profile.Content = $"Profil de {player.Pseudo}";
+            
+            lb_rd.Content = $"Vous êtes inscrit depuis le {player.RegistrationDate.ToString("dd-MM-yyyy")}";
+        }
 
-            this.p = player;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SeeLoans(p));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SeeBookings(p));
         }
     }
 }

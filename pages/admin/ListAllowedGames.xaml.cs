@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace Localtion_JV.pages.admin
 {
     /// <summary>
-    /// Interaction logic for AddSubmittedGame.xaml
+    /// Interaction logic for ListAllowedGames.xaml
     /// </summary>
-    public partial class AddSubmittedGame : Page
+    public partial class ListAllowedGames : Page
     {
-        public AddSubmittedGame()
+        public ListAllowedGames()
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetSubmittedGames();
+            List<Videogame> movies = Videogame.GetVideogames();
             dg.ItemsSource = movies;
         }
 
@@ -52,7 +52,7 @@ namespace Localtion_JV.pages.admin
                 if (c > 0 && c <= 5)
                 {
                     videogame.Update(videogame.Id, c);
-                    NavigationService.Navigate(new AddSubmittedGame());
+                    NavigationService.Navigate(new ListAllowedGames());
                 }
                 else
                 {
@@ -66,3 +66,4 @@ namespace Localtion_JV.pages.admin
         }
     }
 }
+
