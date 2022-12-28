@@ -55,5 +55,11 @@ namespace Localtion_JV.classes
             CopyDAO db = new CopyDAO();
             return db.Insert(p, vg);
         }
+
+        public bool Delete(int id)
+        {
+            CopyDAO db = new CopyDAO();
+            return db.Delete(id);
+        }
     }
 }

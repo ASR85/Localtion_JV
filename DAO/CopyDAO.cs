@@ -46,5 +46,19 @@ namespace Localtion_JV.DAO
         {
 
         }
+
+        public bool Delete(int id)
+        {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Copies WHERE Id = {id}", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
+        }
     }
 }

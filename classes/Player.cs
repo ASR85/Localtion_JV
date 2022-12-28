@@ -76,7 +76,8 @@ namespace Localtion_JV.classes
 
         public bool LoanAllowed()
         {
-            return true;
+            PlayerDAO db = new PlayerDAO();
+            return db.LoanAllowed(this);
         }
 
         public bool AddBirthdayBonus()

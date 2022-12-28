@@ -49,7 +49,11 @@ namespace Localtion_JV.DAO
 
         public void CalculateBalance(Loan l)
         {
-
+            double i;
+            if(DateTime.Today > l.EndDate)
+            {
+                i =(DateTime.Now - l.EndDate).TotalDays;              
+            }
         }
 
         public void EndLoan(Loan l)
