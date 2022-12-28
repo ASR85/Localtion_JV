@@ -26,7 +26,7 @@ namespace Localtion_JV.classes
 
         public Booking(Videogame videogame, Player player, DateTime bookingDate)
         {
-           
+            
             Videogame = videogame;
             Player = player;
             BookingDate = bookingDate;
