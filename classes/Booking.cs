@@ -24,11 +24,11 @@ namespace Localtion_JV.classes
             this.bookingDate = bookingDate;
         }
 
-        public Booking(Videogame videogame, Player player, DateTime bookingDate)
+        public Booking(Videogame videogame,  DateTime bookingDate)
         {
             
             Videogame = videogame;
-            Player = player;
+            
             BookingDate = bookingDate;
         }
 
@@ -91,8 +91,9 @@ namespace Localtion_JV.classes
             return db.GetBookingByPlayer(player);
         }
 
-
        
 
+
     }
+
 }

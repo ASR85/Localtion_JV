@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.Packaging;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -98,7 +99,12 @@ namespace Localtion_JV.classes
             return db.GetPlayerLogin(username,password);
         }
 
+        public static Player Find(int id)
+        {
 
+            PlayerDAO db = new PlayerDAO();
+            return db.Find(id);
+        }
 
 
         public override string ToString()

@@ -1,6 +1,7 @@
 ﻿using Localtion_JV.classes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -92,16 +93,16 @@ namespace Localtion_JV.DAO
             }
         }
 
-        public Player Find(int id)
+        public  Player Find(int id)
         {
+            
             Player p = null;
-
             try
             {
-                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Players WHERE id = " + @id);
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE id =  @id",connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -110,18 +111,14 @@ namespace Localtion_JV.DAO
                         while (reader.Read())
                         {
 
-                            p = new Player();
-                            reader.GetInt32("id");
-
-                            reader.GetString("pseudo");
-                            reader.GetString("pasword");
-
-                            reader.GetInt32("creditCost");
-                            reader.GetString("console");
-
-                            reader.GetDateTime("registrationDate");
-                            reader.GetDateTime("dateOfBirth");
-                            reader.GetDateTime("lastAddedBonusDate");
+                            p = new Player(
+                            reader.GetInt32("id"),
+                            reader.GetString("pseudo"),
+                            reader.GetString("password"),
+                            reader.GetInt32("credit"),
+                            reader.GetDateTime("registrationDate"),
+                            reader.GetDateTime("dateOfBirth"),
+                            reader.GetDateTime("lastAddedBonusDate"));
 
                         }
                     }
@@ -133,9 +130,7 @@ namespace Localtion_JV.DAO
 
                 throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
-
             return p;
-
         }
 
 

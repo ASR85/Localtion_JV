@@ -64,14 +64,14 @@ namespace Localtion_JV.DAO
         public List<Booking> SeeAllBookingOfPlayer(Player player)
         {
             List<Booking> Bookingplayer = new List<Booking>();
-
+          
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Bookings WHERE idPlayer = " + player);
-                    cmd.Parameters.AddWithValue("idPlayer", player);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Bookings WHERE idPlayer = @idPlayer",connection);
+                    cmd.Parameters.AddWithValue("idPlayer", player.Id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -80,11 +80,11 @@ namespace Localtion_JV.DAO
                         {
 
                             Booking booking = new Booking(
-                                
-                                PlayerDAO.Find(reader.GetInt32("idPlayer")),
+
                                 VideogameDAO.Find(reader.GetInt32("idGame")),
                                 reader.GetDateTime("bookingDate"));
                                 Bookingplayer.Add(booking);
+
 
                         }
                     }

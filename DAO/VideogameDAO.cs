@@ -188,15 +188,17 @@ namespace Localtion_JV.DAO
         }
 
         public Videogame Find(int id)
-        {
+
+        {   
+            string connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
             Videogame videoGame = null;
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames WHERE id = " + @id);
+                    
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames WHERE id = @id",connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -205,11 +207,11 @@ namespace Localtion_JV.DAO
                         while (reader.Read())
                         {
 
-                            videoGame = new Videogame();
-                            reader.GetInt32("id");
-                            reader.GetString("name");
-                            reader.GetInt32("creditCost");
-                            reader.GetString("console");
+                            videoGame = new Videogame(
+                            reader.GetInt32("id"),
+                            reader.GetString("name"),
+                            reader.GetInt32("creditCost"),
+                            reader.GetString("console"));
 
                         }
                     }

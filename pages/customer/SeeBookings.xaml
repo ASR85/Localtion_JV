@@ -12,11 +12,13 @@
         <Label Content="Liste de vos reservations :" HorizontalAlignment="Left" Margin="47,49,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
         <DataGrid AutoGenerateColumns="False" Margin="67,132,63,54" x:Name="dg" ItemsSource="{Binding Source=Bookings}">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding VideoGame.name}" Header="Nom" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding VideoGame.console}" Header="Console" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Players.pseudo}" Header="Nom" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Players.password}" Header="Console" Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding BookingDate, StringFormat='dd/MM/yyyy'}" Header="Date reservation" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="RETOUR" HorizontalAlignment="Left" Margin="508,70,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="697,49,0,0" VerticalAlignment="Top"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="89,96,0,0" VerticalAlignment="Top" x:Name="Texte"/>
     </Grid>
 </Page>

@@ -9,7 +9,7 @@ namespace Localtion_JV.DAO
 {
     public abstract class DAO<T>
     {
-        protected String connectionString = null;
+        protected string connectionString = null;
 
         public DAO()
         {
