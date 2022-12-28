@@ -80,7 +80,7 @@ namespace Localtion_JV.DAO
                         {
 
                             Booking booking = new Booking(
-                                P
+                                
                                 PlayerDAO.Find(reader.GetInt32("idPlayer")),
                                 VideogameDAO.Find(reader.GetInt32("idGame")),
                                 reader.GetDateTime("bookingDate"));
