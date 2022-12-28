@@ -91,5 +91,55 @@ namespace Localtion_JV.DAO
                 return false;
             }
         }
+
+        public Player Find(int id)
+        {
+            Player p = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Players WHERE id = " + @id);
+                    cmd.Parameters.AddWithValue("id", id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            p = new Player();
+                            reader.GetInt32("id");
+
+                            reader.GetString("pseudo");
+                            reader.GetString("pasword");
+
+                            reader.GetInt32("creditCost");
+                            reader.GetString("console");
+
+                            reader.GetDateTime("registrationDate");
+                            reader.GetDateTime("dateOfBirth");
+                            reader.GetDateTime("lastAddedBonusDate");
+
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+
+            return p;
+
+        }
+
+
+
+
     }
 }

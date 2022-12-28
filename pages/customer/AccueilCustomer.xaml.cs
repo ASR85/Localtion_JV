@@ -33,6 +33,7 @@ namespace Localtion_JV.pages.customer
                 p.Credit += 2;
                 p.AddBirthdayBonus();
             }
+            /*
             List<Booking> bookings = Booking.GetBookingByPlayer(p);
             foreach(Booking booking in bookings)
             {
@@ -42,7 +43,7 @@ namespace Localtion_JV.pages.customer
                     //loan.Insert();
                     booking.Delete();
                 }
-            }
+            }*/
 
             
         }

@@ -24,7 +24,7 @@ namespace Localtion_JV.DAO
                 {
                     while (reader.Read())
                     {
-                        Videogame videogame = new  Videogame();
+                        Videogame videogame = new Videogame();
                         videogame.Id = reader.GetInt32("Id");
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
@@ -75,7 +75,7 @@ namespace Localtion_JV.DAO
                 {
                     while (reader.Read())
                     {
-                        Videogame videogame = new  Videogame();
+                        Videogame videogame = new Videogame();
                         videogame.Id = reader.GetInt32("Id");
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
@@ -185,6 +185,45 @@ namespace Localtion_JV.DAO
                 success = res > 0;
             }
             return success;
+        }
+
+        public Videogame Find(int id)
+        {
+            Videogame videoGame = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames WHERE id = " + @id);
+                    cmd.Parameters.AddWithValue("id", id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            videoGame = new Videogame();
+                            reader.GetInt32("id");
+                            reader.GetString("name");
+                            reader.GetInt32("creditCost");
+                            reader.GetString("console");
+
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+
+            return videoGame;
+
         }
 
     }

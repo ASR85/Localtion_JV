@@ -1,4 +1,5 @@
 ﻿using Localtion_JV.classes;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,16 +22,21 @@ namespace Localtion_JV.pages.customer
     /// </summary>
     public partial class SeeBookings : Page
     {
-        public SeeBookings(Player player)
-        {
-            InitializeComponent();
-            List<Booking> bookings = Booking.GetBookingByPlayer(player);
-            dg.ItemsSource = bookings;
-        }
+       
+        
+public SeeBookings(Player player)
+{
+InitializeComponent();
+List<Booking> bookings = Booking.GetBookingByPlayer(player);
+dg.ItemsSource = bookings;
+}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
         }
+
+        
+
     }
 }

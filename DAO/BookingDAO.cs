@@ -59,5 +59,47 @@ namespace Localtion_JV.DAO
             return success;
         }
 
+        
+
+        public List<Booking> SeeAllBookingOfPlayer(Player player)
+        {
+            List<Booking> Bookingplayer = new List<Booking>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Bookings WHERE idPlayer = " + player);
+                    cmd.Parameters.AddWithValue("idPlayer", player);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            Booking booking = new Booking(
+
+                                PlayerDAO.Find(reader.GetInt32("idPlayer")),
+                                VideogameDAO.Find(reader.GetInt32("idGame")),
+                                reader.GetDateTime("bookingDate"));
+                                Bookingplayer.Add(booking);
+
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+            
+            return Bookingplayer;
+        }
+
     }
+    
 }

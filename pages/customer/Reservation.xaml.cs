@@ -40,17 +40,18 @@ namespace Localtion_JV.pages.customer
             DateTime? dob = calendar_ld.SelectedDate;
             DateTime loanDate = (DateTime)dob;
             string ld = loanDate.ToString("yyyy-MM-dd");
-            MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir reserver pour le {ld}", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouloir réserver pour le {ld}", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
             switch (result)
             {
                 case MessageBoxResult.Yes:
                     Booking booking = new Booking();
                     booking.Insert(rd,ld, p, v);
-                    MessageBox.Show("Reservation effectuée");
+                    MessageBox.Show("Réservation effectuée");
                     break;
                 case MessageBoxResult.No:
                     break;
             }
         }
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Localtion_JV.classes
 {
-    internal class Booking
+    internal class Booking : BookingDAO
     {
         int id;
         private DateTime bookingDate;
@@ -22,6 +22,14 @@ namespace Localtion_JV.classes
         public Booking(DateTime bookingDate)
         {
             this.bookingDate = bookingDate;
+        }
+
+        public Booking(Videogame videogame, Player player, DateTime bookingDate)
+        {
+           
+            Videogame = videogame;
+            Player = player;
+            BookingDate = bookingDate;
         }
 
         public Booking(int id, DateTime bookingDate, DateTime loanDate, Videogame videogame, Player player)
@@ -76,10 +84,15 @@ namespace Localtion_JV.classes
             return db.Insert(bd,ld,player, videogame);
         }
 
+        
         public static List<Booking> GetBookingByPlayer(Player player)
         {
             BookingDAO db = new BookingDAO();
             return db.GetBookingByPlayer(player);
         }
+
+
+       
+
     }
 }
