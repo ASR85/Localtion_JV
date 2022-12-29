@@ -41,7 +41,8 @@ namespace Localtion_JV.DAO
             Copy copy = new Copy();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Copies WHERE idGame = {videogame.Id} ", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Copies WHERE idGame = @videogameid ", connection);
+                cmd.Parameters.AddWithValue("@videogameid", videogame.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -55,7 +56,8 @@ namespace Localtion_JV.DAO
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Bookings WHERE idGame = {videogame.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Bookings WHERE idGame = @videogameid", connection);
+                cmd.Parameters.AddWithValue("@videogameid", videogame.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -114,7 +116,9 @@ namespace Localtion_JV.DAO
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT id FROM dbo.VideoGames WHERE name = '{vg.Name}' and console = '{vg.Console}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT id FROM dbo.VideoGames WHERE name = @vgname and console = @vgconsole", connection);
+                cmd.Parameters.AddWithValue("@vgname", vg.Name);
+                cmd.Parameters.AddWithValue("@vgconsole", vg.Console);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -132,7 +136,9 @@ namespace Localtion_JV.DAO
             bool exist = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT id FROM dbo.VideoGames WHERE name = '{vg.Name}' and console = '{vg.Console}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT id FROM dbo.VideoGames WHERE name = @vgname and console = @vgconsole", connection);
+                cmd.Parameters.AddWithValue("@vgname", vg.Name);
+                cmd.Parameters.AddWithValue("@vgconsole", vg.Console);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -150,8 +156,9 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.VideoGames(Name,CreditCost,Console) VALUES('{vg.Name}', 0 , '{vg.Console}')", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.VideoGames(Name,CreditCost,Console) VALUES( @vgname, 0 , @vgconsole)", connection);
+                cmd.Parameters.AddWithValue("@vgname", vg.Name);
+                cmd.Parameters.AddWithValue("@vgconsole", vg.Console);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -178,8 +185,8 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGames WHERE Id = {id}", connection);
-
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.VideoGames WHERE Id = @id", connection);
+                cmd.Parameters.AddWithValue("@id", id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;

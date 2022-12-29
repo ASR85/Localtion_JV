@@ -19,10 +19,12 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}')", connection);
+
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth,lastAddedBonusDate) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}', '{rd}')", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
+
             }
             return success;
         }
@@ -48,7 +50,9 @@ namespace Localtion_JV.DAO
             Player player = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Pseudo = @login and Password = @password", connection);
+                cmd.Parameters.AddWithValue("@login",login); 
+                cmd.Parameters.AddWithValue("@password",password);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -74,7 +78,8 @@ namespace Localtion_JV.DAO
             int credit = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id ={player.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id = @playerid", connection);
+                cmd.Parameters.AddWithValue("@playerid", player.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

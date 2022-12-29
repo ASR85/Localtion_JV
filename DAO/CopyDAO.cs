@@ -15,8 +15,9 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame) VALUES({p.Id}, {vg.Id})", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame) VALUES(@pid, @vgid)", connection);
+                cmd.Parameters.AddWithValue("@pid", p.Id);
+                cmd.Parameters.AddWithValue("@vgid",vg.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;

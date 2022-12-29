@@ -16,7 +16,8 @@ namespace Localtion_JV.DAO
             List<Loan> loans = new List<Loan>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE IdLender ={player.Id} ", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE IdLender =@pid ", connection);
+                cmd.Parameters.AddWithValue("pid", player.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -38,8 +39,13 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('{booking.BookingDate}', '{booking.BookingDate}' , true, {player.Id}, {copy.Player.Id}, {copy.Videogame.Id})", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES(@startDate, @enDate , @ongoing, @idBorrower, @idLender, @idCopy)", connection);
+                cmd.Parameters.AddWithValue("@startDate", booking.BookingDate);
+                cmd.Parameters.AddWithValue("@enDate", booking.BookingDate);
+                cmd.Parameters.AddWithValue("@ongoing", true);
+                cmd.Parameters.AddWithValue("@idBorrower", player.Id);
+                cmd.Parameters.AddWithValue("@idLender", copy.Player.Id);
+                cmd.Parameters.AddWithValue("@idCopy", copy.Videogame.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -56,7 +62,8 @@ namespace Localtion_JV.DAO
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Loans WHERE id= {l.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Loans WHERE id= @lId", connection);
+                cmd.Parameters.AddWithValue("@lId", l.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
             }

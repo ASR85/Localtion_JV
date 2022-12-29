@@ -25,7 +25,16 @@ namespace Localtion_JV.pages.customer
         {
             InitializeComponent();
             List<Booking> bookings = Booking.GetBookingByPlayer(player);
-            dg.ItemsSource = bookings;
+
+            if (bookings.Count > 0) {
+
+                dg.ItemsSource = bookings;
+            }
+            else
+            {
+
+                MessageBox.Show("Vous n'avez pas de réservation en cours ...", "Attention");
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

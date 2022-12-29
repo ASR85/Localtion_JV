@@ -24,8 +24,9 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Users(username,password) VALUES('{u.Pseudo}', '{u.Password}')", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Users(username,password) VALUES(@pseudo, @password)", connection);
+                cmd.Parameters.AddWithValue("@pseudo", u.Pseudo);
+                cmd.Parameters.AddWithValue("@password", u.Password);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();                
                 success = res > 0;
@@ -37,7 +38,9 @@ namespace Localtion_JV.DAO
             User user = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Users WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Users WHERE Pseudo = @login and Password = @password", connection);
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.Parameters.AddWithValue("@password", password);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
