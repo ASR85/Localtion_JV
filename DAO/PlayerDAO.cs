@@ -1,6 +1,7 @@
 ﻿using Localtion_JV.classes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Localtion_JV.DAO
     internal class PlayerDAO : DAO<Player>
     {
 
-        public bool Insert(Player pl, string rd,string dob)
+        public bool Insert(Player pl, string rd, string dob)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -27,7 +28,8 @@ namespace Localtion_JV.DAO
         }
 
 
-        public bool AddBirthdayBonus(Player p) {
+        public bool AddBirthdayBonus(Player p)
+        {
             bool success = false;
             string date = DateTime.Now.ToString("yyyy-MM-dd");
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -46,7 +48,7 @@ namespace Localtion_JV.DAO
             Player player = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand( $"SELECT * FROM dbo.Players WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Pseudo = '{login}' and Password = '{password}'", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -78,7 +80,7 @@ namespace Localtion_JV.DAO
                 {
                     while (reader.Read())
                     {
-                       credit = reader.GetInt32("Credit");
+                        credit = reader.GetInt32("Credit");
                     }
                 }
             }
@@ -90,6 +92,42 @@ namespace Localtion_JV.DAO
             {
                 return false;
             }
+        }
+
+        public static Player Find(int id)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
+            Player p = null;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE id =  @id", connection);
+                    cmd.Parameters.AddWithValue("id", id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            p = new Player(
+                            reader.GetInt32("id"),
+                            reader.GetString("pseudo"),
+                            reader.GetString("password"),
+                            reader.GetInt32("credit"),
+                            reader.GetDateTime("registrationDate"),
+                            reader.GetDateTime("dateOfBirth"),
+                            reader.GetDateTime("lastAddedBonusDate"));
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+            return p;
         }
     }
 }

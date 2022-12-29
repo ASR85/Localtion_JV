@@ -24,13 +24,20 @@ namespace Localtion_JV.classes
             this.bookingDate = bookingDate;
         }
 
+        public Booking(DateTime bookingDate, Videogame videogame, Player player)
+        {
+            this.bookingDate = bookingDate;
+            this.videogame = videogame;
+            this.player = player;
+        }
+
         public Booking(int id, DateTime bookingDate, DateTime loanDate, Videogame videogame, Player player)
         {
-            Id = id;
-            BookingDate = bookingDate;
-            LoanDate = loanDate;
-            Videogame = videogame;
-            Player = player;
+            this.id = id;
+            this.bookingDate = bookingDate;
+            this.loanDate = loanDate;
+            this.videogame = videogame;
+            this.player = player;
         }
 
         public int Id
@@ -73,13 +80,13 @@ namespace Localtion_JV.classes
         public bool Insert(string bd, string ld, Player player, Videogame videogame)
         {
             BookingDAO db = new BookingDAO();
-            return db.Insert(bd,ld,player, videogame);
+            return db.Insert(bd, ld, player, videogame);
         }
 
         public static List<Booking> GetBookingByPlayer(Player player)
         {
             BookingDAO db = new BookingDAO();
-            return db.GetBookingByPlayer(player);
+            return db.SeeAllBookingOfPlayer(player);
         }
     }
 }
