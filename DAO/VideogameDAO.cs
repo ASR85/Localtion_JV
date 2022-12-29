@@ -187,9 +187,9 @@ namespace Localtion_JV.DAO
             return success;
         }
 
-        public Videogame Find(int id)
+        public static Videogame Find(int id)
 
-        {   
+        {
             string connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
             Videogame videoGame = null;
 
@@ -197,8 +197,8 @@ namespace Localtion_JV.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames WHERE id = @id",connection);
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames WHERE id = @id", connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())

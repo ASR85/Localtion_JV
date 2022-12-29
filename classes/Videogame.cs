@@ -24,7 +24,7 @@ namespace Localtion_JV.classes
         public Videogame(string name, int creditCost, string console)
         {
             this.name = name;
-            this.creditCost = creditCost;   
+            this.creditCost = creditCost;
             this.console = console;
         }
         public Videogame(int id, string name, int creditCost, string console)
@@ -68,7 +68,7 @@ namespace Localtion_JV.classes
             return db.CopyAvailable(this);
         }
 
-        public void SelectBooking()  
+        public void SelectBooking()
         {
             VideogameDAO db = new VideogameDAO();
             db.SelectBooking(this);

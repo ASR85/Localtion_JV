@@ -19,7 +19,7 @@ namespace Localtion_JV.classes
         private DateTime registrationDate;
         private DateTime dateOfBirth;
         private DateTime lastAddedBonusDate;
-        //private List<Booking> bookings;
+        private List<Booking> bookings;
 
         public Player()
         {
@@ -99,14 +99,7 @@ namespace Localtion_JV.classes
             return db.GetPlayerLogin(username,password);
         }
 
-        public static Player Find(int id)
-        {
-
-            PlayerDAO db = new PlayerDAO();
-            return db.Find(id);
-        }
-
-
+      
         public override string ToString()
         {
             return $"{this.Pseudo} , {this.Password} , {this.Credit} , {this.RegistrationDate} , {this.DateOfBirth} , ";
