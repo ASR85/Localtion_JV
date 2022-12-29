@@ -91,10 +91,10 @@ namespace Localtion_JV.classes
              db.EndLoan(this);
         }
 
-        public bool Insert(Booking booking, Player player)
+        public bool Insert(string start, string end,Player player, Copy copy)
         {
             LoanDAO db = new LoanDAO();
-            return db.Insert(booking,player);
+            return db.Insert(start,end,player,copy);
         }
         public static List<Loan> GetLoansByPlayer(Player player)
         {

@@ -77,7 +77,9 @@ namespace Localtion_JV.DAO
                         while (reader.Read())
                         {
                             Booking booking = new Booking(
+                            reader.GetInt32("id"),
                             reader.GetDateTime("bookingDate"),
+                            reader.GetDateTime("loanDate"),
                             VideogameDAO.Find(reader.GetInt32("idGame")),
                             PlayerDAO.Find(reader.GetInt32("idPlayer"))
                             );

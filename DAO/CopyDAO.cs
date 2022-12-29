@@ -178,5 +178,49 @@ namespace Localtion_JV.DAO
             return copy;
 
         }
+
+        public  List<Copy> FindCopiesByGame(int id)
+
+        {
+            List<Copy> copies = new List<Copy>();
+            Copy copy = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idGame = @idGame", connection);
+                    cmd.Parameters.AddWithValue("idGame", id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            copy = new Copy(
+                            reader.GetInt32("id"),
+                            VideogameDAO.Find(reader.GetInt32("idGame")),
+                            PlayerDAO.Find(reader.GetInt32("idPlayer"))
+                            );
+                            copies.Add(copy);
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+
+            return copies;
+
+        }
+
+
+
     }
 }

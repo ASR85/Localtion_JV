@@ -1,4 +1,5 @@
 ﻿using Localtion_JV.classes;
+using Localtion_JV.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,22 +35,30 @@ namespace Localtion_JV.pages.customer
                 p.AddBirthdayBonus();
             }
 
-            //List<Booking> bookings = Booking.GetBookingByPlayer(p);
 
-            //for(int i =0; i<bookings.Count - 1; i++)
-            //{
-            //    Booking booking = bookings[i];  
-            //    if(booking.LoanDate < DateTime.Today)
-            //    {
-            //        MessageBox.Show("Hourra");
-            //        //Loan loan = new Loan();
-            //        //loan.Insert(booking, p);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Pas Hourra");
-            //    }
-            //}
+
+            List<Booking> bookings = Booking.GetBookingByPlayer(p);
+
+            for(int i =0; i <bookings.Count; i++)
+            {
+                Booking booking = bookings[i];  
+                if(booking.LoanDate < DateTime.Today)
+                {
+                    string start = DateTime.Now.ToString("yyyy-MM-dd");
+                    string end = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd");
+                    List<Copy> copies = Copy.FindCopiesByGame(booking.Videogame.Id);
+                    Random random = new Random();
+                    int n = random.Next(copies.Count);
+                    MessageBox.Show($"Hourra {booking.Id}");
+                    Loan loan = new Loan();
+                    loan.Insert(start, end, p, copies[n]);
+                    booking.Delete();                 
+                }
+                else
+                {
+                    MessageBox.Show("Pas Hourra");
+                }
+            }
 
             
         }

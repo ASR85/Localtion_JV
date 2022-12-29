@@ -38,15 +38,12 @@ namespace Localtion_JV.DAO
             return loans;
         }
 
-        public bool Insert(Booking booking, Player player)
+        public bool Insert(string start, string end, Player player, Copy copy)
         {
             bool success = false;
-            string loan = booking.LoanDate.ToString("yyyy-MM-dd");
-            DateTime endloan = booking.LoanDate.AddDays(7);
-            string end = endloan.ToString("yyyy-MM-dd");
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('2022-12-29', '2022-12-29' , 'true', {player.Id}, {booking.Player.Id}, {booking.Videogame.Id})", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('{start}', '{end}' , 'true', {player.Id}, {copy.Player.Id}, {copy.Videogame.Id})", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

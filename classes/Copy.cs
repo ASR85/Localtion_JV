@@ -86,5 +86,11 @@ namespace Localtion_JV.classes
             CopyDAO db = new CopyDAO();
             return db.GetCopies(player);
         }
+
+        public static List<Copy> FindCopiesByGame(int id)
+        {
+            CopyDAO db = new CopyDAO();
+            return db.FindCopiesByGame(id);
+        }
     }
 }
