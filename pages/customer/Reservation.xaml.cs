@@ -46,6 +46,8 @@ namespace Localtion_JV.pages.customer
                 case MessageBoxResult.Yes:
                     Booking booking = new Booking();
                     booking.Insert(rd,ld, p, v);
+                    p.Credit -= v.CreditCost;
+                    p.RemoveCreditsWhileBooking();
                     MessageBox.Show("Reservation effectuée");
                     break;
                 case MessageBoxResult.No:

@@ -34,8 +34,8 @@ namespace Localtion_JV.pages.customer
 
         private void GoToReservation(object sender, RoutedEventArgs e)
         {
-            Copy copy = dg.SelectedItem as Copy;
-            NavigationService.Navigate(new Reservation(p,copy.Videogame));
+            Videogame videogame = dg.SelectedItem as Videogame;
+            NavigationService.Navigate(new Reservation(p,videogame));
         }
     }
 }

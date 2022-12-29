@@ -129,5 +129,19 @@ namespace Localtion_JV.DAO
             }
             return p;
         }
+
+        public bool RemoveCreditsWhileBooking(Player player)
+        {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {player.Credit} WHERE id={player.Id}", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
+        }
     }
 }

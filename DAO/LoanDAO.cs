@@ -16,7 +16,7 @@ namespace Localtion_JV.DAO
             List<Loan> loans = new List<Loan>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower ={player.Id} ", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower ={player.Id} and ongoing='true' ", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -68,10 +68,38 @@ namespace Localtion_JV.DAO
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Loans WHERE id= {l.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Loans SET ongoing = 'false' WHERE id = {l.Id}", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
             }
         }
+
+        public List<Loan> GetPreviousLoans(Player player)
+        {
+            List<Loan> loans = new List<Loan>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower ={player.Id} and ongoing='false' ", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Loan loan = new Loan(
+                        reader.GetInt32("Id"),
+                        reader.GetDateTime("StartDate"),
+                        reader.GetDateTime("EndDate"),
+                        Boolean.Parse(reader.GetString("Ongoing")),
+                        PlayerDAO.Find(reader.GetInt32("idBorrower")),
+                        PlayerDAO.Find(reader.GetInt32("idLender")),
+                        CopyDAO.Find(reader.GetInt32("idCopy"))
+                        );
+                        loans.Add(loan);
+                    }
+                }
+            }
+            return loans;
+        }
+
     }
 }

@@ -100,7 +100,11 @@ namespace Localtion_JV.classes
         }
 
 
-
+        public bool RemoveCreditsWhileBooking()
+        {
+            PlayerDAO db = new PlayerDAO();
+            return db.RemoveCreditsWhileBooking(this);
+        }
 
         public override string ToString()
         {

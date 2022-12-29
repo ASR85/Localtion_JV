@@ -101,5 +101,11 @@ namespace Localtion_JV.classes
             LoanDAO db = new LoanDAO();
             return db.GetLoansByPlayer(player);
         }
+
+        public static List<Loan> GetPreviousLoans(Player player)
+        {
+            LoanDAO db = new LoanDAO();
+            return db.GetPreviousLoans(player);
+        }
     }
 }
