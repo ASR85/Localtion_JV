@@ -19,7 +19,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth,lastAddedBonusDate) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}','{rd}')", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -56,8 +56,8 @@ namespace Localtion_JV.DAO
                     {
                         player = new Player(
                         reader.GetInt32("id"),
-                        login,
-                        password,
+                        reader.GetString("pseudo"),
+                        reader.GetString("password"),
                         reader.GetInt32("credit"),
                         reader.GetDateTime("registrationDate"),
                         reader.GetDateTime("dateOfBirth"),

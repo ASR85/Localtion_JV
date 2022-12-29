@@ -12,10 +12,10 @@
         <Label Content="Liste de vos Locations :" HorizontalAlignment="Left" Margin="47,49,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
         <DataGrid AutoGenerateColumns="False" Margin="47,126,78,57" x:Name="dg">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom"  Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="60"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartPoint}" Header="Date de début" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndPoint}" Header="Date de retour" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Name}" Header="Nom"  Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Console}" Header="Console" Width="80"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartDate}" Header="Date de début" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndDate}" Header="Date de retour" Width="*"/>
                 <DataGridTemplateColumn Header="" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -26,5 +26,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="RETOUR" HorizontalAlignment="Left" Margin="508,70,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click"/>
+        <Label Content="Label" x:Name="test" HorizontalAlignment="Left" Margin="65,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.347,-0.069"/>
     </Grid>
 </Page>

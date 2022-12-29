@@ -16,16 +16,21 @@ namespace Localtion_JV.DAO
             List<Loan> loans = new List<Loan>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE IdLender ={player.Id} ", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower ={player.Id} ", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Loan loan = new Loan();
-                        loan.StartDate = reader.GetDateTime("StartDate");
-                        loan.EndDate = reader.GetDateTime("EndDate");
-                        loan.Ongoing = reader.GetBoolean("Ongoing");
+                        Loan loan = new Loan(
+                        reader.GetInt32("Id"),
+                        reader.GetDateTime("StartDate"),
+                        reader.GetDateTime("EndDate"),
+                        Boolean.Parse(reader.GetString("Ongoing")),
+                        PlayerDAO.Find(reader.GetInt32("idBorrower")),
+                        PlayerDAO.Find(reader.GetInt32("idLender")),
+                        CopyDAO.Find(reader.GetInt32("idCopy"))
+                        );
                         loans.Add(loan);
                     }
                 }
@@ -33,12 +38,15 @@ namespace Localtion_JV.DAO
             return loans;
         }
 
-        public bool Insert(Copy copy, Player player, Booking booking)
+        public bool Insert(Booking booking, Player player)
         {
             bool success = false;
+            string loan = booking.LoanDate.ToString("yyyy-MM-dd");
+            DateTime endloan = booking.LoanDate.AddDays(7);
+            string end = endloan.ToString("yyyy-MM-dd");
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('{booking.BookingDate}', '{booking.BookingDate}' , true, {player.Id}, {copy.Player.Id}, {copy.Videogame.Id})", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('2022-12-29', '2022-12-29' , 'true', {player.Id}, {booking.Player.Id}, {booking.Videogame.Id})", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

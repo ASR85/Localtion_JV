@@ -1,6 +1,8 @@
 ﻿using Localtion_JV.classes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -59,6 +61,122 @@ namespace Localtion_JV.DAO
                 success = res > 0;
             }
             return success;
+        }
+
+        public List<Copy> GetCopies(Player player)
+        {
+            List<Copy> copies = new List<Copy>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idPlayer != @idPlayer", connection);
+                    cmd.Parameters.AddWithValue("idPlayer", player.Id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            Copy copy = new Copy(
+                            VideogameDAO.Find(reader.GetInt32("idGame")),
+                            PlayerDAO.Find(reader.GetInt32("idPlayer"))
+                            );
+                            copies.Add(copy);
+
+
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+
+            return copies;
+        }
+
+        public static List<Copy> GetListCopies(Videogame videogame)
+        {
+            List<Copy> copies = new List<Copy>();
+            string connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idGame = @idGame", connection);
+                    cmd.Parameters.AddWithValue("idGame", videogame.Id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            Copy copy = new Copy(
+                            VideogameDAO.Find(reader.GetInt32("idGame")),
+                            PlayerDAO.Find(reader.GetInt32("idPlayer"))
+                            );
+                            copies.Add(copy);
+
+
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+
+            return copies;
+        }
+
+        public static Copy Find(int id)
+
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
+            Copy copy = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE id = @id", connection);
+                    cmd.Parameters.AddWithValue("id", id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+
+                            copy = new Copy(
+                            reader.GetInt32("id"),
+                            VideogameDAO.Find(reader.GetInt32("idGame")),
+                            PlayerDAO.Find(reader.GetInt32("idPlayer"))
+                            );
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+
+            return copy;
+
         }
     }
 }

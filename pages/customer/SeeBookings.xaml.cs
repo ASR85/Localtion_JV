@@ -26,6 +26,19 @@ namespace Localtion_JV.pages.customer
             InitializeComponent();
             List<Booking> bookings = Booking.GetBookingByPlayer(player);
             dg.ItemsSource = bookings;
+
+            if(bookings.Count == 0)
+            {
+                MessageBox.Show("Vous n'avez pas de réservation en cours", "Attention");
+            }
+
+            string chaine = "";
+            for(int i=0; i< bookings.Count - 1;i++)
+                {
+                chaine += bookings[i].Videogame.Name;
+                }
+
+            test.Content = chaine;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

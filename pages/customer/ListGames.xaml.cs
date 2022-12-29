@@ -28,12 +28,14 @@ namespace Localtion_JV.pages.customer
             List<Videogame> movies = Videogame.GetVideogames();
             dg.ItemsSource = movies;
             this.p = p;
+            //List<Copy> copies = Copy.GetCopies(p);
+            //dg.ItemsSource = copies;
         }
 
         private void GoToReservation(object sender, RoutedEventArgs e)
         {
-            Videogame videogame = dg.SelectedItem as Videogame;
-            NavigationService.Navigate(new Reservation(p,videogame));
+            Copy copy = dg.SelectedItem as Copy;
+            NavigationService.Navigate(new Reservation(p,copy.Videogame));
         }
     }
 }

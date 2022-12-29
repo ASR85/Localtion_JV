@@ -13,6 +13,25 @@ namespace Localtion_JV.classes
         private Videogame videogame;
         private Player player; 
 
+        public Copy()
+        {
+
+        }
+
+        public Copy(Videogame videogame, Player player)
+        {
+            this.videogame = videogame;
+            this.player = player;
+        }
+
+        public Copy(int id, Videogame videogame, Player player)
+        {
+            this.id = id;
+            this.videogame = videogame;
+            this.player = player;
+
+        }
+
         public int Id
         {
             get { return id; }
@@ -60,6 +79,12 @@ namespace Localtion_JV.classes
         {
             CopyDAO db = new CopyDAO();
             return db.Delete(id);
+        }
+
+        public static List<Copy> GetCopies(Player player)
+        {
+            CopyDAO db = new CopyDAO();
+            return db.GetCopies(player);
         }
     }
 }
