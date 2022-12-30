@@ -46,12 +46,20 @@ namespace Localtion_JV.pages.customer
                 {
                     string start = DateTime.Now.ToString("yyyy-MM-dd");
                     string end = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd");
-                    Copy copy = Copy.FindCopiesByGame(booking.Videogame.Id);                   
-                    MessageBox.Show($"Hourra {booking.Videogame.Name} {copy.Videogame.Name}");
-                    Loan loan = new Loan();
-                    loan.Insert(start, end, p, copy);
-                    copy.NoLongerAvailable();
-                    booking.Delete();                 
+                    Copy copy = Copy.FindCopiesByGame(booking.Videogame.Id);     
+                    if(copy != null)
+                    {
+                        MessageBox.Show($"Votre location du jeu : {booking.Videogame.Name} a commencé");
+                        Loan loan = new Loan();
+                        loan.Insert(start, end, p, copy);
+                        copy.NoLongerAvailable();
+                        booking.Delete();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Le jeu {booking.Videogame.Name} n'est pas disponible votre location est repoussé à plus tard");
+                    }
+                                 
                 }
                 else
                 {
