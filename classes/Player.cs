@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.Packaging;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,7 +76,8 @@ namespace Localtion_JV.classes
 
         public bool LoanAllowed()
         {
-            return true;
+            PlayerDAO db = new PlayerDAO();
+            return db.LoanAllowed(this);
         }
 
         public bool AddBirthdayBonus()
@@ -99,7 +99,13 @@ namespace Localtion_JV.classes
             return db.GetPlayerLogin(username,password);
         }
 
-      
+
+        public bool RemoveCreditsWhileBooking()
+        {
+            PlayerDAO db = new PlayerDAO();
+            return db.RemoveCreditsWhileBooking(this);
+        }
+
         public override string ToString()
         {
             return $"{this.Pseudo} , {this.Password} , {this.Credit} , {this.RegistrationDate} , {this.DateOfBirth} , ";

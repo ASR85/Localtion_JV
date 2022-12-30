@@ -13,17 +13,32 @@ namespace Localtion_JV.DAO
     internal class BookingDAO : DAO<Booking>
     {
 
+        public List<Booking> GetBookingByPlayer(Player player)
+        {
+            List<Booking> bookings = new List<Booking>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Bookings WHERE IdPlayer ={player.Id} ", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Booking booking = new Booking();
+                        booking.BookingDate = reader.GetDateTime("BookingDate");
+                        bookings.Add(booking);
+                    }
+                }
+            }
+            return bookings;
+        }
 
         public bool Insert(string bd, string ld, Player player, Videogame videogame)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Bookings(bookingDate,loanDate,idPlayer,idGame) VALUES(@bd,@ld,@playerid, @videogameid )", connection);
-                cmd.Parameters.AddWithValue("@bd", bd);
-                cmd.Parameters.AddWithValue("@ld", ld);
-                cmd.Parameters.AddWithValue("@playerid", player.Id);
-                cmd.Parameters.AddWithValue("@videogameid", videogame.Id);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Bookings(bookingDate,loanDate,idPlayer,idGame) VALUES('{bd}','{ld}',{player.Id}, {videogame.Id} )", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -62,7 +77,9 @@ namespace Localtion_JV.DAO
                         while (reader.Read())
                         {
                             Booking booking = new Booking(
+                            reader.GetInt32("id"),
                             reader.GetDateTime("bookingDate"),
+                            reader.GetDateTime("loanDate"),
                             VideogameDAO.Find(reader.GetInt32("idGame")),
                             PlayerDAO.Find(reader.GetInt32("idPlayer"))
                             );

@@ -14,6 +14,7 @@
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom du jeu" Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="*" />
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding CreditCost}" Header="Crédits requis" Width="*"/>
+                <!--<DataGridTextColumn IsReadOnly="True" Binding="{Binding Player.Pseudo}" Header="Prêteur" Width="*"/>-->
                 <DataGridTemplateColumn Header="Reservation" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -17,20 +17,18 @@ using System.Windows.Shapes;
 namespace Localtion_JV.pages.customer
 {
     /// <summary>
-    /// Interaction logic for SeeLoans.xaml
+    /// Interaction logic for LoansHistory.xaml
     /// </summary>
-    public partial class SeeLoans : Page
+    public partial class LoansHistory : Page
     {
-        Player p;
-        public SeeLoans(Player player)
+        public LoansHistory(Player player)
         {
-            p = player;
             InitializeComponent();
-            List<Loan> loans = Loan.GetLoansByPlayer(player);
+            List<Loan> loans = Loan.GetPreviousLoans(player);
             dg.ItemsSource = loans;
 
             string chaine = "";
-            for(int i =0; i< loans.Count -1; i++)
+            for (int i = 0; i < loans.Count - 1; i++)
             {
                 chaine += loans[i].Copy.Videogame.Name;
             }
@@ -47,23 +45,16 @@ namespace Localtion_JV.pages.customer
                 case MessageBoxResult.Yes:
                     MessageBox.Show("Jeu rendu");
                     loan.EndLoan();
-                    Copy copy = new Copy();
-                    copy.IsAvailable(loan.Copy);
                     break;
                 case MessageBoxResult.No:
                     break;
             }
-            
+
 
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new LoansHistory(p));
         }
     }
 }

@@ -17,6 +17,17 @@ namespace Localtion_JV.classes
         private Player lender;
         private Copy copy;
 
+        public Loan(int id, DateTime startDate, DateTime endDate, bool ongoing, Player borrower, Player lender, Copy copy)
+        {
+            this.id = id;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.ongoing = ongoing;
+            this.borrower = borrower;
+            this.lender = lender;
+            this.copy = copy;
+        }
+
         public Loan()
         {
 
@@ -80,15 +91,21 @@ namespace Localtion_JV.classes
              db.EndLoan(this);
         }
 
-        public bool Insert(Copy copy, Player player, Booking booking)
+        public bool Insert(string start, string end,Player player, Copy copy)
         {
             LoanDAO db = new LoanDAO();
-            return db.Insert(copy,player,booking);
+            return db.Insert(start,end,player,copy);
         }
         public static List<Loan> GetLoansByPlayer(Player player)
         {
             LoanDAO db = new LoanDAO();
             return db.GetLoansByPlayer(player);
+        }
+
+        public static List<Loan> GetPreviousLoans(Player player)
+        {
+            LoanDAO db = new LoanDAO();
+            return db.GetPreviousLoans(player);
         }
     }
 }

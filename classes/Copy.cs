@@ -11,7 +11,27 @@ namespace Localtion_JV.classes
     {
         private int id;
         private Videogame videogame;
-        private Player player; 
+        private Player player;
+        private bool available;
+
+        public Copy()
+        {
+
+        }
+
+        public Copy(Videogame videogame, Player player)
+        {
+            this.videogame = videogame;
+            this.player = player;
+        }
+
+        public Copy(int id, Videogame videogame, Player player, bool available)
+        {
+            this.id = id;
+            this.videogame = videogame;
+            this.player = player;
+            this.available = available;
+        }
 
         public int Id
         {
@@ -32,6 +52,14 @@ namespace Localtion_JV.classes
         }
 
 
+        public bool Available
+        {
+            get { return available; }
+            set { available = value; }
+        }
+
+
+
         public void ReleaseCopy()
         {
             CopyDAO db = new CopyDAO();
@@ -44,16 +72,40 @@ namespace Localtion_JV.classes
             db.Borrow(this);
         }
 
-        public bool IsAvailable()
+        public bool IsAvailable(Copy copy)
         {
             CopyDAO db = new CopyDAO();
-            return db.IsAvailable(this);
+            return db.IsAvailable(copy);
         }
 
         public bool Insert(Player p, Videogame vg)
         {
             CopyDAO db = new CopyDAO();
             return db.Insert(p, vg);
+        }
+
+        public bool Delete(int id)
+        {
+            CopyDAO db = new CopyDAO();
+            return db.Delete(id);
+        }
+
+        public static List<Copy> GetCopies(Player player)
+        {
+            CopyDAO db = new CopyDAO();
+            return db.GetCopies(player);
+        }
+
+        public static Copy FindCopiesByGame(int id)
+        {
+            CopyDAO db = new CopyDAO();
+            return db.FindCopiesByGame(id);
+        }
+
+        public bool NoLongerAvailable()
+        {
+            CopyDAO db = new CopyDAO();
+            return db.NoLongerAvailable(this);
         }
     }
 }
