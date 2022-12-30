@@ -21,8 +21,12 @@ namespace Localtion_JV
     /// </summary>
     public partial class Accueil : Page
     {
+
+        public System.Windows.Media.ImageSource Icon { get; set; }
+
         public Accueil()
         {
+             
             InitializeComponent();         
         }
     }

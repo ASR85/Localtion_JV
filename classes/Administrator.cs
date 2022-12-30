@@ -13,7 +13,6 @@ namespace Localtion_JV.classes
         {
         }
 
-
         public Administrator(string pseudo, string password) : base(pseudo, password)
         {
             base.Pseudo = pseudo;
