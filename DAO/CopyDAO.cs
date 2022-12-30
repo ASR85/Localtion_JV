@@ -17,7 +17,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame) VALUES({p.Id}, {vg.Id})", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame,available) VALUES({p.Id}, {vg.Id},'true')", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -31,7 +31,21 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(IdPlayer,IdGame) VALUES(IdPlayer, IdGame)", connection);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'true' WHERE id = {c.Id}", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
+        }
+
+        public bool NoLongerAvailable(Copy c)
+        {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'false' WHERE id = {c.Id}", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
@@ -162,7 +176,8 @@ namespace Localtion_JV.DAO
                             copy = new Copy(
                             reader.GetInt32("id"),
                             VideogameDAO.Find(reader.GetInt32("idGame")),
-                            PlayerDAO.Find(reader.GetInt32("idPlayer"))
+                            PlayerDAO.Find(reader.GetInt32("idPlayer")),
+                            Boolean.Parse(reader.GetString("available"))
                             );
                         }
                     }
@@ -179,10 +194,9 @@ namespace Localtion_JV.DAO
 
         }
 
-        public  List<Copy> FindCopiesByGame(int id)
+        public  Copy FindCopiesByGame(int id)
 
         {
-            List<Copy> copies = new List<Copy>();
             Copy copy = null;
 
             try
@@ -190,7 +204,7 @@ namespace Localtion_JV.DAO
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idGame = @idGame", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idGame = @idGame and available = 'true' order by id desc", connection);
                     cmd.Parameters.AddWithValue("idGame", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -202,9 +216,9 @@ namespace Localtion_JV.DAO
                             copy = new Copy(
                             reader.GetInt32("id"),
                             VideogameDAO.Find(reader.GetInt32("idGame")),
-                            PlayerDAO.Find(reader.GetInt32("idPlayer"))
-                            );
-                            copies.Add(copy);
+                            PlayerDAO.Find(reader.GetInt32("idPlayer")),
+                            Boolean.Parse(reader.GetString("available"))
+                            );                            
                         }
                     }
                 }
@@ -216,7 +230,7 @@ namespace Localtion_JV.DAO
                 throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
 
-            return copies;
+            return copy;
 
         }
 

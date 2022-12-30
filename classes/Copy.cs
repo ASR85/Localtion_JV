@@ -11,7 +11,8 @@ namespace Localtion_JV.classes
     {
         private int id;
         private Videogame videogame;
-        private Player player; 
+        private Player player;
+        private bool available;
 
         public Copy()
         {
@@ -24,12 +25,12 @@ namespace Localtion_JV.classes
             this.player = player;
         }
 
-        public Copy(int id, Videogame videogame, Player player)
+        public Copy(int id, Videogame videogame, Player player, bool available)
         {
             this.id = id;
             this.videogame = videogame;
             this.player = player;
-
+            this.available = available;
         }
 
         public int Id
@@ -51,6 +52,14 @@ namespace Localtion_JV.classes
         }
 
 
+        public bool Available
+        {
+            get { return available; }
+            set { available = value; }
+        }
+
+
+
         public void ReleaseCopy()
         {
             CopyDAO db = new CopyDAO();
@@ -63,10 +72,10 @@ namespace Localtion_JV.classes
             db.Borrow(this);
         }
 
-        public bool IsAvailable()
+        public bool IsAvailable(Copy copy)
         {
             CopyDAO db = new CopyDAO();
-            return db.IsAvailable(this);
+            return db.IsAvailable(copy);
         }
 
         public bool Insert(Player p, Videogame vg)
@@ -87,10 +96,16 @@ namespace Localtion_JV.classes
             return db.GetCopies(player);
         }
 
-        public static List<Copy> FindCopiesByGame(int id)
+        public static Copy FindCopiesByGame(int id)
         {
             CopyDAO db = new CopyDAO();
             return db.FindCopiesByGame(id);
+        }
+
+        public bool NoLongerAvailable()
+        {
+            CopyDAO db = new CopyDAO();
+            return db.NoLongerAvailable(this);
         }
     }
 }

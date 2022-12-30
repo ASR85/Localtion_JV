@@ -43,7 +43,7 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('{start}', '{end}' , 'true', {player.Id}, {copy.Player.Id}, {copy.Videogame.Id})", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('{start}', '{end}' , 'true', {player.Id}, {copy.Player.Id}, {copy.Id})", connection);
 
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();

@@ -47,6 +47,8 @@ namespace Localtion_JV.pages.customer
                 case MessageBoxResult.Yes:
                     MessageBox.Show("Jeu rendu");
                     loan.EndLoan();
+                    Copy copy = new Copy();
+                    copy.IsAvailable(loan.Copy);
                     break;
                 case MessageBoxResult.No:
                     break;

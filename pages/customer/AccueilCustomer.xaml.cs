@@ -46,12 +46,11 @@ namespace Localtion_JV.pages.customer
                 {
                     string start = DateTime.Now.ToString("yyyy-MM-dd");
                     string end = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd");
-                    List<Copy> copies = Copy.FindCopiesByGame(booking.Videogame.Id);
-                    Random random = new Random();
-                    int n = random.Next(copies.Count);
-                    MessageBox.Show($"Hourra {booking.Id}");
+                    Copy copy = Copy.FindCopiesByGame(booking.Videogame.Id);                   
+                    MessageBox.Show($"Hourra {booking.Videogame.Name} {copy.Videogame.Name}");
                     Loan loan = new Loan();
-                    loan.Insert(start, end, p, copies[n]);
+                    loan.Insert(start, end, p, copy);
+                    copy.NoLongerAvailable();
                     booking.Delete();                 
                 }
                 else
