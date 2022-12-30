@@ -22,20 +22,27 @@ namespace Localtion_JV.pages.customer
     public partial class ListGames : Page
     {
         Player p;
-        public ListGames(Player p)
+        public ListGames(Player player)
         {
             InitializeComponent();
             List<Videogame> movies = Videogame.GetVideogames();
             dg.ItemsSource = movies;
-            this.p = p;
+            p = player;
             //List<Copy> copies = Copy.GetCopies(p);
             //dg.ItemsSource = copies;
         }
 
         private void GoToReservation(object sender, RoutedEventArgs e)
         {
-            Videogame videogame = dg.SelectedItem as Videogame;
-            NavigationService.Navigate(new Reservation(p,videogame));
+            if (p.LoanAllowed())
+            {
+                Videogame videogame = dg.SelectedItem as Videogame;
+                NavigationService.Navigate(new Reservation(p, videogame));
+            }
+            else
+            {
+                MessageBox.Show("Vous n'avez plus de crédit pour reserver un jeu");
+            }
         }
     }
 }

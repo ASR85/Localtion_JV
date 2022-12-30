@@ -143,5 +143,18 @@ namespace Localtion_JV.DAO
             }
             return success;
         }
+        public bool AddCreditsLocation(int credits,Player player)
+        {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {credits} WHERE id={player.Id}", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace Localtion_JV.pages.customer
             }
 
 
-
+            int credit;
             List<Booking> bookings = Booking.GetBookingByPlayer(p);
 
             for(int i =0; i <bookings.Count; i++)
@@ -52,6 +52,9 @@ namespace Localtion_JV.pages.customer
                         MessageBox.Show($"Votre location du jeu : {booking.Videogame.Name} a commencé");
                         Loan loan = new Loan();
                         loan.Insert(start, end, p, copy);
+                        credit = copy.Player.Credit + copy.Videogame.CreditCost;
+                        Player loaner = new Player();
+                        loaner.AddCreditsLocation(credit, copy.Player);
                         copy.NoLongerAvailable();
                         booking.Delete();
                     }
