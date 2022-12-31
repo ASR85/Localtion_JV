@@ -34,8 +34,10 @@ namespace Localtion_JV.DAO
             string date = DateTime.Now.ToString("yyyy-MM-dd");
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {p.Credit}, LastAddedBonusDate = '{date}' WHERE id={p.Id}", connection);
-
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = @pCredit, LastAddedBonusDate = @date WHERE id= @pid", connection);
+                cmd.Parameters.AddWithValue("@pCredit", p.Credit);
+                cmd.Parameters.AddWithValue("@date",date);
+                cmd.Parameters.AddWithValue("@pid",p.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -48,7 +50,9 @@ namespace Localtion_JV.DAO
             Player player = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Pseudo = '{login}' and Password = '{password}'", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Pseudo = @login and Password = @password", connection);
+                cmd.Parameters.AddWithValue("@login",login);
+                cmd.Parameters.AddWithValue("@password", password);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -74,7 +78,8 @@ namespace Localtion_JV.DAO
             int credit = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id ={player.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id = @playerid", connection);
+                cmd.Parameters.AddWithValue("@playerid", player.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -135,8 +140,9 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {player.Credit} WHERE id={player.Id}", connection);
-
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = @playercredit WHERE id= @playerid", connection);
+                cmd.Parameters.AddWithValue("@playercredit", player.Credit);
+                cmd.Parameters.AddWithValue("@playerid", player.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -148,8 +154,9 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {credits} WHERE id={player.Id}", connection);
-
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = @credits WHERE id= @playerid", connection);
+                cmd.Parameters.AddWithValue("@credits", credits);
+                cmd.Parameters.AddWithValue("@playerid", player.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;

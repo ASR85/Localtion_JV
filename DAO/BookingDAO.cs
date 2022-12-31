@@ -18,7 +18,8 @@ namespace Localtion_JV.DAO
             List<Booking> bookings = new List<Booking>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Bookings WHERE IdPlayer ={player.Id} ", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Bookings WHERE IdPlayer = @playerid ", connection);
+                cmd.Parameters.AddWithValue("@playerid",player.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -38,7 +39,11 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Bookings(bookingDate,loanDate,idPlayer,idGame) VALUES('{bd}','{ld}',{player.Id}, {videogame.Id} )", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Bookings(bookingDate,loanDate,idPlayer,idGame) VALUES( @bd, @ld, @playerid, @videogameid )", connection);
+                cmd.Parameters.AddWithValue("@bd",bd);
+                cmd.Parameters.AddWithValue("@bd",ld);
+                cmd.Parameters.AddWithValue("@playerid",player.Id);
+                cmd.Parameters.AddWithValue("@videogameid",videogame.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -51,7 +56,8 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Bookings WHERE id= {b.Id}", connection);
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Bookings WHERE id= @bid", connection);
+                cmd.Parameters.AddWithValue("@bid", b.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
