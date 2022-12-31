@@ -10,12 +10,13 @@
 
     <Grid>
         <Label Content="Liste de vos Locations :" HorizontalAlignment="Left" Margin="47,49,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-        <DataGrid AutoGenerateColumns="False" Margin="47,126,78,57" x:Name="dg">
+        <DataGrid AutoGenerateColumns="False" Margin="47,126,39,57" x:Name="dg">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Name}" Header="Nom"  Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Console}" Header="Console" Width="80"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartDate}" Header="Date de début" Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndDate}" Header="Date de retour" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" x:Name="dg_credits"  Header="Frais retard" Width="*"/>
                 <DataGridTemplateColumn Header="" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
