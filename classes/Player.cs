@@ -106,6 +106,12 @@ namespace Localtion_JV.classes
             return db.RemoveCreditsWhileBooking(this);
         }
 
+        public bool AddCreditsLocation(int credits, Player player)
+        {
+            PlayerDAO db = new PlayerDAO();
+            return db.AddCreditsLocation(credits,player);
+        }
+
         public override string ToString()
         {
             return $"{this.Pseudo} , {this.Password} , {this.Credit} , {this.RegistrationDate} , {this.DateOfBirth} , ";

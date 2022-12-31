@@ -1,4 +1,5 @@
 ﻿using Localtion_JV.classes;
+using Localtion_JV.DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Localtion_JV.pages.customer
         public AccueilCustomer(Player player)
         {
             InitializeComponent();
+
             p = player;
             if (DateTime.Now.ToString("yyyy-MM-dd") == p.DateOfBirth.ToString("yyyy-MM-dd") && DateTime.Now.ToString("yyyy-MM-dd") != p.LastAddedBonusDate.ToString("yyyy-MM-dd"))
             {
@@ -32,15 +34,39 @@ namespace Localtion_JV.pages.customer
                 p.Credit += 2;
                 p.AddBirthdayBonus();
             }
-            
+
+
+            int credit;
             List<Booking> bookings = Booking.GetBookingByPlayer(p);
-            foreach(Booking booking in bookings)
+
+            for(int i =0; i <bookings.Count; i++)
             {
-                if (booking.LoanDate  >= DateTime.Now)
+                Booking booking = bookings[i];  
+                if(booking.LoanDate < DateTime.Today)
                 {
-                    Loan loan= new Loan();
-                    //loan.Insert();
-                    booking.Delete();
+                    string start = DateTime.Now.ToString("yyyy-MM-dd");
+                    string end = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd");
+                    Copy copy = Copy.FindCopiesByGame(booking.Videogame.Id);     
+                    if(copy != null)
+                    {
+                        MessageBox.Show($"Votre location du jeu : {booking.Videogame.Name} a commencé");
+                        Loan loan = new Loan();
+                        loan.Insert(start, end, p, copy);
+                        credit = copy.Player.Credit + copy.Videogame.CreditCost;
+                        Player loaner = new Player();
+                        loaner.AddCreditsLocation(credit, copy.Player);
+                        copy.NoLongerAvailable();
+                        booking.Delete();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Le jeu {booking.Videogame.Name} n'est pas disponible votre location est repoussé à plus tard");
+                    }
+                                 
+                }
+                else
+                {
+                    MessageBox.Show("Pas Hourra");
                 }
             }
 

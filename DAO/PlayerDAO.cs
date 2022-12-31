@@ -19,12 +19,10 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth,lastAddedBonusDate) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}', '{rd}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth,lastAddedBonusDate) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}','{rd}')", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
-
             }
             return success;
         }
@@ -50,9 +48,7 @@ namespace Localtion_JV.DAO
             Player player = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Pseudo = @login and Password = @password", connection);
-                cmd.Parameters.AddWithValue("@login",login); 
-                cmd.Parameters.AddWithValue("@password",password);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Pseudo = '{login}' and Password = '{password}'", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -60,8 +56,8 @@ namespace Localtion_JV.DAO
                     {
                         player = new Player(
                         reader.GetInt32("id"),
-                        login,
-                        password,
+                        reader.GetString("pseudo"),
+                        reader.GetString("password"),
                         reader.GetInt32("credit"),
                         reader.GetDateTime("registrationDate"),
                         reader.GetDateTime("dateOfBirth"),
@@ -78,8 +74,7 @@ namespace Localtion_JV.DAO
             int credit = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id = @playerid", connection);
-                cmd.Parameters.AddWithValue("@playerid", player.Id);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE Id ={player.Id}", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -133,6 +128,33 @@ namespace Localtion_JV.DAO
                 throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return p;
+        }
+
+        public bool RemoveCreditsWhileBooking(Player player)
+        {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {player.Credit} WHERE id={player.Id}", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
+        }
+        public bool AddCreditsLocation(int credits,Player player)
+        {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Players SET Credit = {credits} WHERE id={player.Id}", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
         }
     }
 }
