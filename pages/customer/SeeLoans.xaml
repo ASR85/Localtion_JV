@@ -14,9 +14,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Name}" Header="Nom"  Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Console}" Header="Console" Width="80"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartDate}" Header="Date de début" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndDate}" Header="Date de retour" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" x:Name="dg_credits"  Header="Frais retard" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartDate, StringFormat='dd/MM/yyyy'}" Header="Date de début" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndDate , StringFormat='dd/MM/yyyy'}" Header="Date de retour" Width="*"/>
                 <DataGridTemplateColumn Header="" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

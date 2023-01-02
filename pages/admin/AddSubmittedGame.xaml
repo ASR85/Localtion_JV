@@ -21,13 +21,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Suppression" Width="*">
+                <!--<DataGridTemplateColumn Header="Suppression" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="button" Content="Suppression" Click="button_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Liste des jeux soumis par les clients :" HorizontalAlignment="Left" Margin="50,15,0,0" VerticalAlignment="Top" FontSize="24"/>

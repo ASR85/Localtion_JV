@@ -66,7 +66,7 @@ namespace Localtion_JV.pages.customer
             }
             else
             {
-                MessageBox.Show("Merci");
+                //MessageBox.Show("Merci");
                 MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir rendre ce jeu", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
                 switch (result)
                 {
