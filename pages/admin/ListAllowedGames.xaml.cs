@@ -56,12 +56,12 @@ namespace Localtion_JV.pages.admin
                 }
                 else
                 {
-                    MessageBox.Show("erreur");
+                    MessageBox.Show("Veullez choisir un nombre de crédits entre 1 et 5", "Attention");
                 }
             }
             else
             {
-                MessageBox.Show("erreur");
+                MessageBox.Show("Veullez choisir un montant pour les crédits", "Attention");
             }
         }
     }

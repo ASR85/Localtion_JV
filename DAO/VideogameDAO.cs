@@ -38,7 +38,7 @@ namespace Localtion_JV.DAO
 
         public Copy CopyAvailable(Videogame videogame)
         {
-            Copy copy = new Copy();
+            Copy copy = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Copies WHERE idGame = @videogameid ", connection);
@@ -46,7 +46,12 @@ namespace Localtion_JV.DAO
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-
+                            copy = new Copy(
+                            reader.GetInt32("id"),
+                            VideogameDAO.Find(reader.GetInt32("idGame")),
+                            PlayerDAO.Find(reader.GetInt32("idPlayer")),
+                            Boolean.Parse(reader.GetString("available"))
+                            );
                 }
             }
             return copy;

@@ -26,8 +26,8 @@ namespace Localtion_JV.pages.customer
         public Reservation(Player player, Videogame videogame)
         {
             InitializeComponent();
-            p=player;
-            v=videogame;
+            p = player;
+            v = videogame;
             label1.Content = v.Name;
             label2.Content = v.Console;
             label3.Content = v.CreditCost;
@@ -35,23 +35,30 @@ namespace Localtion_JV.pages.customer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //string ld = calendar_dob.DisplayDate.ToString("yyyy-MM-dd");
-            string rd = DateTime.Now.ToString("yyyy-MM-dd");
-            DateTime? dob = calendar_ld.SelectedDate;
-            DateTime loanDate = (DateTime)dob;
-            string ld = loanDate.ToString("yyyy-MM-dd");
-            MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir reserver pour le {ld}", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
-            switch (result)
+            if (calendar_ld.SelectedDate.ToString() == "")
             {
-                case MessageBoxResult.Yes:
-                    Booking booking = new Booking();
-                    booking.Insert(rd,ld, p, v);
-                    p.Credit -= v.CreditCost;
-                    p.RemoveCreditsWhileBooking();
-                    MessageBox.Show("Reservation effectuée");
-                    break;
-                case MessageBoxResult.No:
-                    break;
+                MessageBox.Show("Veullez choisir une date de location", "Attention");
+            }
+            else
+            {
+                //string ld = calendar_dob.DisplayDate.ToString("yyyy-MM-dd");
+                string rd = DateTime.Now.ToString("yyyy-MM-dd");
+                DateTime? dob = calendar_ld.SelectedDate;
+                DateTime loanDate = (DateTime)dob;
+                string ld = loanDate.ToString("yyyy-MM-dd");
+                MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir reserver pour le {ld}", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Booking booking = new Booking();
+                        booking.Insert(rd, ld, p, v);
+                        p.Credit -= v.CreditCost;
+                        p.RemoveCreditsWhileBooking();
+                        MessageBox.Show("Reservation effectuée");
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
         }
     }
