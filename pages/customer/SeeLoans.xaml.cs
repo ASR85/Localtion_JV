@@ -25,35 +25,63 @@ namespace Localtion_JV.pages.customer
         public SeeLoans(Player player)
         {
             p = player;
+            int credits;
             InitializeComponent();
             List<Loan> loans = Loan.GetLoansByPlayer(player);
             dg.ItemsSource = loans;
 
-            string chaine = "";
-            for(int i =0; i< loans.Count -1; i++)
+            for(int i =0; i< loans.Count; i++)
             {
-                chaine += loans[i].Copy.Videogame.Name;
+                if (loans[i].EndDate < DateTime.Now)
+                {
+                    credits = (int)(2 * (loans[i].EndDate.Date - DateTime.Now.Date).TotalDays);
+                }
             }
 
-            test.Content = chaine;
         }
 
         private void EndLoan(object sender, RoutedEventArgs e)
         {
+            int days = 0;
+            int credits = 0;
             Loan loan = dg.SelectedItem as Loan;
-            MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir rendre ce jeu", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
-            switch (result)
+            if (loan.EndDate < DateTime.Now)
             {
-                case MessageBoxResult.Yes:
-                    MessageBox.Show("Jeu rendu");
-                    loan.EndLoan();
-                    Copy copy = new Copy();
-                    copy.IsAvailable(loan.Copy);
-                    break;
-                case MessageBoxResult.No:
-                    break;
+                days = (int)((DateTime.Now.Date - loan.EndDate.Date).TotalDays);
+                credits = 5 *days;
+                MessageBoxResult result = MessageBox.Show($"Vous avez {days} jour(s) de retard donc vous avez une pénalité de {credits} credits.", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        MessageBox.Show("Jeu rendu");
+                        p.Credit -= credits;
+                        p.RemoveCreditsWhileBooking();                                             
+                        loan.EndLoan();
+                        Copy copy = new Copy();
+                        copy.IsAvailable(loan.Copy);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
             }
-            
+            else
+            {
+                //MessageBox.Show("Merci");
+                MessageBoxResult result = MessageBox.Show($"Etes vous sur de vouoir rendre ce jeu", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        MessageBox.Show("Jeu rendu");
+                        loan.EndLoan();
+                        Copy copy = new Copy();
+                        copy.IsAvailable(loan.Copy);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+
+
 
         }
         private void Button_Click(object sender, RoutedEventArgs e)

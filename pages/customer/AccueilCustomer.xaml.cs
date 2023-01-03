@@ -42,7 +42,7 @@ namespace Localtion_JV.pages.customer
             for(int i =0; i <bookings.Count; i++)
             {
                 Booking booking = bookings[i];  
-                if(booking.LoanDate < DateTime.Today)
+                if(booking.LoanDate <= DateTime.Today)
                 {
                     string start = DateTime.Now.ToString("yyyy-MM-dd");
                     string end = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd");
@@ -64,10 +64,10 @@ namespace Localtion_JV.pages.customer
                     }
                                  
                 }
-                else
-                {
-                    MessageBox.Show("Pas Hourra");
-                }
+                //else
+                //{
+                //    MessageBox.Show("Pas Hourra");
+                //}
             }
 
             

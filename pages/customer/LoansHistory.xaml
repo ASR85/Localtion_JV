@@ -14,15 +14,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Name}" Header="Nom"  Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Console}" Header="Console" Width="80"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartDate}" Header="Date de début" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndDate}" Header="Date de retour" Width="*"/>
-                <DataGridTemplateColumn Header="" Width="*">
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartDate , StringFormat='dd/MM/yyyy'}" Header="Date de début" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndDate , StringFormat='dd/MM/yyyy'}" Header="Date de retour" Width="*"/>
+                <!--<DataGridTemplateColumn Header="" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="button" Content="Rendre le jeu" Click="EndLoan"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="RETOUR" HorizontalAlignment="Left" Margin="620,60,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click" RenderTransformOrigin="2.2,-0.11"/>
