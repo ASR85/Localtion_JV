@@ -16,17 +16,21 @@ namespace Localtion_JV.DAO
             List<Loan> loans = new List<Loan>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE IdLender =@pid ", connection);
-                cmd.Parameters.AddWithValue("pid", player.Id);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower ={player.Id} and ongoing='true' ", connection);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        Loan loan = new Loan();
-                        loan.StartDate = reader.GetDateTime("StartDate");
-                        loan.EndDate = reader.GetDateTime("EndDate");
-                        loan.Ongoing = reader.GetBoolean("Ongoing");
+                        Loan loan = new Loan(
+                        reader.GetInt32("Id"),
+                        reader.GetDateTime("StartDate"),
+                        reader.GetDateTime("EndDate"),
+                        Boolean.Parse(reader.GetString("Ongoing")),
+                        PlayerDAO.Find(reader.GetInt32("idBorrower")),
+                        PlayerDAO.Find(reader.GetInt32("idLender")),
+                        CopyDAO.Find(reader.GetInt32("idCopy"))
+                        );
                         loans.Add(loan);
                     }
                 }
@@ -34,18 +38,13 @@ namespace Localtion_JV.DAO
             return loans;
         }
 
-        public bool Insert(Copy copy, Player player, Booking booking)
+        public bool Insert(string start, string end, Player player, Copy copy)
         {
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES(@startDate, @enDate , @ongoing, @idBorrower, @idLender, @idCopy)", connection);
-                cmd.Parameters.AddWithValue("@startDate", booking.BookingDate);
-                cmd.Parameters.AddWithValue("@enDate", booking.BookingDate);
-                cmd.Parameters.AddWithValue("@ongoing", true);
-                cmd.Parameters.AddWithValue("@idBorrower", player.Id);
-                cmd.Parameters.AddWithValue("@idLender", copy.Player.Id);
-                cmd.Parameters.AddWithValue("@idCopy", copy.Videogame.Id);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES('{start}', '{end}' , 'true', {player.Id}, {copy.Player.Id}, {copy.Id})", connection);
+
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -55,18 +54,49 @@ namespace Localtion_JV.DAO
 
         public void CalculateBalance(Loan l)
         {
-
+            double i;
+            if (DateTime.Today > l.EndDate)
+            {
+                i = (DateTime.Now - l.EndDate).TotalDays;
+            }
         }
 
         public void EndLoan(Loan l)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Loans WHERE id= @lId", connection);
-                cmd.Parameters.AddWithValue("@lId", l.Id);
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Loans SET ongoing = 'false' WHERE id = {l.Id}", connection);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
             }
         }
+
+        public List<Loan> GetPreviousLoans(Player player)
+        {
+            List<Loan> loans = new List<Loan>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower ={player.Id} and ongoing='false' ", connection);
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Loan loan = new Loan(
+                        reader.GetInt32("Id"),
+                        reader.GetDateTime("StartDate"),
+                        reader.GetDateTime("EndDate"),
+                        Boolean.Parse(reader.GetString("Ongoing")),
+                        PlayerDAO.Find(reader.GetInt32("idBorrower")),
+                        PlayerDAO.Find(reader.GetInt32("idLender")),
+                        CopyDAO.Find(reader.GetInt32("idCopy"))
+                        );
+                        loans.Add(loan);
+                    }
+                }
+            }
+            return loans;
+        }
+
     }
 }
