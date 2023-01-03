@@ -1,4 +1,5 @@
 ﻿using Localtion_JV.classes;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,13 +14,21 @@ namespace Localtion_JV.DAO
 {
     internal class PlayerDAO : DAO<Player>
     {
+        private int credit  = 10;
 
         public bool Insert(Player pl, string rd, string dob)
         {
+            
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth,lastAddedBonusDate) VALUES ('{pl.Pseudo}','{pl.Password}',10,'{rd}','{dob}','{rd}')", connection);
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Players(pseudo,password,credit,registrationDate,dateOfBirth,lastAddedBonusDate) VALUES (@pseudo,@password, @credit ,@registrationDate,@dateOfBirth,@lastAddedBonusDate)", connection);
+                cmd.Parameters.AddWithValue("@pseudo",pl.Pseudo);
+                cmd.Parameters.AddWithValue("@password",pl.Password);
+                cmd.Parameters.AddWithValue("@credit",credit);
+                cmd.Parameters.AddWithValue("@registrationDate", rd);
+                cmd.Parameters.AddWithValue("@dateOfBirth", dob );
+                cmd.Parameters.AddWithValue("",rd);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
