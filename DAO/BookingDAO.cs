@@ -75,7 +75,7 @@ namespace Localtion_JV.DAO
                 {
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Bookings WHERE idPlayer = @idPlayer", connection);
-                    cmd.Parameters.AddWithValue("idPlayer", player.Id);
+                    cmd.Parameters.AddWithValue("@idPlayer", player.Id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

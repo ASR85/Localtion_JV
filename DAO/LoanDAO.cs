@@ -16,7 +16,8 @@ namespace Localtion_JV.DAO
             List<Loan> loans = new List<Loan>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower ={player.Id} and ongoing='true' ", connection);
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower =@pid and ongoing='true' ", connection);
+                cmd.Parameters.AddWithValue("@pid", player.Id);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {

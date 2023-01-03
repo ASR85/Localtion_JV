@@ -28,7 +28,7 @@ namespace Localtion_JV.DAO
                 cmd.Parameters.AddWithValue("@credit",credit);
                 cmd.Parameters.AddWithValue("@registrationDate", rd);
                 cmd.Parameters.AddWithValue("@dateOfBirth", dob );
-                cmd.Parameters.AddWithValue("",rd);
+                cmd.Parameters.AddWithValue("@lastAddedBonusDate", rd);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -118,7 +118,7 @@ namespace Localtion_JV.DAO
                 {
 
                     SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Players WHERE id =  @id", connection);
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("@id", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

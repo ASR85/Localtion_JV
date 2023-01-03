@@ -17,8 +17,9 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame,available) VALUES({p.Id}, {vg.Id},'true')", connection);
-
+                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame,available) VALUES(@pid, @vig,'true')", connection);
+                cmd.Parameters.AddWithValue("@pid", p.Id);
+                cmd.Parameters.AddWithValue("@vig", vg.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -31,8 +32,8 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'true' WHERE id = {c.Id}", connection);
-
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'true' WHERE id =  @cid", connection);
+                cmd.Parameters.AddWithValue("@cid", c.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -45,8 +46,8 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'false' WHERE id = {c.Id}", connection);
-
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'false' WHERE id = @cid", connection);
+                cmd.Parameters.AddWithValue("@cid", c.Id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -68,8 +69,8 @@ namespace Localtion_JV.DAO
             bool success = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Copies WHERE Id = {id}", connection);
-
+                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Copies WHERE Id = @id", connection);
+                cmd.Parameters.AddWithValue("@id", id);
                 connection.Open();
                 int res = cmd.ExecuteNonQuery();
                 success = res > 0;
@@ -87,7 +88,7 @@ namespace Localtion_JV.DAO
                 {
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idPlayer != @idPlayer", connection);
-                    cmd.Parameters.AddWithValue("idPlayer", player.Id);
+                    cmd.Parameters.AddWithValue("@idPlayer", player.Id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -125,7 +126,7 @@ namespace Localtion_JV.DAO
                 {
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idGame = @idGame", connection);
-                    cmd.Parameters.AddWithValue("idGame", videogame.Id);
+                    cmd.Parameters.AddWithValue("@idGame", videogame.Id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -165,7 +166,7 @@ namespace Localtion_JV.DAO
                 {
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE id = @id", connection);
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("@id", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -205,7 +206,7 @@ namespace Localtion_JV.DAO
                 {
 
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copies WHERE idGame = @idGame and available = 'true' order by id desc", connection);
-                    cmd.Parameters.AddWithValue("idGame", id);
+                    cmd.Parameters.AddWithValue("@idGame", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
