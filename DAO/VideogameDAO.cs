@@ -187,6 +187,32 @@ namespace Localtion_JV.DAO
             return success;
         }
 
+        public Videogame FindGame(int id)
+        {
+            Videogame videogame = null;
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.VideoGames WHERE Id = {id}", connection);
+
+                connection.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+
+                    while (reader.Read())
+                    {
+                        videogame = new Videogame(
+                        reader.GetInt32("id"),
+                        reader.GetString("name"),
+                        reader.GetInt32("creditCost"),
+                        reader.GetString("console"));
+
+                    }
+                }
+            }
+            return videogame;
+        }
+
         public static Videogame Find(int id)
 
         {

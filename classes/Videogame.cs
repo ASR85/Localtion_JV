@@ -123,5 +123,11 @@ namespace Localtion_JV.classes
             VideogameDAO db = new VideogameDAO();
             return db.GameExisted(this);
         }
+
+        public static Videogame FindGame(int id)
+        {
+            VideogameDAO db = new VideogameDAO();
+            return db.FindGame(id);
+        }
     }
 }

@@ -34,10 +34,41 @@ namespace Localtion_JV.pages.customer
 
         private void GoToReservation(object sender, RoutedEventArgs e)
         {
+            List<Booking> bookings = Booking.GetBookingByPlayer(p);
+            List<Loan> loans = Loan.GetLoansByPlayer(p);
+            bool alreadyLoan = false;
+
+            
             if (p.LoanAllowed())
             {
                 Videogame videogame = dg.SelectedItem as Videogame;
-                NavigationService.Navigate(new Reservation(p, videogame));
+                for (int i = 0; i < bookings.Count; i++)
+                {
+                    Booking booking = bookings[i];
+                    if (videogame.Id == booking.Videogame.Id)
+                    {
+                        alreadyLoan = true;
+                    }
+
+                }
+                for(int j=0; j < loans.Count; j++)
+                {
+                    Loan loan = loans[j];
+                    if (videogame.Id == loan.Copy.Videogame.Id)
+                    {
+                        alreadyLoan = true;
+                    }
+                }
+
+                if (alreadyLoan)
+                {
+                    MessageBox.Show("Le jeu est déjà en cours de réservation ou de location");
+                }
+                else
+                {                   
+                    NavigationService.Navigate(new Reservation(p, videogame));
+                    
+                }
             }
             else
             {
