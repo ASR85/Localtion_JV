@@ -106,5 +106,19 @@ namespace Localtion_JV.DAO
             return Bookingplayer;
         }
 
+        public bool UpdateLoanDate(Booking booking, string date)
+        {
+            bool success = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Bookings SET loanDate = '{date}' WHERE id = {booking.Id}", connection);
+
+                connection.Open();
+                int res = cmd.ExecuteNonQuery();
+                success = res > 0;
+            }
+            return success;
+        }
+
     }
 }

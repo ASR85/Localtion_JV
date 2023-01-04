@@ -44,8 +44,8 @@ namespace Localtion_JV.pages.customer
                 Booking booking = bookings[i];  
                 if(booking.LoanDate <= DateTime.Today)
                 {
-                    string start = DateTime.Now.ToString("yyyy-MM-dd");
-                    string end = DateTime.Now.AddDays(7).ToString("yyyy-MM-dd");
+                    string start = booking.LoanDate.ToString("yyyy-MM-dd");
+                    string end = booking.LoanDate.AddDays(7).ToString("yyyy-MM-dd");
                     Copy copy = Copy.FindCopiesByGame(booking.Videogame.Id);     
                     if(copy != null)
                     {
@@ -61,6 +61,8 @@ namespace Localtion_JV.pages.customer
                     else
                     {
                         MessageBox.Show($"Le jeu {booking.Videogame.Name} n'est pas disponible votre location est repoussé à plus tard");
+                        string date = DateTime.Now.ToString("yyyy-MM-dd");
+                        booking.UpdateLoanDate(date);
                     }
                                  
                 }

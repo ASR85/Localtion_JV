@@ -14,7 +14,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Videogame.Name}" Header="Nom" Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Videogame.Console}" Header="Console" Width="*"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding BookingDate, StringFormat='dd/MM/yyyy'}" Header="Date reservation" Width="*"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding LoanDate, StringFormat='dd/MM/yyyy'}" Header="Date de location prévu" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="RETOUR" HorizontalAlignment="Left" Margin="508,70,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click"/>

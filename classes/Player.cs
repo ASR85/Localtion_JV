@@ -18,7 +18,6 @@ namespace Localtion_JV.classes
         private DateTime registrationDate;
         private DateTime dateOfBirth;
         private DateTime lastAddedBonusDate;
-        private List<Booking> bookings;
 
         public Player()
         {

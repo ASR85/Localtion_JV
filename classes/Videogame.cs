@@ -14,7 +14,6 @@ namespace Localtion_JV.classes
         private string name;
         private int creditCost;
         private string console;
-        private List<Copy> copies;
 
         public Videogame()
         {
@@ -54,12 +53,6 @@ namespace Localtion_JV.classes
         {
             get { return console; }
             set { console = value; }
-        }
-
-        public List<Copy> Copies
-        {
-            get { return copies; }
-            set { copies = value; }
         }
 
         public Copy CopyAvailable()

@@ -88,5 +88,11 @@ namespace Localtion_JV.classes
             BookingDAO db = new BookingDAO();
             return db.SeeAllBookingOfPlayer(player);
         }
+
+        public bool UpdateLoanDate(string date)
+        {
+            BookingDAO db = new BookingDAO();
+            return db.UpdateLoanDate(this, date);
+        }
     }
 }
