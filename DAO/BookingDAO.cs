@@ -41,7 +41,7 @@ namespace Localtion_JV.DAO
             {
                 SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Bookings(bookingDate,loanDate,idPlayer,idGame) VALUES( @bd, @ld, @playerid, @videogameid )", connection);
                 cmd.Parameters.AddWithValue("@bd",bd);
-                cmd.Parameters.AddWithValue("@bd",ld);
+                cmd.Parameters.AddWithValue("@ld",ld);
                 cmd.Parameters.AddWithValue("@playerid",player.Id);
                 cmd.Parameters.AddWithValue("@videogameid",videogame.Id);
                 connection.Open();
