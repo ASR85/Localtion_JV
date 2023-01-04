@@ -10,7 +10,7 @@
 
     <Grid>
         <Label Content="Liste de vos reservations :" HorizontalAlignment="Left" Margin="47,49,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
-        <DataGrid AutoGenerateColumns="False" Margin="67,132,63,54" x:Name="dg" ItemsSource="{Binding Source=Bookings}">
+        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Margin="67,132,63,54" x:Name="dg" ItemsSource="{Binding Source=Bookings}">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Videogame.Name}" Header="Nom" Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Videogame.Console}" Header="Console" Width="*"/>
