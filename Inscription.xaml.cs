@@ -56,7 +56,7 @@ namespace Localtion_JV
                         string dob2 = DofB.ToString("yyyy-MM-dd"); 
                         Player u = new Player(tb_username.Text, tb_mdp.Text, 10,DateTime.Now, calendar_dob.DisplayDate);               
                         u.Insert(rd,dob2);
-                        MessageBox.Show($"Bienvenue sur notre site {dob}", "Félicitation");
+                        MessageBox.Show($"Bienvenue sur notre site {u.Pseudo}", "Félicitation");
                      
                     }
                     else
