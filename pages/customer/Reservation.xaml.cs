@@ -55,6 +55,7 @@ namespace Localtion_JV.pages.customer
                         p.Credit -= v.CreditCost;
                         p.RemoveCreditsWhileBooking();
                         MessageBox.Show("Reservation effectuée");
+                        NavigationService.Navigate(new Profile(p));
                         break;
                     case MessageBoxResult.No:
                         break;

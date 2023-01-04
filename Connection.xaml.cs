@@ -33,7 +33,7 @@ namespace Localtion_JV
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             String login = nomTextBox.Text;
-            String password = mdpTextBox.Text;
+            String password = mdpTextBox.Password;
             switch (ConnexionChoice.Text)
             {
                 case "Membre":
@@ -73,7 +73,7 @@ namespace Localtion_JV
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             nomTextBox.Text = "";
-            mdpTextBox.Text = "";
+            mdpTextBox.Password = "";
         }
     }
 }

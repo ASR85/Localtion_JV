@@ -57,6 +57,7 @@ namespace Localtion_JV
                         Player u = new Player(tb_username.Text, tb_mdp.Text, 10,DateTime.Now, calendar_dob.DisplayDate);               
                         u.Insert(rd,dob2);
                         MessageBox.Show($"Bienvenue sur notre site {u.Pseudo}", "Félicitation");
+                        NavigationService.Navigate(new Connection());
                      
                     }
                     else
