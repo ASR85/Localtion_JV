@@ -42,10 +42,10 @@ namespace Localtion_JV.classes
             set { password = value; }
         }
 
-        public void Login(string name, string psw)
+        public User Login()
         {
             UserDAO db = new UserDAO();
-            db.Login(name, psw);
+            return db.Login(this);
         }
 
         public bool Insert()

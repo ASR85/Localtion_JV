@@ -33,22 +33,22 @@ namespace Localtion_JV.DAO
             }
             return success;
         }
-        public User Login(string login, string password)
+        public User Login(User u)
         {
             User user = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Users WHERE Pseudo = @login and Password = @password", connection);
-                cmd.Parameters.AddWithValue("@login", login);
-                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@login", u.Pseudo);
+                cmd.Parameters.AddWithValue("@password", u.Password);
                 connection.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         user = new User(
-                        login,
-                        password                      
+                        reader.GetString("username"),
+                        reader.GetString("password")
                         );
                     }
                 }
