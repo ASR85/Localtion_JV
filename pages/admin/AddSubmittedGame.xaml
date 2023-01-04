@@ -9,7 +9,7 @@
       Title="AddSubmittedGame" Background="White">
 
     <Grid>
-        <DataGrid AutoGenerateColumns="False" x:Name="dg" Margin="50,68,51,44" Background="White">
+        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="dg" Margin="50,68,51,44" Background="White">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Name}" Header="Nom du jeu" Width="*"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Console}" Header="Console" Width="*" />

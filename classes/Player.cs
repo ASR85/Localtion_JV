@@ -92,7 +92,7 @@ namespace Localtion_JV.classes
         }
 
         
-        public static Player GetPlayer(string username, string password)
+        public static Player Login(string username, string password)
         {
             PlayerDAO db = new PlayerDAO();
             return db.GetPlayerLogin(username,password);
