@@ -10,7 +10,7 @@
 
     <Grid>
         <TextBlock HorizontalAlignment="Center" Margin="0,94,0,0" TextWrapping="Wrap" Text="Bienvenue cher joueur" VerticalAlignment="Top" FontSize="36"/>
-        <Image Source="/images/gamer.png" Width="150" Margin="325,147,325,119" />
+        <Image Source="/pages/customer/gamer.png" Width="150" Margin="325,147,325,119" />
 
         <Label Content="" Foreground="Red" x:Name="label_accueil" HorizontalAlignment="Left" Margin="45,369,0,0" VerticalAlignment="Top" FontSize="24"/>
 

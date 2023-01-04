@@ -10,7 +10,7 @@
 
     <Grid>
         <Label Content="Bienvenue cher administrateur" HorizontalAlignment="Center" Margin="0,167,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <Image Source="/images/admin.png" Margin="165,230,165,60" />
+        <Image Source="/pages/admin/admin.png" Margin="165,230,165,60" />
 
     </Grid>
 </Page>
