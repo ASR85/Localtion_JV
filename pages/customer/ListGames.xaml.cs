@@ -25,8 +25,8 @@ namespace Localtion_JV.pages.customer
         public ListGames(Player player)
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetVideogames();
-            dg.ItemsSource = movies;
+            List<Videogame> videogames = Videogame.GetVideogames();
+            dg.ItemsSource = videogames;
             p = player;
             //List<Copy> copies = Copy.GetCopies(p);
             //dg.ItemsSource = copies;

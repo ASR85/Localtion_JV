@@ -24,10 +24,10 @@ namespace Localtion_JV.pages.admin
         public EditGame()
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetVideogames();
-            foreach (Videogame m in movies)
+            List<Videogame> videogames = Videogame.GetVideogames();
+            foreach (Videogame v in videogames)
             {
-                cb_name.Items.Add(m.Name + " sur " + m.Console + " : " + m.CreditCost);
+                cb_name.Items.Add(v.Name + " sur " + v.Console + " : " + v.CreditCost);
 
             }
         }

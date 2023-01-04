@@ -24,8 +24,8 @@ namespace Localtion_JV.pages.admin
         public AddSubmittedGame()
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetSubmittedGames();
-            dg.ItemsSource = movies;
+            List<Videogame> videogames = Videogame.GetSubmittedGames();
+            dg.ItemsSource = videogames;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

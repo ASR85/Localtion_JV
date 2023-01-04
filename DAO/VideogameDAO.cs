@@ -15,7 +15,7 @@ namespace Localtion_JV.DAO
     {
         public List<Videogame> GetVideogames()
         {
-            List<Videogame> movies = new List<Videogame>();
+            List<Videogame> videogames = new List<Videogame>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames WHERE CreditCost > 0", connection);
@@ -29,11 +29,11 @@ namespace Localtion_JV.DAO
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
                         videogame.Console = reader.GetString("Console");
-                        movies.Add(videogame);
+                        videogames.Add(videogame);
                     }
                 }
             }
-            return movies;
+            return videogames;
         }
 
         public Copy CopyAvailable(Videogame videogame)
@@ -73,7 +73,7 @@ namespace Localtion_JV.DAO
 
         public List<Videogame> GetAllVideogames()
         {
-            List<Videogame> movies = new List<Videogame>();
+            List<Videogame> videogames = new List<Videogame>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames", connection);
@@ -87,16 +87,16 @@ namespace Localtion_JV.DAO
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
                         videogame.Console = reader.GetString("Console");
-                        movies.Add(videogame);
+                        videogames.Add(videogame);
                     }
                 }
             }
-            return movies;
+            return videogames;
         }
 
         public List<Videogame> GetSubmittedVideogames()
         {
-            List<Videogame> movies = new List<Videogame>();
+            List<Videogame> videogames = new List<Videogame>();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGames WHERE CreditCost = 0", connection);
@@ -110,11 +110,11 @@ namespace Localtion_JV.DAO
                         videogame.Name = reader.GetString("Name");
                         videogame.CreditCost = reader.GetInt32("CreditCost");
                         videogame.Console = reader.GetString("Console");
-                        movies.Add(videogame);
+                        videogames.Add(videogame);
                     }
                 }
             }
-            return movies;
+            return videogames;
         }
 
         public Videogame GetIdVideogames(Videogame vg)

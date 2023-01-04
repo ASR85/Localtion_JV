@@ -24,8 +24,8 @@ namespace Localtion_JV.pages.admin
         public ListAllowedGames()
         {
             InitializeComponent();
-            List<Videogame> movies = Videogame.GetVideogames();
-            dg.ItemsSource = movies;
+            List<Videogame> videogames = Videogame.GetVideogames();
+            dg.ItemsSource = videogames;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
