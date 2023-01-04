@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <None Remove="accueil.png" />
+    <None Remove="pages\admin\admin.png" />
+    <None Remove="pages\customer\gamer.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,8 @@
 
   <ItemGroup>
     <Resource Include="accueil.png" />
+    <Resource Include="pages\admin\admin.png" />
+    <Resource Include="pages\customer\gamer.png" />
   </ItemGroup>
 
 </Project>
