@@ -10,7 +10,7 @@
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Height="35" VerticalAlignment="Top">
             <Button Content="Accueil" MinWidth="100" Margin="4" Click="BtnAccueil" Background="White" Foreground="Blue"/>
             <Button Content="Inscription" MinWidth="100" Margin="4" Click="BtnInscription" Background="White" Foreground="Blue"/>
-            <Button Content="Connection" MinWidth="100" Margin="4" Click="BtnConnection" Background="White" Foreground="Blue"/>
+            <Button Content="Connexion" MinWidth="100" Margin="4" Click="BtnConnection" Background="White" Foreground="Blue"/>
             <Button Content="Informations" MinWidth="100" Margin="4" Click="BtnDetails" Background="White" Foreground="Blue"/>
         </StackPanel>
         <Frame NavigationUIVisibility="Hidden" x:Name="Main" Margin="0,35,0,0"/>

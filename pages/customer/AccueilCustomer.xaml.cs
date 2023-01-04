@@ -66,10 +66,7 @@ namespace Localtion_JV.pages.customer
                     }
                                  
                 }
-                //else
-                //{
-                //    MessageBox.Show("Pas Hourra");
-                //}
+                
             }
 
             
