@@ -37,7 +37,7 @@ namespace Localtion_JV
             switch (ConnexionChoice.Text)
             {
                 case "Membre":
-                    Player player = Player.GetPlayer(login, password);
+                    Player player = Player.Login(login, password);
                     if (player == null)
                     {
                         MessageBox.Show("Erreur identifiants manquants ou incorrectes");
@@ -54,7 +54,7 @@ namespace Localtion_JV
                
 
                 case "Responsable":
-                    Administrator administrator = Administrator.GetAdministrator(login, password);
+                    Administrator administrator = Administrator.Login(login, password);
                     if (administrator == null)
                     {
                         MessageBox.Show("Erreur identifiants manquants ou incorrectes");
