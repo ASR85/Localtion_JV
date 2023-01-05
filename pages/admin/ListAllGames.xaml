@@ -30,9 +30,9 @@
                 </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Liste des jeux :" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <TextBox x:Name="tb_c" HorizontalAlignment="Left" Margin="452,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="295,23,0,0" TextWrapping="Wrap" Text="Nombre de credits :" VerticalAlignment="Top"/>
+        <Label Content="Liste complète des jeux :" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <TextBox x:Name="tb_c" HorizontalAlignment="Left" Margin="557,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="400,23,0,0" TextWrapping="Wrap" Text="Nombre de credits :" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
