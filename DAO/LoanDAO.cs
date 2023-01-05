@@ -16,27 +16,34 @@ namespace Localtion_JV.DAO
         public List<Loan> GetLoansByPlayer(Player player)
         {
             List<Loan> loans = new List<Loan>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower =@pid and ongoing='true' ", connection);
-                cmd.Parameters.AddWithValue("@pid", player.Id);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower =@pid and ongoing='true' ", connection);
+                    cmd.Parameters.AddWithValue("@pid", player.Id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        Loan loan = new Loan(
-                        reader.GetInt32("Id"),
-                        reader.GetDateTime("StartDate"),
-                        reader.GetDateTime("EndDate"),
-                        Boolean.Parse(reader.GetString("Ongoing")),
-                        PlayerDAO.Find(reader.GetInt32("idBorrower")),
-                        PlayerDAO.Find(reader.GetInt32("idLender")),
-                        CopyDAO.Find(reader.GetInt32("idCopy"))
-                        );
-                        loans.Add(loan);
+                        while (reader.Read())
+                        {
+                            Loan loan = new Loan(
+                            reader.GetInt32("Id"),
+                            reader.GetDateTime("StartDate"),
+                            reader.GetDateTime("EndDate"),
+                            Boolean.Parse(reader.GetString("Ongoing")),
+                            PlayerDAO.Find(reader.GetInt32("idBorrower")),
+                            PlayerDAO.Find(reader.GetInt32("idLender")),
+                            CopyDAO.Find(reader.GetInt32("idCopy"))
+                            );
+                            loans.Add(loan);
+                        }
                     }
                 }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return loans;
         }
@@ -45,19 +52,26 @@ namespace Localtion_JV.DAO
         {
             
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                String b = "true";
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES (@start, @end , @b, @playerid, @copypid, @copyid)", connection);
-                cmd.Parameters.AddWithValue("@start",start);
-                cmd.Parameters.AddWithValue("@end", end);
-                cmd.Parameters.AddWithValue("@b", b);
-                cmd.Parameters.AddWithValue("@playerid", player.Id);
-                cmd.Parameters.AddWithValue("@copypid", copy.Player.Id);
-                cmd.Parameters.AddWithValue("@copyid", copy.Id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    String b = "true";
+                    SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Loans(startDate,endDate,ongoing, idBorrower, idLender, idCopy) VALUES (@start, @end , @b, @playerid, @copypid, @copyid)", connection);
+                    cmd.Parameters.AddWithValue("@start", start);
+                    cmd.Parameters.AddWithValue("@end", end);
+                    cmd.Parameters.AddWithValue("@b", b);
+                    cmd.Parameters.AddWithValue("@playerid", player.Id);
+                    cmd.Parameters.AddWithValue("@copypid", copy.Player.Id);
+                    cmd.Parameters.AddWithValue("@copyid", copy.Id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }
@@ -73,39 +87,53 @@ namespace Localtion_JV.DAO
 
         public void EndLoan(Loan l)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Loans SET ongoing = 'false' WHERE id = @lId", connection);
-                cmd.Parameters.AddWithValue("@lId", l.Id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"UPDATE dbo.Loans SET ongoing = 'false' WHERE id = @lId", connection);
+                    cmd.Parameters.AddWithValue("@lId", l.Id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
         }
 
         public List<Loan> GetPreviousLoans(Player player)
         {
             List<Loan> loans = new List<Loan>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower = @pid and ongoing='false' ", connection);
-                cmd.Parameters.AddWithValue("@pid",player.Id);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Loans WHERE idBorrower = @pid and ongoing='false' ", connection);
+                    cmd.Parameters.AddWithValue("@pid", player.Id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        Loan loan = new Loan(
-                        reader.GetInt32("Id"),
-                        reader.GetDateTime("StartDate"),
-                        reader.GetDateTime("EndDate"),
-                        Boolean.Parse(reader.GetString("Ongoing")),
-                        PlayerDAO.Find(reader.GetInt32("idBorrower")),
-                        PlayerDAO.Find(reader.GetInt32("idLender")),
-                        CopyDAO.Find(reader.GetInt32("idCopy"))
-                        );
-                        loans.Add(loan);
+                        while (reader.Read())
+                        {
+                            Loan loan = new Loan(
+                            reader.GetInt32("Id"),
+                            reader.GetDateTime("StartDate"),
+                            reader.GetDateTime("EndDate"),
+                            Boolean.Parse(reader.GetString("Ongoing")),
+                            PlayerDAO.Find(reader.GetInt32("idBorrower")),
+                            PlayerDAO.Find(reader.GetInt32("idLender")),
+                            CopyDAO.Find(reader.GetInt32("idCopy"))
+                            );
+                            loans.Add(loan);
+                        }
                     }
                 }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return loans;
         }

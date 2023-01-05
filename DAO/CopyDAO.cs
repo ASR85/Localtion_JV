@@ -15,14 +15,21 @@ namespace Localtion_JV.DAO
         public bool Insert(Player p, Videogame vg)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame,available) VALUES(@pid, @vig,'true')", connection);
-                cmd.Parameters.AddWithValue("@pid", p.Id);
-                cmd.Parameters.AddWithValue("@vig", vg.Id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Copies(idPlayer,idGame,available) VALUES(@pid, @vig,'true')", connection);
+                    cmd.Parameters.AddWithValue("@pid", p.Id);
+                    cmd.Parameters.AddWithValue("@vig", vg.Id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }
@@ -30,13 +37,20 @@ namespace Localtion_JV.DAO
         public bool IsAvailable(Copy c)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'true' WHERE id =  @cid", connection);
-                cmd.Parameters.AddWithValue("@cid", c.Id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'true' WHERE id =  @cid", connection);
+                    cmd.Parameters.AddWithValue("@cid", c.Id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }
@@ -44,13 +58,20 @@ namespace Localtion_JV.DAO
         public bool NoLongerAvailable(Copy c)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'false' WHERE id = @cid", connection);
-                cmd.Parameters.AddWithValue("@cid", c.Id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"UPDATE dbo.Copies SET available = 'false' WHERE id = @cid", connection);
+                    cmd.Parameters.AddWithValue("@cid", c.Id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }
@@ -67,13 +88,21 @@ namespace Localtion_JV.DAO
         public bool Delete(int id)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Copies WHERE Id = @id", connection);
-                cmd.Parameters.AddWithValue("@id", id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Copies WHERE Id = @id", connection);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }

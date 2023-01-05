@@ -16,20 +16,27 @@ namespace Localtion_JV.DAO
         public List<Booking> GetBookingByPlayer(Player player)
         {
             List<Booking> bookings = new List<Booking>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Bookings WHERE IdPlayer = @playerid ", connection);
-                cmd.Parameters.AddWithValue("@playerid",player.Id);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Bookings WHERE IdPlayer = @playerid ", connection);
+                    cmd.Parameters.AddWithValue("@playerid", player.Id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        Booking booking = new Booking();
-                        booking.BookingDate = reader.GetDateTime("BookingDate");
-                        bookings.Add(booking);
+                        while (reader.Read())
+                        {
+                            Booking booking = new Booking();
+                            booking.BookingDate = reader.GetDateTime("BookingDate");
+                            bookings.Add(booking);
+                        }
                     }
                 }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return bookings;
         }
@@ -37,16 +44,23 @@ namespace Localtion_JV.DAO
         public bool Insert(string bd, string ld, Player player, Videogame videogame)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Bookings(bookingDate,loanDate,idPlayer,idGame) VALUES( @bd, @ld, @playerid, @videogameid )", connection);
-                cmd.Parameters.AddWithValue("@bd",bd);
-                cmd.Parameters.AddWithValue("@ld",ld);
-                cmd.Parameters.AddWithValue("@playerid",player.Id);
-                cmd.Parameters.AddWithValue("@videogameid",videogame.Id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Bookings(bookingDate,loanDate,idPlayer,idGame) VALUES( @bd, @ld, @playerid, @videogameid )", connection);
+                    cmd.Parameters.AddWithValue("@bd", bd);
+                    cmd.Parameters.AddWithValue("@ld", ld);
+                    cmd.Parameters.AddWithValue("@playerid", player.Id);
+                    cmd.Parameters.AddWithValue("@videogameid", videogame.Id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }
@@ -54,13 +68,20 @@ namespace Localtion_JV.DAO
         public bool Delete(Booking b)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Bookings WHERE id= @bid", connection);
-                cmd.Parameters.AddWithValue("@bid", b.Id);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"DELETE FROM dbo.Bookings WHERE id= @bid", connection);
+                    cmd.Parameters.AddWithValue("@bid", b.Id);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }
@@ -109,13 +130,20 @@ namespace Localtion_JV.DAO
         public bool UpdateLoanDate(Booking booking, string date)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE dbo.Bookings SET loanDate = '{date}' WHERE id = {booking.Id}", connection);
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"UPDATE dbo.Bookings SET loanDate = '{date}' WHERE id = {booking.Id}", connection);
 
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();
-                success = res > 0;
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }

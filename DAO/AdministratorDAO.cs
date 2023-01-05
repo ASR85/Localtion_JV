@@ -14,23 +14,30 @@ namespace Localtion_JV.DAO
         public Administrator GetAdmin(string pseudo, string password)
         {
             Administrator admin = null;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Administrators WHERE Pseudo = @pseudo and Password = @password", connection);
-                cmd.Parameters.AddWithValue("@pseudo", pseudo);
-                cmd.Parameters.AddWithValue("@password", password);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Administrators WHERE Pseudo = @pseudo and Password = @password", connection);
+                    cmd.Parameters.AddWithValue("@pseudo", pseudo);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        admin = new Administrator(
-                        reader.GetString("Pseudo"), 
-                        reader.GetString("Password")
-                        );
+                        while (reader.Read())
+                        {
+                            admin = new Administrator(
+                            reader.GetString("Pseudo"),
+                            reader.GetString("Password")
+                            );
 
+                        }
                     }
                 }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return admin;
         }

@@ -22,36 +22,50 @@ namespace Localtion_JV.DAO
         public bool Insert(User u)
         {
             bool success = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Users(username,password) VALUES(@pseudo, @password)", connection);
-                cmd.Parameters.AddWithValue("@pseudo", u.Pseudo);
-                cmd.Parameters.AddWithValue("@password", u.Password);
-                connection.Open();
-                int res = cmd.ExecuteNonQuery();                
-                success = res > 0;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand($"INSERT INTO dbo.Users(username,password) VALUES(@pseudo, @password)", connection);
+                    cmd.Parameters.AddWithValue("@pseudo", u.Pseudo);
+                    cmd.Parameters.AddWithValue("@password", u.Password);
+                    connection.Open();
+                    int res = cmd.ExecuteNonQuery();
+                    success = res > 0;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return success;
         }
         public User Login(User u)
         {
             User user = null;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Users WHERE Pseudo = @login and Password = @password", connection);
-                cmd.Parameters.AddWithValue("@login", u.Pseudo);
-                cmd.Parameters.AddWithValue("@password", u.Password);
-                connection.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    while (reader.Read())
+                    SqlCommand cmd = new SqlCommand($"SELECT * FROM dbo.Users WHERE Pseudo = @login and Password = @password", connection);
+                    cmd.Parameters.AddWithValue("@login", u.Pseudo);
+                    cmd.Parameters.AddWithValue("@password", u.Password);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        user = new User(
-                        reader.GetString("username"),
-                        reader.GetString("password")
-                        );
+                        while (reader.Read())
+                        {
+                            user = new User(
+                            reader.GetString("username"),
+                            reader.GetString("password")
+                            );
+                        }
                     }
                 }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
             }
             return user;
         }
