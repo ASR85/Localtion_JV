@@ -9,7 +9,7 @@
       Title="LoansHistory" Background="White">
 
     <Grid>
-        <Label Content="Liste de vos Locations :" HorizontalAlignment="Left" Margin="47,49,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <Label Content="Historique de vos Locations :" HorizontalAlignment="Left" Margin="47,49,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
         <DataGrid IsReadOnly="True" AutoGenerateColumns="False" Margin="47,126,78,57" x:Name="dg">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Copy.Videogame.Name}" Header="Nom"  Width="*"/>

@@ -45,7 +45,7 @@ namespace Localtion_JV.pages.customer
             int days = 0;
             int credits = 0;
             Loan loan = dg.SelectedItem as Loan;
-            if (loan.EndDate < DateTime.Now)
+            if (loan.EndDate.Date < DateTime.Now.Date)
             {
                 days = (int)((DateTime.Now.Date - loan.EndDate.Date).TotalDays);
                 credits = 5 *days;
@@ -59,6 +59,7 @@ namespace Localtion_JV.pages.customer
                         loan.EndLoan();
                         Copy copy = new Copy();
                         copy.IsAvailable(loan.Copy);
+                        NavigationService.Navigate(new SeeLoans(p));
                         break;
                     case MessageBoxResult.No:
                         break;
@@ -75,6 +76,7 @@ namespace Localtion_JV.pages.customer
                         loan.EndLoan();
                         Copy copy = new Copy();
                         copy.IsAvailable(loan.Copy);
+                        NavigationService.Navigate(new SeeLoans(p));
                         break;
                     case MessageBoxResult.No:
                         break;
