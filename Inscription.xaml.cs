@@ -38,38 +38,45 @@ namespace Localtion_JV
         {
             if (tb_username.Text != "" && tb_mdp.Text != "" && calendar_dob.Text !="")
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
-                string queryString = "SELECT * FROM dbo.Players WHERE pseudo = @pseudo";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                if (tb_username.Text.Length <= 16)
                 {
-                    SqlCommand command = new SqlCommand(queryString, connection);
-                    command.Parameters.AddWithValue("@pseudo", tb_username.Text);
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                    string connectionString = ConfigurationManager.ConnectionStrings["Location"].ConnectionString;
+                    string queryString = "SELECT * FROM dbo.Players WHERE pseudo = @pseudo";
 
-                    if (!reader.Read())
+                    using (SqlConnection connection = new SqlConnection(connectionString))
                     {
-                        string rd = DateTime.Now.ToString("yyyy-MM-dd");
-                        DateTime? dob = calendar_dob.SelectedDate;
-                        DateTime DofB = (DateTime)dob;
-                        string dob2 = DofB.ToString("yyyy-MM-dd"); 
-                        Player u = new Player(tb_username.Text, tb_mdp.Text, 10,DateTime.Now, calendar_dob.DisplayDate);               
-                        u.Insert(rd,dob2);
-                        MessageBox.Show($"Bienvenue sur notre site {u.Pseudo}", "Félicitation");
-                        NavigationService.Navigate(new Connection());
-                     
+                        SqlCommand command = new SqlCommand(queryString, connection);
+                        command.Parameters.AddWithValue("@pseudo", tb_username.Text);
+                        connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (!reader.Read())
+                        {
+                            string rd = DateTime.Now.ToString("yyyy-MM-dd");
+                            DateTime? dob = calendar_dob.SelectedDate;
+                            DateTime DofB = (DateTime)dob;
+                            string dob2 = DofB.ToString("yyyy-MM-dd");
+                            Player u = new Player(tb_username.Text, tb_mdp.Text, 10, DateTime.Now, calendar_dob.DisplayDate);
+                            u.Insert(rd, dob2);
+                            MessageBox.Show($"Bienvenue sur notre site {u.Pseudo}", "Félicitation");
+                            NavigationService.Navigate(new Connection());
+
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("Vous êtes déjà enregistré!", "Attention");
+                            tb_username.Text = "";
+                            tb_mdp.Text = "";
+                            calendar_dob.Text = "";
+                        }
+
+
                     }
-                    else
-                    {
-
-                        MessageBox.Show("Vous êtes déjà enregistré!", "Attention");
-                        tb_username.Text = "";
-                        tb_mdp.Text = "";
-                        calendar_dob.Text = "";
-                    }
-
-
+                }
+                else
+                {
+                    MessageBox.Show("Le pseudo doit faire au maximum 16 caractères");
                 }
 
                 
