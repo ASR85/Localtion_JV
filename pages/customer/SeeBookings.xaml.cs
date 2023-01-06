@@ -32,13 +32,7 @@ namespace Localtion_JV.pages.customer
                 MessageBox.Show("Vous n'avez pas de réservation en cours", "Attention");
             }
 
-            string chaine = "";
-            for(int i=0; i< bookings.Count - 1;i++)
-                {
-                chaine += bookings[i].Videogame.Name;
-                }
-
-            test.Content = chaine;
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -213,5 +213,33 @@ namespace Localtion_JV.DAO
             }
             return success;
         }
+
+        public List<Player> GetPlayers()
+        {
+            List<Player> players = new List<Player>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Players", connection);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Player player = new Player();
+                            player.Id = reader.GetInt32("Id");
+                            players.Add(player);
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception("Erreur Sql -> " + e.Message + "!");
+            }
+            return players;
+        }
+
     }
 }

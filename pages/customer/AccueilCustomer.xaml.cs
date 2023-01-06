@@ -28,7 +28,7 @@ namespace Localtion_JV.pages.customer
             InitializeComponent();
 
             p = player;
-            if (DateTime.Now.ToString("yyyy-MM-dd") == p.DateOfBirth.ToString("yyyy-MM-dd") && DateTime.Now.ToString("yyyy-MM-dd") != p.LastAddedBonusDate.ToString("yyyy-MM-dd"))
+            if (DateTime.Now.ToString("MM-dd") == p.DateOfBirth.ToString("MM-dd") && DateTime.Now.ToString("yyyy-MM-dd") != p.LastAddedBonusDate.ToString("yyyy-MM-dd"))
             {
                 label_accueil.Content = "Bon anniversaire " + player.Pseudo.ToUpper() +", pour cet evenement, on vous offre 2 crédits";
                 p.Credit += 2;

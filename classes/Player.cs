@@ -24,6 +24,11 @@ namespace Localtion_JV.classes
 
         }
 
+        public Player(int id)
+        {
+            this.id = id;
+        }
+
         public Player(string pseudo,string password, int credit,  DateTime registrationDate, DateTime dateOfBirth) : base(pseudo,password)
         {
             this.credit = credit;           
@@ -114,6 +119,12 @@ namespace Localtion_JV.classes
         public override string ToString()
         {
             return $"{this.Pseudo} , {this.Password} , {this.Credit} , {this.RegistrationDate} , {this.DateOfBirth} , ";
+        }
+
+        public static List<Player> GetPlayers()
+        {
+            PlayerDAO db = new PlayerDAO();
+            return db.GetPlayers();
         }
 
     }

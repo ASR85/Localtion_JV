@@ -9,10 +9,10 @@
       Title="AccueilCustomer" Background="White">
 
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,94,0,0" TextWrapping="Wrap" Text="Bienvenue cher joueur" VerticalAlignment="Top" FontSize="36"/>
-        <Image Source="/pages/customer/gamer.png" Width="150" Margin="325,147,325,119" />
+        <TextBlock HorizontalAlignment="Center" Margin="0,49,0,0" TextWrapping="Wrap" Text="Bienvenue cher joueur" VerticalAlignment="Top" FontSize="36"/>
+        <Image Source="/pages/customer/gamer.png" Width="150" Margin="325,102,325,164" />
 
-        <Label Content="" Foreground="Red" x:Name="label_accueil" HorizontalAlignment="Left" Margin="45,369,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label Content="" Foreground="Red" x:Name="label_accueil" HorizontalAlignment="Left" Margin="44,280,0,0" VerticalAlignment="Top" FontSize="24"/>
 
     </Grid>
 </Page>

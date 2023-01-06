@@ -26,6 +26,5 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="RETOUR" HorizontalAlignment="Left" Margin="620,60,0,0" VerticalAlignment="Top" Width="62" Click="Button_Click" RenderTransformOrigin="2.2,-0.11"/>
-        <Label Content="Label" x:Name="test" HorizontalAlignment="Left" Margin="65,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.347,-0.069"/>
     </Grid>
 </Page>

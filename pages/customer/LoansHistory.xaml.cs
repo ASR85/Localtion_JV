@@ -26,14 +26,7 @@ namespace Localtion_JV.pages.customer
             InitializeComponent();
             List<Loan> loans = Loan.GetPreviousLoans(player);
             dg.ItemsSource = loans;
-
-            string chaine = "";
-            for (int i = 0; i < loans.Count - 1; i++)
-            {
-                chaine += loans[i].Copy.Videogame.Name;
-            }
-
-            test.Content = chaine;
+           
         }
 
         private void EndLoan(object sender, RoutedEventArgs e)
