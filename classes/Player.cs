@@ -24,8 +24,10 @@ namespace Localtion_JV.classes
 
         }
 
-        public Player(int id)
+        public Player(int id, string pseudo, string password) : base(pseudo, password)
         {
+            base.Pseudo = pseudo;
+            base.Password = password;
             this.id = id;
         }
 

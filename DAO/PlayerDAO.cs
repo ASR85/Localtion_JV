@@ -229,6 +229,8 @@ namespace Localtion_JV.DAO
                         {
                             Player player = new Player();
                             player.Id = reader.GetInt32("Id");
+                            player.Pseudo = reader.GetString("pseudo");
+                            player.Password = reader.GetString("password");
                             players.Add(player);
                         }
                     }
